@@ -1,0 +1,14 @@
+.cartao {
+    width: fit-content;
+    align-content: center;
+}
+
+.container-fluid {
+    width: 100vw;
+    height: 100vh ;
+    background: rgb(119, 119, 187);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center
+}

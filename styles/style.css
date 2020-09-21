@@ -1,0 +1,111 @@
+.nav-item {
+    font-weight: 600;
+    color: rgb(119, 119, 187) !important;
+
+}
+
+.container-fluid {
+    background-color: rgb(119, 119, 187);
+    height: 100vh;
+}
+
+.bg-roxo {
+    background-color: rgb(119, 119, 187);
+
+}
+
+.bg-roxo a {
+    color: white ! important;
+}
+
+.navbar {
+    padding: 0rem 1rem !important;
+    padding-bottom: 0rem;
+}
+
+label {
+    font-weight: 600;
+}
+
+@media (max-width:1336px) {}
+
+.icone {
+    background-color: aliceblue;
+    color: rgb(255, 0, 0);
+    border-radius: 50%;
+    height: 16px !important;
+    width: 17px !important;
+}
+
+.tooltip1 {
+    position: relative !important;
+    /* making the .tooltip span a container for the tooltip text */
+    border-bottom: 1px dashed #000 !important;
+    /* little indicater to indicate it's hoverable */
+}
+
+.tooltip1:before {
+    content: attr(data-text) !important;
+    /* here's the magic */
+    position: absolute !important;
+
+    /* vertically center */
+    top: 50%;
+    transform: translateY(-50%);
+
+    /* move to right */
+    left: 100%;
+    margin-left: 15px;
+    /* and add a small left margin */
+    padding: 10px;
+    /* basic styles */
+    width: 200px;
+    border-radius: 10px;
+    background: rgb(255, 0, 0);
+    color: #fff;
+    text-align: center;
+
+    display: none !important;
+    /* hide by default */
+}
+
+.tooltip1:hover:before {
+    display: block !important;
+}
+
+.tooltip1.bottom:before {
+    /* reset defaults */
+    left: initial;
+    margin: initial;
+
+    /* set new values */
+    right: 100%;
+    margin-right: 15px;
+}
+
+.tooltip1.right:before {
+    /* reset defaults */
+    left: initial;
+    margin: initial;
+   
+    /* set new values */
+    left: 100%;
+    margin-left: 15px;
+    z-index:1;
+}
+
+
+@media (max-width:575px) {
+    .tooltip1.bottom:before {
+        /* reset defaults */
+        right: initial;
+        top: 70px;
+        margin: initial;
+
+        /* set new values */
+        top: 100%;
+        width: 250px;
+        margin-left: 15px;
+    }
+
+}
