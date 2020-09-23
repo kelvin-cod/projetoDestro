@@ -87,11 +87,11 @@ label {
     /* reset defaults */
     left: initial;
     margin: initial;
-   
+
     /* set new values */
     left: 100%;
     margin-left: 15px;
-    z-index:1;
+    z-index: 1;
 }
 
 
@@ -108,4 +108,12 @@ label {
         margin-left: 15px;
     }
 
+}
+
+.form-control {
+    border: 1px solid black !important
+}
+
+.form-control:focus {
+    border: 2px solid rgb(255, 0, 0) !important
 }
