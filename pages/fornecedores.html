@@ -5,10 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta name="author" content="Destro" />
-    <link rel="stylesheet" href="../styles/style.css">
+    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="../styles/style.css">
+
     <title>Fornecedores</title>
 </head>
 
@@ -97,8 +99,8 @@
                             </label>
 
                             <select name="" class="form-control" id="Forntipo">
-                                <option value="Pessoal" class="form-control">Pessoal</option>
-                                <option value="Empresa" class="form-control">Empresa</option>
+                                <option value="Fisico" class="form-control">Fisico</option>
+                                <option value="juridico" class="form-control">juridico</option>
                             </select>
                         </div>
                     </div>
@@ -117,14 +119,14 @@
                             <input type="text" class="form-control" id="FornCep">
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4">
+                    <div class="col-lg-5 col-md-3 col-sm-4">
                         <div class="form-group ">
                             <label for="logradouro">logradouro</label>
                             <input type="text" class="form-control" id="FornLogradouro">
                         </div>
                     </div>
 
-                    <div class=" col-lg-2 col-md-4 col-sm-4">
+                    <div class=" col-lg-4 col-md-4 col-sm-4">
                         <div class="form-group ">
                             <label for="complemento">Complemento</label>
                             <input type="text" class="form-control" id="FornComplemento">
@@ -136,7 +138,7 @@
                             <input type="text" class="form-control" id="FornEstado">
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-5 col-sm-4">
+                    <div class="col-lg-3 col-md-5 col-sm-4">
                         <div class="form-group ">
                             <label for="cidade">Cidade</label>
                             <input type="text" class="form-control" id="FornCidade">
@@ -148,7 +150,7 @@
                             <input type="text" class="form-control" id="FornBairro">
                         </div>
                     </div>
-                    <div class="col-lg-1 col-md-2 col-sm-2">
+                    <div class="col-lg-2 col-md-2 col-sm-2">
                         <div class="form-group ">
                             <label for="numero">Numero</label>
                             <input type="text" class="form-control" id="FornNumero">
@@ -165,7 +167,7 @@
                     </div>
                     <div class="col-lg-2 col-md-3 col-sm-3">
                         <div class="form-group ">
-                            <label for="celular">Celular</label>
+                            <label for="Forncelular">Celular</label>
                             <input type="text" class="form-control" id="FornCelular">
                         </div>
                     </div>
@@ -173,9 +175,9 @@
                 </div>
 
                 <div class="row text-white">
-                    <div class=" col-lg-12 mt-3 btn-group">
+                    <div class=" col-12 mt-3  ">
                         <button class="btn btn-small btn-secondary  font-weight-bold" type="button">
-                            <i class="fa fa-plus"></i> 
+                            <i class="fa fa-plus"></i>
                             Novo Fornecedor
                         </button>
                         <button class="btn btn-danger font-weight-bold" type="button">
@@ -183,7 +185,7 @@
                             Apagar
                         </button>
                         <button class="btn btn-warning font-weight-bold" type="button">
-                            <i class="fa fa-edit"></i>
+                            <i class="fa fa-pencil"></i>
                             Alterar Dados
                         </button>
                         <button class="btn btn-success font-weight-bold" type="button">
@@ -191,49 +193,7 @@
                             Confirmar
                         </button>
                     </div>
-                    <div class="col-md-5 ">
-                        <h2 class="text-white mt-3 text-center">Compras desse fornecedor </h2>
-                        <table class="table table-hover bg-light text-center">
-                            <thead class="bg-dark">
-                                <tr class=" text-white">
-                                    <th scope="col">Data</th>
-                                    <th scope="col">Ordem Compra</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Usuário</th>
-        
-                                </tr>
-                            
-                            </thead>
-                            <tbody>
-        
-                                <tr>
-                                    <th scope="row"></th>
-                                    <th scope="row"></th>
-                                    <th scope="row"></th>
-                                    <th scope="row" >Mark</th>
-        
-                                </tr>
-                                <tr>
-                                    <th scope="row"></th>
-                                    <th scope="row"></th>
-                                    <th scope="row"></th>
-                                    <th scope="row" colspan="2">Jacob</th>
-        
-        
-                                </tr>
-                                <tr>
-                                    <th scope="row"></th>
-                                    <th scope="row"></th>
-                                    <th scope="row"></th>
-                                    <th scope="row" colspan="2">Thornton</th>
-        
-        
-                                </tr>
-        
-                            </tbody>
-        
-                        </table>
-                    </div>
+
                 </div>
             </div>
 
@@ -278,20 +238,133 @@
 
                     </tbody>
 
+
+                </table>
+            </div>
+
+
+        </div>
+
+        <div class="row ">
+            <div class="col-md-6">
+                <h2 class="text-white mt-3 text-center">Compras desse fornecedor </h2>
+                <table class="table table-hover bg-light text-center">
+                    <thead class="bg-dark">
+                        <tr class=" text-white">
+                            <th scope="col">Data</th>
+                            <th scope="col">Ordem Compra</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Usuário</th>
+    
+                        </tr>
+    
+                    </thead>
+                    <tbody>
+    
+                        <tr>
+                            <th scope="row"></th>
+                            <th scope="row"></th>
+                            <th scope="row"></th>
+                            <th scope="row">Mark</th>
+    
+                        </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <th scope="row"></th>
+                            <th scope="row"></th>
+                            <th scope="row" colspan="2">Jacob</th>
+    
+    
+                        </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <th scope="row"></th>
+                            <th scope="row"></th>
+                            <th scope="row" colspan="2">Thornton</th>
+    
+    
+                        </tr>
+                        <tr>
+                            <th scope="row" colspan="3">Quantidade de Compras:</th>
+                            <th scope="row"> 10</th>
+                        </tr>
+                    </tbody>
+    
+                </table>
+            </div>
+            <div class="col-md-6">
+                <h4 class="text-white mt-3 text-center">Ultimos Produtos comprados desse fornecedor </h4>
+                <table class="table table-hover bg-light text-center">
+                    <thead class="bg-dark">
+                        <tr class=" text-white">
+                            <th scope="col">Data</th>
+                            <th scope="col">Produto/Serviço</th>
+                            <th scope="col">Val Unit</th>
+                            <th scope="col">Sub Total</th>
+    
+                        </tr>
+    
+                    </thead>
+                    <tbody>
+    
+                        <tr>
+                            <th scope="row"></th>
+                            <th scope="row"></th>
+                            <th scope="row"></th>
+                            <th scope="row">0</th>
+    
+                        </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <th scope="row"></th>
+                            <th scope="row"></th>
+                            <th scope="row" colspan="2">0</th>
+    
+    
+                        </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <th scope="row"></th>
+                            <th scope="row"></th>
+                            <th scope="row" colspan="2">0</th>
+    
+    
+                        </tr>
+                        <tr>
+                            <th scope="row" colspan="3">Quantidade de Compras:</th>
+                            <th scope="row"> 10</th>
+                        </tr>
+                    </tbody>
+    
                 </table>
             </div>
         </div>
+   
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
 
 
 
+    <footer>
+        <div class=" footer navbar-fixed-bottom bg-white w-100 h-100">
+            <div class=" text-center pt-1">
+                <h5> SAC 0800 123 098 121
+                    <i class="fa fa-twitter"></i>
+                    <i class="fa fa-facebook"></i>
+                    <i class="fa fa-instagram"></i>
+                    <i class="fa fa-youtube"></i>
+                </h5>
+            </div>
+        </div>
+    </footer>
 </body>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/@popperjs/core@2"></script>
 
-
+<script src="/js/utils/jquery.mask.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/fornecedores.js"></script>
 
 
 </html>
