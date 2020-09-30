@@ -15,4 +15,4 @@ var novaURL = "../pages/login.html";
  
 };
 
-window.onload = isloggedIn();
+//window.onload = isloggedIn();
