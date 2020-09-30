@@ -1,4 +1,4 @@
-var novaURL = "../pages/login.html";
+/*var novaURL = "../pages/login.html";
 
  async function isloggedIn() {
    
@@ -16,3 +16,4 @@ var novaURL = "../pages/login.html";
 };
 
 //window.onload = isloggedIn();
+*/
