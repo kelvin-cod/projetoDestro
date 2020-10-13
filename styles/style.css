@@ -6,7 +6,7 @@
 
 .container-fluid {
     background-color: rgb(119, 119, 187);
-    height: 100vh;
+    height: 100vh !important;
 }
 
 .bg-roxo {
@@ -116,4 +116,8 @@ label {
 
 .form-control:focus {
     border: 2px solid rgb(255, 0, 0) !important
+}
+
+.footer {
+    height: 5vh !important;
 }
