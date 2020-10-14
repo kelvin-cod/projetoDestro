@@ -6,7 +6,7 @@
 
 .container-fluid {
     background-color: rgb(119, 119, 187);
-    height: 100vh ;
+    height: 110vh !important;
 }
 
 .bg-roxo {
@@ -118,6 +118,6 @@ label {
     border: 2px solid rgb(255, 0, 0) !important
 }
 
-.footer {
-    height: 5vh !important;
+.tabelaFaturamento {
+    height: 300px;
 }
