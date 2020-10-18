@@ -33,7 +33,7 @@
                         <a class="nav-link" href="#">Clientes </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="#">Produtos </a>
+                        <a class="nav-link" href="./produtos.html">Produtos</a>
                     </li>
                     <li class="nav-item active bg-roxo ">
                         <a class="nav-link" href="#">Compras </a>
@@ -118,7 +118,7 @@
                                 <tbody>
 
                                     <tr>
-                                        <td scope="row">000001</td>
+                                        <td scope="row" class="itemProdutos">1</td>
                                         <td colspan="3">Limpeza</td>
                                         <td>10</td>
                                         <td>0</td>
@@ -126,7 +126,7 @@
 
                                     </tr>
                                     <tr>
-                                        <td scope="row">000002</td>
+                                        <td scope="row" class="itemProdutos">2</td>
                                         <td colspan="3">Limpeza</td>
                                         <td>10</td>
                                         <td>0</td>
@@ -134,7 +134,7 @@
 
                                     </tr>
                                     <tr>
-                                        <td scope="row">000003</td>
+                                        <td scope="row" class="itemProdutos">3</td>
                                         <td colspan="3">Limpeza</td>
                                         <td>10</td>
                                         <td>0</td>
@@ -227,7 +227,7 @@
                         <tbody>
 
                             <tr>
-                                <td scope="row">000001</td>
+                                <td scope="row" class="itemFaturamento">1</td>
                                 <td>12/02/2020</td>
                                 <td>12345678</td>
                                 <td>20/02/2020</td>
@@ -241,7 +241,7 @@
                                         <option value="5">Cheque Prazo</option>
                                     </select>
                                 </td>
-                                <td>100,00</td>
+                                <td class="valor-pago-calculado">100,00</td>
                                 <td>12/02/2020</td>
                                 <td>
                                     <button class="btn btn-warning btn-custom">
@@ -254,7 +254,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td scope="row">000002</td>
+                                <td scope="row" class="itemFaturamento">2</td>
                                 <td>12/02/2020</td>
                                 <td>12345678</td>
                                 <td>20/02/2020</td>
@@ -269,7 +269,7 @@
                                     </select>
 
                                 </td>
-                                <td>100,00</td>
+                                <td class="valor-pago-calculado">100,00</td>
                                 <td>12/02/2020</td>
                                 <td>
                                     <button class="btn btn-warning btn-custom">
@@ -282,7 +282,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td scope="row">000003</td>
+                                <td scope="row" class="itemFaturamento">3</td>
                                 <td>12/02/2020</td>
                                 <td>12345678</td>
                                 <td>20/02/2020</td>
@@ -296,7 +296,7 @@
                                         <option value="5">Cheque Prazo</option>
                                     </select>
                                 </td>
-                                <td>100,00</td>
+                                <td class="valor-pago-calculado">100,00</td>
                                 <td>12/02/2020</td>
                                 <td>
                                     <button class="btn btn-warning btn-custom">
@@ -323,13 +323,11 @@
                             <td class="text-right bg-roxo text-white" colspan="2">
                                 Valor Total Faturado:
                             </td>
-                            <td id="qtdtotal"> </td>
+                            <td id="qtdtotal"></td>
+                            <td class="bg-roxo"></td>
+                            <td id="qtdtotalPago"></td>
                             <td class="bg-roxo ">
-                            </td>
-                            <td >0
-                            </td>
                             <td class="bg-roxo ">
-                                <td class="bg-roxo ">
                         </tfoot>
                     </table>
 
@@ -387,6 +385,7 @@
 
     <script>
         var hoje = '';
+        var item = 0;
         async function getDate() {
             hoje = await new Date();
             yr = hoje.getFullYear();
@@ -397,11 +396,9 @@
         //$("#data").val(data.toLocaleDateString())
 
         getDate().then(resp => {
-
-            console.log(resp);
             document.getElementById("data").value = resp
         });
-        //
+
         $(function () {
 
             var valorCalculado = 0;
@@ -415,16 +412,36 @@
             }));
 
         });
+        $(function () {
+
+            var valorCalculadoPago = 0;
+
+            $(".valor-pago-calculado").each(function () {
+                valorCalculadoPago += parseFloat($(this).text());
+            });
+            $("#qtdtotalPago").text(valorCalculadoPago.toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL"
+            }));
+        });
+
+
+        function autoItem(tabela) {
+
+            let aux = parseInt($(`.item${tabela}`).last().text())
+            item = aux + 1;
+            return item
+        };
     </script>
     <script>
         (function ($) {
             AddTableRow = function (tabela) {
-                console.log(tabela)
+
                 let newRow = $("<tr>");
                 let cols = "";
                 if (tabela == "products-table") {
-
-                    cols += '<td scope="row">&nbsp;</td>';
+                    autoItem("Produtos");
+                    cols += `<td scope="row" class="itemProdutos">${item }</td>`;
                     cols += '<td colspan="3">&nbsp;</td>';
                     cols += '<td>&nbsp;</td>';
                     cols += '<td>&nbsp;</td>';
@@ -432,14 +449,15 @@
                     newRow.append(cols);
                     $(`#products-table`).append(newRow);
                 } else if (tabela == "tabelaFaturamento") {
-                    cols += '<td scope="row">&nbsp;</td>';
+                    autoItem("Faturamento");
+                    cols += `<td scope="row" class="itemFaturamento">${item }</td>`;
                     cols += '<td >&nbsp;</td>';
                     cols += '<td>&nbsp;</td>';
                     cols += '<td>&nbsp;</td>';
-                    cols += '<td class="valor-calculado">&nbsp;</td>';
+                    cols += '<td class="valor-calculado">000,00</td>';
                     cols +=
                         '<td ><select name="" id="" class="form-control"> <option value="1">Dinheiro</option><option value="2">Crédito</option><option value="3">Débito</option><option value="4">Cheque Vista</option><option value="5">Cheque Prazo</option></select></td>';
-                    cols += '<td>&nbsp;</td>';
+                    cols += '<td>000,00</td>';
                     cols += '<td>&nbsp;</td>';
                     cols +=
                         '<td><button class="btn btn-warning btn-custom"><i class="fa fa-pencil "></i></button>        <button class="btn btn-danger  btn-custom"><i class="fa fa-trash"></i></button></td>'
@@ -453,5 +471,4 @@
         })(jQuery);
     </script>
 </body>
-
 </html>

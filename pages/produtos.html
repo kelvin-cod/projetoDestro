@@ -11,8 +11,9 @@
     <link rel="stylesheet" href="../js/utils/animisition/animsition.min.css" media="all" />
 
     <link rel="stylesheet" href="../styles/style.css">
-    <link rel="stylesheet" href="../styles/fornecedor.css">
-    <title>Fornecedores</title>
+    <link rel="stylesheet" href="../styles/produtos.css">
+
+    <title>Produtos</title>
 </head>
 
 
@@ -32,14 +33,14 @@
                     <li class="nav-item ">
                         <a class="nav-link" href="#">Clientes </a>
                     </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="./produtos.html">Produtos </a>
+                    <li class="nav-item bg-roxo active">
+                        <a class="nav-link" href="#">Produtos </a>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link" href="./compras.html">Compras</a>
                     </li>
-                    <li class="nav-item bg-roxo active  ">
-                        <a class="nav-link" href="#">Fornecedores</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./fornecedores.html">Fornecedores</a>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link " href="../index.html">Meus Dados </a>
@@ -55,125 +56,97 @@
         </nav>
         <div class="container-fluid pb-5">
             <div class="row pt-5">
-                <div class="col-lg-9 col-md-12">
+                <div class="col-lg-8 col-md-12">
                     <div class="row mt-3 text-white">
-                        <div class="col-md-9">
-                            <h1>Dados do Fornecedor</h1>
+                        <div class="col-md-12">
+                            <h1>Produtos</h1>
                         </div>
-                        <div class="col-md-3">
-                            <h5 disable>Cadastro: 31/02/2020</h4>
-                        </div>
-
                     </div>
 
                     <div class="row text-white">
-                        <div class="col-lg-4 col-md-8">
+                        <div class="col-lg-6 col-md-8">
                             <div class="form-group ">
-                                <label for="">Nome/Razão Social</label>
-                                <input type="text" class="form-control" id="FornNomeRazao">
+                                <label for="">Nome/Descrição do Produto</label>
+                                <input type="text" class="form-control" id="prodNome">
                             </div>
                         </div>
                         <div class="col-lg-2 col-md-4 col-sm-6">
                             <div class="form-group ">
-                                <label for="">Apelido</label>
-                                <input type="text" class="form-control" id="FornApelido">
+                                <label for="prodTipo">Tipo</label>
+                                <select name="" class="form-control" id="prodTipo">
+                                    <option value="1" class="form-control">Produto</option>
+                                    <option value="2" class="form-control">Serviço</option>
+                                </select>
                             </div>
                         </div>
 
                         <div class="col-lg-2 col-md-4 col-sm-6">
                             <div class="form-group ">
-                                <label for="documento">Documento</label>
-                                <input type="text" class="form-control" id="FornDocumento">
+                                <label for="ncm">NCM</label>
+                                <input type="text" class="form-control" id="ncm">
                             </div>
                         </div>
                         <div class=" col-lg-2 col-md-4 col-sm-6">
                             <div class="form-group ">
-                                <label for="documento">Rg/IE</label>
-                                <input type="text" class="form-control" id="FornRgIe">
+                                <label for="cest">CEST</label>
+                                <input type="text" class="form-control" id="cest">
                             </div>
                         </div>
-                        <div class="col-lg-2 col-md-4 col-sm-6">
-                            <div class="form-group ">
-                                <label for="tipo"> Tipo
-                                    <span class="tooltip1 bottom" data-text="Define se o cadastro será de Empresa (Jurídica),
-                                ou Pessoal (Fisíca)">
-                                        <i class="fa fa-question  icone text-center  "></i>
-                                    </span>
-                                </label>
-
-                                <select name="" class="form-control" id="Forntipo">
-                                    <option value="Fisico" class="form-control">Fisico</option>
-                                    <option value="juridico" class="form-control">juridico</option>
-                                </select>
-                            </div>
-                        </div>
+                       
 
                     </div>
 
                     <div class="row text-white">
                         <div class="col-lg-2 col-md-3 col-sm-4">
                             <div class="form-group ">
-                                <label for="cep">CEP
-                                    <span class="tooltip1 right" data-text="Após diigtar o CEP, o sistema irá buscar os dados
-                                do Logradouro de forma automática.">
-                                        <i class="fa fa-question  icone text-center  "></i>
-                                    </span>
+                                <label for="precoCompra">Preço de Compra
+                                   
                                 </label>
-                                <input type="text" class="form-control" id="FornCep">
+                                <input type="text" class="form-control" id="precoCompra">
                             </div>
                         </div>
-                        <div class="col-lg-5 col-md-3 col-sm-4">
+                        <div class="col-lg-2 col-md-3 col-sm-4">
                             <div class="form-group ">
-                                <label for="logradouro">logradouro</label>
-                                <input type="text" class="form-control" id="FornLogradouro">
+                                <label for="valorFrete">Valor do Frete</label>
+                                <input type="text" class="form-control" id="valorFrete">
                             </div>
                         </div>
 
-                        <div class=" col-lg-3 col-md-4 col-sm-4">
+                        <div class=" col-lg-2 col-md-4 col-sm-4">
                             <div class="form-group ">
-                                <label for="complemento">Complemento</label>
-                                <input type="text" class="form-control" id="FornComplemento">
+                                <label for="adicionais">Adicionais</label>
+                                <input type="text" class="form-control" id="adicionais">
                             </div>
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-2">
                             <div class="form-group ">
-                                <label for="estado">Estado</label>
-                                <input type="text" class="form-control" id="FornEstado">
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-5 col-sm-4">
-                            <div class="form-group ">
-                                <label for="cidade">Cidade</label>
-                                <input type="text" class="form-control" id="FornCidade">
+                                <label for="precoVenda">Preço de Venda</label>
+                                <input type="text" class="form-control" id="precoVenda">
                             </div>
                         </div>
                         <div class="col-lg-2 col-md-5 col-sm-4">
                             <div class="form-group ">
-                                <label for="bairro">Bairro</label>
-                                <input type="text" class="form-control" id="FornBairro">
+                                <label for="dataAlteracao">Data Ult. Alteração</label>
+                                <input type="text" class="form-control" id="dataAlteracao" disabled value="10/10/2020">
                             </div>
                         </div>
-                        <div class="col-lg-2 col-md-2 col-sm-2">
+                        <div class="col-lg-2 col-md-5 col-sm-4">
                             <div class="form-group ">
-                                <label for="numero">Numero</label>
-                                <input type="text" class="form-control" id="FornNumero">
+                                <label for="usuarioAlteracao">Usu. Ult. Alteração</label>
+                                <input type="text" class="form-control" id="usuarioAlteracao" disabled value="destro">
                             </div>
                         </div>
+                   
                     </div>
 
                     <div class="row text-white">
-                        <div class="col-lg-5 col-md-4 col-sm-4">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
                             <div class="form-group ">
-                                <label for="email">Email</label>
-                                <input type="email" class="form-control" id="FornEmail">
+                                <label for="obsProduto">Observação deste Produto</label>
+                                <input type="text" class="form-control" id="obsProduto">
                             </div>
                         </div>
-                        <div class="col-lg-2 col-md-3 col-sm-3">
-                            <div class="form-group ">
-                                <label for="Forncelular">Celular</label>
-                                <input type="text" class="form-control" id="FornCelular">
-                            </div>
-                        </div>
+                      
 
                     </div>
 
@@ -181,7 +154,7 @@
                         <div class=" col-12 mt-3  ">
                             <button class="btn btn-small btn-secondary  font-weight-bold" type="button">
                                 <i class="fa fa-plus"></i>
-                                Novo Fornecedor
+                                Novo Produto
                             </button>
                             <button class="btn btn-danger font-weight-bold" type="button">
                                 <i class="fa fa-trash"></i>
@@ -202,36 +175,27 @@
 
 
 
-                <div class="col-lg-3 col-md-12 ">
-                    <h2 class="text-white mt-3">Localizar Fornecedor </h2>
+                <div class="col-lg-4 col-md-12 ">
+                    <h2 class="text-white mt-3 text-center">Localizar Produto</h2>
                     <table class="table table-hover bg-light text-center">
                         <thead class="thead-dark">
                             <tr>
-                                <th scope="col">Nome Fornecedor
-                                    <div>
-
-                                        <input class="form-control " type="text" name=""
-                                            placeholder="Digite para buscar um fornecedor">
-                                    </div>
-
-
-                                </th>
+                                <th scope="col">Nome/Descrição do Produto</th>
 
                             </tr>
                         </thead>
                         <tbody>
-
                             <tr>
-                                <td scope="row" colspan="2">Mark</td>
+                                <td scope="row">Mark</td>
 
                             </tr>
                             <tr>
-                                <td scope="row" colspan="2">Jacob</td>
+                                <td scope="row">Jacob</td>
 
 
                             </tr>
                             <tr>
-                                <td scope="row" colspan="2">Thornton</td>
+                                <td scope="row">Thornton</td>
 
 
                             </tr>
@@ -246,15 +210,13 @@
             </div>
 
             <div class="row ">
-                <div class="col-lg-6 col-md-12">
-                    <h3 class="text-white mt-4 text-center">Compras desse fornecedor </h3>
+                <div class="col-lg-4 col-md-12">
+                    <h3 class="text-white mt-4 text-center">Vendas/Mês </h3>
                     <table class="table table-hover bg-light text-center">
                         <thead class="thead-dark">
                             <tr class=" text-white">
-                                <th scope="col">Data</th>
-                                <th scope="col">Ordem Compra</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Usuário</th>
+                                <th scope="col">Copetência</th>
+                                <th scope="col">Quant.Vendida</th>
                             </tr>
 
                         </thead>
@@ -262,43 +224,37 @@
 
                             <tr>
                                 <td scope="row"></td>
-                                <td></td>
-                                <td></td>
-                                <td colspan="2">Mark</td>
+                                <td>10</td>
+                      
 
                             </tr>
                             <tr>
                                 <td scope="row"></td>
-                                <td></td>
-                                <td></td>
-                                <td colspan="2">Jacob</td>
+                                <td>20</td>
+              
                             </tr>
                             <tr>
 
                                 <td scope="row"></td>
-                                <td></td>
-                                <td></td>
-                                <td colspan="2">Thornton</td>
+                                <td>30</td>
+                 
 
 
                             </tr>
-                        <tfoot>
-                            <td scope="row" colspan="3">Quantidade de Compras:</td>
-                            <td> 10</td>
-                        </tfoot>
+           
                         </tbody>
 
                     </table>
                 </div>
-                <div class="col-lg-6 col-md-12">
-                    <h3 class="text-white mt-4  text-center">Ultimos Produtos comprados desse fornecedor </h3>
+                <div class="col-lg-8 col-md-12">
+                    <h3 class="text-white mt-4  text-center">Últimas compras deste produto</h3>
                     <table class="table table-hover bg-light text-center">
                         <thead class="thead-dark">
                             <tr class=" text-white">
                                 <th scope="col">Data</th>
-                                <th scope="col">Produto/Serviço</th>
+                                <th scope="col">Quant.</th>
                                 <th scope="col">Val Unit</th>
-                                <th scope="col">Sub Total</th>
+                                <th scope="col">Fornecedor</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -307,24 +263,21 @@
                                 <td scope="row"></td>
                                 <td></td>
                                 <td></td>
-                                <td colspan="2">0</td>
+                                <td >0</td>
                             </tr>
                             <tr>
                                 <td scope="row"></td>
                                 <td></td>
                                 <td></td>
-                                <td colspan="2">0</td>
+                                <td >0</td>
                             </tr>
                             <tr>
                                 <td scope="row"></td>
                                 <td></td>
                                 <td></td>
-                                <td colspan="2">0</td>
+                                <td >0</td>
                             </tr>
-                        <tfoot>
-                            <td scope="row" colspan="3">Quantidade de Compras:</td>
-                            <td> 10</td>
-                        </tfoot>
+                    
                         </tbody>
                     </table>
                 </div>
@@ -332,7 +285,7 @@
 
 
         </div>
-        <footer>
+        <footer >
             <!--footer navbar-fixed-bottom-->
             <div class="footer navbar-fixed-bottom bg-white ">
                 <div class=" text-center pt-2">
@@ -354,7 +307,6 @@
 
     <script src="../js/main.js"></script>
     <script src="../js/utils/jquery.mask.js"></script>
-    <script src="../js/fornecedores.js"></script>
 
 
 </body>

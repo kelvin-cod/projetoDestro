@@ -1,32 +1,28 @@
 var novaURL = "login.html";
+let user;
+async function isloggedIn() {
 
-async function isloggedIn2() {
 
-  let user;
 
   try {
     user = await sessionStorage.getItem("user") //JSON.parse(sessionStorage.getItem("user"));
   } catch (error) {
     console.log(error)
   }
+  if (user == null) {
+
+    $(window.document.location).attr('href', novaURL);
+    //$(window.document.location).attr('href', "../index.html");
+    //window.location.href = "/index.html";
+  } else {
+
+  }
 
 
 };
 
-function name() {
-  user = sessionStorage.getItem("user")
-  if (user == 1) {
-    console.log(user)
-    //$(window.document.location).attr('href', "../index.html");
-    window.location.href = "index.html";
-  } else {
 
-    $(window.document.location).attr('href', novaURL);
-  }
-
-}
-window.onload = name();
-window.onload = console.log('alo')
+window.onload = isloggedIn();
 
 setTimeout(function () {
   // isloggedIn();
