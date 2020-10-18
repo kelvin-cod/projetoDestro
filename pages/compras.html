@@ -8,410 +8,450 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../js/utils/animisition/animsition.min.css" media="all" />
 
     <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/compras.css">
 
     <title>Compras</title>
 </head>
 
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top row  ">
-        <a class="navbar-brand col-md-2">Brand</a>
-        <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse" aria-controls="my-nav"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div id="my-nav" class="collapse navbar-collapse ">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item ">
-                    <a class="nav-link " href="#">Vendas </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="#">Clientes </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="#">Produtos </a>
-                </li>
-                <li class="nav-item active bg-roxo ">
-                    <a class="nav-link" href="#">Compras </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="./fornecedores.html">Fornecedores</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link " href="../index.html">Meus Dados </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="#">Gerenciar </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="./login.html">Sair </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <div class="container-fluid">
-        <div class="row pt-5">
-            <div class="col-md-8">
-                <div class="row mt-3 text-white">
-                    <div class="col-md-10">
-                        <h1>Compras</h1>
+<body class="animsition">
+    <div class="page-wrapper">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top row  ">
+            <a class="navbar-brand col-md-2">Brand</a>
+            <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse" aria-controls="my-nav"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="my-nav" class="collapse navbar-collapse ">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item ">
+                        <a class="nav-link " href="#">Vendas </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#">Clientes </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#">Produtos </a>
+                    </li>
+                    <li class="nav-item active bg-roxo ">
+                        <a class="nav-link" href="#">Compras </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="./fornecedores.html">Fornecedores</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link " href="../index.html">Meus Dados </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#">Gerenciar </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" id="logout" href="#">Sair </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="row pt-5">
+                <div class="col-lg-8 col-md-12">
+                    <div class="row mt-3 text-white">
+                        <div class="col-lg-10 col-md-9">
+                            <h1>Compras</h1>
+                        </div>
+                        <div class="col-lg-2 col-md-3">
+                            <label for="">Nº Ordem de Compra</label>
+                            <input type="text" class="form-control text-center font-weight-bold" disabled value="0001">
+                        </div>
+
                     </div>
-                    <div class="col-md-2">
-                        <label for="">Nº Ordem de Compra</label>
-                        <input type="text" class="form-control text-center font-weight-bold" disabled value="0001">
+
+
+                    <div class="row text-white">
+                        <div class="col-lg-3 col-md-3">
+                            <div class="form-group ">
+                                <label for="data">Data</label>
+                                <input type="date" class="form-control" id="data">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-4 col-sm-6">
+                            <div class="form-group ">
+                                <label for="">Fornecedor</label>
+
+                                <select name="" id="fornecedor" class="form-control">
+                                    <option value=""></option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="form-group ">
+                                <label for="tipo">Tipo</label>
+
+                                <select name="" id="tipo" class="form-control">
+                                    <option value=""></option>
+                                    <option value="1">Ordem de Compra</option>
+                                    <option value="2">Reposicao Automatica</option>
+                                    <option value="3">Compra Efetivada</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-lg-12">
+                            <h4 class="text-white mt-3 text-center">Produtos/Serviço desta Compra </h4>
+                            <table class="table table-hover bg-light text-center" id="products-table">
+                                <thead class="thead-dark">
+                                    <tr class=" text-white">
+                                        <th scope="col">item</th>
+                                        <th scope="col" colspan="3">Produto/Serviço</th>
+                                        <th scope="col">Quant</th>
+                                        <th scope="col">Val Unit</th>
+                                        <th scope="col">Sub Total</th>
+
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+
+                                    <tr>
+                                        <td scope="row">000001</td>
+                                        <td colspan="3">Limpeza</td>
+                                        <td>10</td>
+                                        <td>0</td>
+                                        <td>10</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">000002</td>
+                                        <td colspan="3">Limpeza</td>
+                                        <td>10</td>
+                                        <td>0</td>
+                                        <td>10</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">000003</td>
+                                        <td colspan="3">Limpeza</td>
+                                        <td>10</td>
+                                        <td>0</td>
+                                        <td>10</td>
+
+
+                                    </tr>
+
+                                </tbody>
+                                <tfoot>
+                                    <td class="bg-roxo">
+                                        <button class="btn btn-success" onclick="AddTableRow('products-table')"
+                                            type="button">
+                                            <i class="fa fa-plus"></i>
+                                            Adicionar
+                                            Produto
+                                        </button>
+                                    </td>
+                                    <td scope="row" class="text-right bg-roxo text-white" colspan="5">Valor total dos
+                                        Produtos/Serviços:</td>
+                                    <td>30 </td>
+                                </tfoot>
+                            </table>
+                        </div>
+
+
+
+
                     </div>
 
                 </div>
 
+                <div class="col-lg-4 col-md-12 ">
+                    <h2 class="text-white mt-3">Últimas compras cadastradas </h2>
+                    <table class="table table-hover bg-light text-center">
+                        <thead class="thead-dark">
+                            <th scope="col">Data</th>
+                            <th scope="col">Nº O.Compra</th>
+                            <th scope="col">Fornecedor</th>
+                        </thead>
+                        <tbody>
 
-                <div class="row text-white">
-                    <div class="col-lg-3 col-md-3">
-                        <div class="form-group ">
-                            <label for="data">Data</label>
-                            <input type="date" class="form-control" id="data">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-4 col-sm-6">
-                        <div class="form-group ">
-                            <label for="">Fornecedor</label>
-
-                            <select name="" id="fornecedor" class="form-control">
-                                <option value=""></option>
-
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="form-group ">
-                            <label for="tipo">Tipo</label>
-
-                            <select name="" id="tipo" class="form-control">
-                                <option value=""></option>
-                                <option value="1">Ordem de Compra</option>
-                                <option value="2">Reposicao Automatica</option>
-                                <option value="3">Compra Efetivada</option>
-                            </select>
-                        </div>
-                    </div>
+                            <tr>
+                                <td scope="row">10/01/2020</td>
+                                <td>0002</td>
+                                <td>Mark</td>
+                            </tr>
+                            <tr>
+                                <td scope="row">10/01/2020</td>
+                                <td>0002</td>
+                                <td>Mark</td>
 
 
-
-                    <div class="col-lg-12">
-                        <h4 class="text-white mt-3 text-center">Produtos/Serviço desta Compra </h4>
-                        <table class="table table-hover bg-light text-center" id="products-table">
-                            <thead class="thead-dark">
-                                <tr class=" text-white">
-                                    <th scope="col">item</th>
-                                    <th scope="col" colspan="3">Produto/Serviço</th>
-                                    <th scope="col">Quant</th>
-                                    <th scope="col">Val Unit</th>
-                                    <th scope="col">Sub Total</th>
-
-                                </tr>
-
-                            </thead>
-                            <tbody>
-
-                                <tr>
-                                    <td scope="row">000001</td>
-                                    <td colspan="3">Limpeza</td>
-                                    <td>10</td>
-                                    <td>0</td>
-                                    <td>10</td>
-
-                                </tr>
-                                <tr>
-                                    <td scope="row">000002</td>
-                                    <td colspan="3">Limpeza</td>
-                                    <td>10</td>
-                                    <td>0</td>
-                                    <td>10</td>
-
-                                </tr>
-                                <tr>
-                                    <td scope="row">000003</td>
-                                    <td colspan="3">Limpeza</td>
-                                    <td>10</td>
-                                    <td>0</td>
-                                    <td>10</td>
+                            </tr>
+                            <tr>
+                                <td scope="row">10/01/2020</td>
+                                <td>0002</td>
+                                <td>Mark</td>
 
 
-                                </tr>
+                            </tr>
 
-                            </tbody>
-                            <tfoot>
-                                <td class="bg-roxo">
-                                    <button class="btn btn-success" onclick="AddTableRow('products-table')"
-                                        type="button">
-                                        <i class="fa fa-plus"></i>
-                                        Adicionar
-                                        Produto
-                                    </button>
-                                </td>
-                                <td scope="row" class="text-right bg-roxo text-white" colspan="5">Valor total dos
-                                    Produtos/Serviços:</td>
-                                <td>30 </td>
-                            </tfoot>
-                        </table>
-                    </div>
-                    <div class="col-lg-12 ">
-                        <h4 class="text-white mt-3 text-center">Faturamento (Pagamentos) desta Compra </h4>
-                        <table class="table table-hover bg-light text-center" id="tabelaFaturamento">
-                            <thead class="thead-dark">
-
-                                <th scope="col">Item</th>
-                                <th scope="col">Data</th>
-                                <th scope="col">Documento</th>
-                                <th scope="col">Vencimento</th>
-                                <th scope="col">Valor</th>
-                                <th scope="col">Forma de Pagamento</th>
-                                <th scope="col">Valor Pago</th>
-                                <th scope="col">Data Pagto</th>
+                        </tbody>
 
 
-                            </thead>
-                            <tbody>
-
-                                <tr>
-                                    <td scope="row">000001</td>
-                                    <td>12/02/2020</td>
-                                    <td>12345678</td>
-                                    <td>20/02/2020</td>
-                                    <td class="valor-calculado">100,00</td>
-                                    <td>
-                                        <select name="" id="" class="form-control">
-                                            <option value="1">Dinheiro</option>
-                                            <option value="2">Crédito</option>
-                                            <option value="3">Débito</option>
-                                            <option value="4">Cheque Vista</option>
-                                            <option value="5">Cheque Prazo</option>
-                                        </select>
-                                    </td>
-                                    <td>100,00</td>
-                                    <td>12/02/2020</td>
-                                </tr>
-                                <tr>
-                                    <td scope="row">000002</td>
-                                    <td>12/02/2020</td>
-                                    <td>12345678</td>
-                                    <td>20/02/2020</td>
-                                    <td class="valor-calculado">10000,00</td>
-                                    <td>
-                                        <select name="" id="" class="form-control">
-                                            <option value="1">Dinheiro</option>
-                                            <option value="2">Crédito</option>
-                                            <option value="3">Débito</option>
-                                            <option value="4">Cheque Vista</option>
-                                            <option value="5">Cheque Prazo</option>
-                                        </select>
-
-                                    </td>
-                                    <td>100,00</td>
-                                    <td>12/02/2020</td>
-                                </tr>
-                                <tr>
-                                    <td scope="row">000003</td>
-                                    <td>12/02/2020</td>
-                                    <td>12345678</td>
-                                    <td>20/02/2020</td>
-                                    <td class="valor-calculado">100,00</td>
-                                    <td>
-                                        <select name="" id="" class="form-control">
-                                            <option value="1">Dinheiro</option>
-                                            <option value="2">Crédito</option>
-                                            <option value="3">Débito</option>
-                                            <option value="4">Cheque Vista</option>
-                                            <option value="5">Cheque Prazo</option>
-                                        </select>
-                                    </td>
-                                    <td>100,00</td>
-                                    <td>12/02/2020</td>
-
-                                </tr>
-
-                            </tbody>
-                            <tfoot>
-                                <td class="bg-roxo" scope="row" colspan="2">
-                                    <button class="btn btn-success" onclick="AddTableRow('tabelaFaturamento')"
-                                        type="button">
-                                        <i class="fa fa-plus"></i>
-                                        Adicionar
-                                        Pagamento
-                                    </button>
-                                </td>
-                                <td class="text-right bg-roxo text-white" colspan="2">
-                                    Valor Total Faturado:
-                                </td>
-                                <td id="qtdtotal"> </td>
-                                <td class="bg-roxo ">
-                                </td>
-                                <td class="bg-roxo ">
-                                </td>
-                                <td class="bg-roxo ">
-                            </tfoot>
-                        </table>
-               
-                    </div>
-
-
-                    
+                    </table>
 
                 </div>
-          
-            </div>
 
-            <div class="col-md-4 ">
-                <h2 class="text-white mt-3">Últimas compras cadastradas </h2>
-                <table class="table table-hover bg-light text-center">
-                    <thead class="thead-dark">
-                        <th scope="col">Data</th>
-                        <th scope="col">Nº O.Compra</th>
-                        <th scope="col">Fornecedor</th>
-                    </thead>
-                    <tbody>
-
-                        <tr>
-                            <td scope="row">10/01/2020</td>
-                            <td>0002</td>
-                            <td>Mark</td>
-                        </tr>
-                        <tr>
-                            <td scope="row">10/01/2020</td>
-                            <td>0002</td>
-                            <td>Mark</td>
-
-
-                        </tr>
-                        <tr>
-                            <td scope="row">10/01/2020</td>
-                            <td>0002</td>
-                            <td>Mark</td>
-
-
-                        </tr>
-
-                    </tbody>
-
-
-                </table>
 
             </div>
 
+            <div class="row">
+                <div class="col-12">
+                    <h4 class="text-white mt-3 text-center">Faturamento (Pagamentos) desta Compra </h4>
+                    <table class="table table-hover bg-light text-center " id="tabelaFaturamento" s>
+                        <thead class="thead-dark">
 
+                            <th scope="col">Item</th>
+                            <th scope="col">Data</th>
+                            <th scope="col">Documento</th>
+                            <th scope="col">Vencimento</th>
+                            <th scope="col">Valor</th>
+                            <th scope="col">Forma de Pagamento</th>
+                            <th scope="col">Valor Pago</th>
+                            <th scope="col">Data Pagto</th>
+                            <th scope="col">Editar/Excluir</th>
+
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <td scope="row">000001</td>
+                                <td>12/02/2020</td>
+                                <td>12345678</td>
+                                <td>20/02/2020</td>
+                                <td class="valor-calculado">100,00</td>
+                                <td>
+                                    <select name="" id="" class="form-control">
+                                        <option value="1">Dinheiro</option>
+                                        <option value="2">Crédito</option>
+                                        <option value="3">Débito</option>
+                                        <option value="4">Cheque Vista</option>
+                                        <option value="5">Cheque Prazo</option>
+                                    </select>
+                                </td>
+                                <td>100,00</td>
+                                <td>12/02/2020</td>
+                                <td>
+                                    <button class="btn btn-warning btn-custom">
+                                        <i class="fa fa-pencil "></i>
+                                    </button>
+                                    <button class="btn btn-danger  btn-custom">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td scope="row">000002</td>
+                                <td>12/02/2020</td>
+                                <td>12345678</td>
+                                <td>20/02/2020</td>
+                                <td class="valor-calculado">10000,00</td>
+                                <td>
+                                    <select name="" id="" class="form-control">
+                                        <option value="1">Dinheiro</option>
+                                        <option value="2">Crédito</option>
+                                        <option value="3">Débito</option>
+                                        <option value="4">Cheque Vista</option>
+                                        <option value="5">Cheque Prazo</option>
+                                    </select>
+
+                                </td>
+                                <td>100,00</td>
+                                <td>12/02/2020</td>
+                                <td>
+                                    <button class="btn btn-warning btn-custom">
+                                        <i class="fa fa-pencil "></i>
+                                    </button>
+                                    <button class="btn btn-danger  btn-custom">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td scope="row">000003</td>
+                                <td>12/02/2020</td>
+                                <td>12345678</td>
+                                <td>20/02/2020</td>
+                                <td class="valor-calculado">100,00</td>
+                                <td>
+                                    <select name="" id="" class="form-control">
+                                        <option value="1">Dinheiro</option>
+                                        <option value="2">Crédito</option>
+                                        <option value="3">Débito</option>
+                                        <option value="4">Cheque Vista</option>
+                                        <option value="5">Cheque Prazo</option>
+                                    </select>
+                                </td>
+                                <td>100,00</td>
+                                <td>12/02/2020</td>
+                                <td>
+                                    <button class="btn btn-warning btn-custom">
+                                        <i class="fa fa-pencil "></i>
+                                    </button>
+                                    <button class="btn btn-danger  btn-custom">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+                        <tfoot>
+                            <td class="bg-roxo" scope="row" colspan="2">
+                                <button class="btn btn-success" onclick="AddTableRow('tabelaFaturamento')"
+                                    type="button">
+                                    <i class="fa fa-plus"></i>
+                                    Adicionar
+                                    Pagamento
+                                </button>
+                            </td>
+                            <td class="text-right bg-roxo text-white" colspan="2">
+                                Valor Total Faturado:
+                            </td>
+                            <td id="qtdtotal"> </td>
+                            <td class="bg-roxo ">
+                            </td>
+                            <td >0
+                            </td>
+                            <td class="bg-roxo ">
+                                <td class="bg-roxo ">
+                        </tfoot>
+                    </table>
+
+                </div>
+                <!--botoes-->
+                <div class="text-white  text-center mt-3 mb-3 col-lg-12">
+
+                    <button class="btn btn-small btn-secondary  font-weight-bold" type="button">
+                        <i class="fa fa-plus"></i>
+                        Nova Compra
+                    </button>
+                    <button class="btn btn-danger font-weight-bold" type="button">
+                        <i class="fa fa-trash"></i>
+                        Apagar
+                    </button>
+                    <button class="btn btn-warning font-weight-bold" type="button">
+                        <i class="fa fa-pencil"></i>
+                        Alterar Dados
+                    </button>
+                    <button class="btn btn-success font-weight-bold" type="button">
+                        <i class="fa fa-check"></i>
+                        Confirmar
+                    </button>
+
+                </div>
+            </div>
         </div>
-        <div class="row">
-            <div class="text-white  text-right mt-3 ">
+        <footer>
+            <div class=" footer navbar-fixed-bottom bg-white  ">
+                <div class=" text-center p-2">
+                    <h5> SAC 0800 123 098 121
+                        <span class="pl-3">
+                            <i class="fa fa-twitter"></i>
+                            <i class="fa fa-facebook"></i>
+                            <i class="fa fa-instagram"></i>
+                            <i class="fa fa-youtube"></i>
+                        </span>
 
-                <button class="btn btn-small btn-secondary  font-weight-bold" type="button">
-                    <i class="fa fa-plus"></i>
-                    Nova Compra
-                </button>
-                <button class="btn btn-danger font-weight-bold" type="button">
-                    <i class="fa fa-trash"></i>
-                    Apagar
-                </button>
-                <button class="btn btn-warning font-weight-bold" type="button">
-                    <i class="fa fa-pencil"></i>
-                    Alterar Dados
-                </button>
-                <button class="btn btn-success font-weight-bold" type="button">
-                    <i class="fa fa-check"></i>
-                    Confirmar
-                </button>
-
+                    </h5>
+                </div>
             </div>
-        </div>
+        </footer>
     </div>
-    <footer>
-        <div class=" footer navbar-fixed-bottom bg-white  ">
-            <div class=" text-center p-2">
-                <h5> SAC 0800 123 098 121
-                    <span class="pl-3">
-                        <i class="fa fa-twitter"></i>
-                        <i class="fa fa-facebook"></i>
-                        <i class="fa fa-instagram"></i>
-                        <i class="fa fa-youtube"></i>
-                    </span>
 
-                </h5>
-            </div>
-        </div>
-    </footer>
 
-</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="../js/utils/animisition/animsition.min.js"></script>
 
-<script src="../js/utils/jquery.mask.js"></script>
-<script src="../js/main.js"></script>
-<script>
-    var hoje = '';
-    async function getDate() {
-        hoje = await new Date();
-        yr = hoje.getFullYear();
-        mt = hoje.getMonth() +1;
-        dy = hoje.getDate();
-        return yr + "-" + mt + "-" + dy;
-    }
-    //$("#data").val(data.toLocaleDateString())
+    <script src="../js/utils/jquery.mask.js"></script>
+    <script src="../js/main.js"></script>
 
-    getDate().then(resp => {
-  
-        console.log(resp);
-        document.getElementById("data").value = resp
-    });
-    //
-    $(function () {
 
-        var valorCalculado = 0;
+    <script>
+        var hoje = '';
+        async function getDate() {
+            hoje = await new Date();
+            yr = hoje.getFullYear();
+            mt = hoje.getMonth() + 1;
+            dy = hoje.getDate();
+            return yr + "-" + mt + "-" + dy;
+        }
+        //$("#data").val(data.toLocaleDateString())
 
-        $(".valor-calculado").each(function () {
-            valorCalculado += parseFloat($(this).text());
+        getDate().then(resp => {
+
+            console.log(resp);
+            document.getElementById("data").value = resp
         });
-        $("#qtdtotal").text(valorCalculado.toLocaleString("pt-BR", {
-            style: "currency",
-            currency: "BRL"
-        }));
+        //
+        $(function () {
 
-    });
-</script>
-<script>
-    (function ($) {
-        AddTableRow = function (tabela) {
-            console.log(tabela)
-            let newRow = $("<tr>");
-            let cols = "";
-            if (tabela == "products-table") {
+            var valorCalculado = 0;
 
-                cols += '<td scope="row">&nbsp;</td>';
-                cols += '<td colspan="3">&nbsp;</td>';
-                cols += '<td>&nbsp;</td>';
-                cols += '<td>&nbsp;</td>';
-                cols += '<td disable>&nbsp;</td>';
-                newRow.append(cols);
-                $(`#products-table`).append(newRow);
-            } else if (tabela == "tabelaFaturamento") {
-                cols += '<td scope="row">&nbsp;</td>';
-                cols += '<td >&nbsp;</td>';
-                cols += '<td>&nbsp;</td>';
-                cols += '<td>&nbsp;</td>';
-                cols += '<td class="valor-calculado">&nbsp;</td>';
-                cols +=
-                    '<td ><select name="" id="" class="form-control"> <option value="1">Dinheiro</option><option value="2">Crédito</option><option value="3">Débito</option><option value="4">Cheque Vista</option><option value="5">Cheque Prazo</option></select></td>';
-                cols += '<td>&nbsp;</td>';
-                cols += '<td>&nbsp;</td>';
-                newRow.append(cols);
+            $(".valor-calculado").each(function () {
+                valorCalculado += parseFloat($(this).text());
+            });
+            $("#qtdtotal").text(valorCalculado.toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL"
+            }));
 
-                $(`#tabelaFaturamento`).append(newRow);
-            }
+        });
+    </script>
+    <script>
+        (function ($) {
+            AddTableRow = function (tabela) {
+                console.log(tabela)
+                let newRow = $("<tr>");
+                let cols = "";
+                if (tabela == "products-table") {
 
-            return false;
-        };
-    })(jQuery);
-</script>
+                    cols += '<td scope="row">&nbsp;</td>';
+                    cols += '<td colspan="3">&nbsp;</td>';
+                    cols += '<td>&nbsp;</td>';
+                    cols += '<td>&nbsp;</td>';
+                    cols += '<td disable>&nbsp;</td>';
+                    newRow.append(cols);
+                    $(`#products-table`).append(newRow);
+                } else if (tabela == "tabelaFaturamento") {
+                    cols += '<td scope="row">&nbsp;</td>';
+                    cols += '<td >&nbsp;</td>';
+                    cols += '<td>&nbsp;</td>';
+                    cols += '<td>&nbsp;</td>';
+                    cols += '<td class="valor-calculado">&nbsp;</td>';
+                    cols +=
+                        '<td ><select name="" id="" class="form-control"> <option value="1">Dinheiro</option><option value="2">Crédito</option><option value="3">Débito</option><option value="4">Cheque Vista</option><option value="5">Cheque Prazo</option></select></td>';
+                    cols += '<td>&nbsp;</td>';
+                    cols += '<td>&nbsp;</td>';
+                    cols +=
+                        '<td><button class="btn btn-warning btn-custom"><i class="fa fa-pencil "></i></button>        <button class="btn btn-danger  btn-custom"><i class="fa fa-trash"></i></button></td>'
+                    newRow.append(cols);
+
+                    $(`#tabelaFaturamento`).append(newRow);
+                }
+
+                return false;
+            };
+        })(jQuery);
+    </script>
+</body>
 
 </html>

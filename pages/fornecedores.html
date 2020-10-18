@@ -5,366 +5,358 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta name="author" content="Destro" />
-    
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../js/utils/animisition/animsition.min.css" media="all" />
 
     <link rel="stylesheet" href="../styles/style.css">
-
+    <link rel="stylesheet" href="../styles/fornecedor.css">
     <title>Fornecedores</title>
 </head>
 
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top row  ">
-        <a class="navbar-brand col-md-2">Brand</a>
-        <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse" aria-controls="my-nav"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div id="my-nav" class="collapse navbar-collapse ">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item ">
-                    <a class="nav-link " href="#">Vendas </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="#">Clientes </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="#">Produtos </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="./compras.html">Compras</a>
-                </li>
-                <li class="nav-item bg-roxo active  ">
-                    <a class="nav-link" href="#">Fornecedores</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link " href="../index.html">Meus Dados </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="#">Gerenciar </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="login.html">Sair </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <div class="container-fluid">
-        <div class="row pt-5">
-            <div class="col-md-9">
-                <div class="row mt-3 text-white">
-                    <div class="col-md-9">
-                        <h1>Dados do Fornecedor</h1>
-                    </div>
-                    <div class="col-md-3">
-                        <h5 disable>Cadastro: 31/02/2020</h4>
+
+<body class="animsition">
+    <div class="page-wrapper">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top row  ">
+            <a class="navbar-brand col-md-2">Brand</a>
+            <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse" aria-controls="my-nav"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="my-nav" class="collapse navbar-collapse ">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item ">
+                        <a class="nav-link " href="#">Vendas </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#">Clientes </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#">Produtos </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="./compras.html">Compras</a>
+                    </li>
+                    <li class="nav-item bg-roxo active  ">
+                        <a class="nav-link" href="#">Fornecedores</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link " href="../index.html">Meus Dados </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#">Gerenciar </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" id="logout" href="#">Sair </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container-fluid pb-5">
+            <div class="row pt-5">
+                <div class="col-lg-9 col-md-12">
+                    <div class="row mt-3 text-white">
+                        <div class="col-md-9">
+                            <h1>Dados do Fornecedor</h1>
+                        </div>
+                        <div class="col-md-3">
+                            <h5 disable>Cadastro: 31/02/2020</h4>
+                        </div>
+
                     </div>
 
-                </div>
+                    <div class="row text-white">
+                        <div class="col-lg-4 col-md-8">
+                            <div class="form-group ">
+                                <label for="">Nome/Razão Social</label>
+                                <input type="text" class="form-control" id="FornNomeRazao">
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-sm-6">
+                            <div class="form-group ">
+                                <label for="">Apelido</label>
+                                <input type="text" class="form-control" id="FornApelido">
+                            </div>
+                        </div>
 
-                <div class="row text-white">
-                    <div class="col-lg-4 col-md-8">
-                        <div class="form-group ">
-                            <label for="">Nome/Razão Social</label>
-                            <input type="text" class="form-control" id="FornNomeRazao">
+                        <div class="col-lg-2 col-md-4 col-sm-6">
+                            <div class="form-group ">
+                                <label for="documento">Documento</label>
+                                <input type="text" class="form-control" id="FornDocumento">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-2 col-md-4 col-sm-6">
-                        <div class="form-group ">
-                            <label for="">Apelido</label>
-                            <input type="text" class="form-control" id="FornApelido">
+                        <div class=" col-lg-2 col-md-4 col-sm-6">
+                            <div class="form-group ">
+                                <label for="documento">Rg/IE</label>
+                                <input type="text" class="form-control" id="FornRgIe">
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="col-lg-2 col-md-4 col-sm-6">
-                        <div class="form-group ">
-                            <label for="documento">Documento</label>
-                            <input type="text" class="form-control" id="FornDocumento">
-                        </div>
-                    </div>
-                    <div class=" col-lg-2 col-md-4 col-sm-6">
-                        <div class="form-group ">
-                            <label for="documento">Rg/IE</label>
-                            <input type="text" class="form-control" id="FornRgIe">
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-4 col-sm-6">
-                        <div class="form-group ">
-                            <label for="tipo"> Tipo
-                                <span class="tooltip1 bottom" data-text="Define se o cadastro será de Empresa (Jurídica),
+                        <div class="col-lg-2 col-md-4 col-sm-6">
+                            <div class="form-group ">
+                                <label for="tipo"> Tipo
+                                    <span class="tooltip1 bottom" data-text="Define se o cadastro será de Empresa (Jurídica),
                                 ou Pessoal (Fisíca)">
-                                    <i class="fa fa-question  icone text-center  "></i>
-                                </span>
-                            </label>
+                                        <i class="fa fa-question  icone text-center  "></i>
+                                    </span>
+                                </label>
 
-                            <select name="" class="form-control" id="Forntipo">
-                                <option value="Fisico" class="form-control">Fisico</option>
-                                <option value="juridico" class="form-control">juridico</option>
-                            </select>
+                                <select name="" class="form-control" id="Forntipo">
+                                    <option value="Fisico" class="form-control">Fisico</option>
+                                    <option value="juridico" class="form-control">juridico</option>
+                                </select>
+                            </div>
                         </div>
+
                     </div>
 
-                </div>
-
-                <div class="row text-white">
-                    <div class="col-lg-2 col-md-3 col-sm-4">
-                        <div class="form-group ">
-                            <label for="cep">CEP
-                                <span class="tooltip1 right" data-text="Após diigtar o CEP, o sistema irá buscar os dados
+                    <div class="row text-white">
+                        <div class="col-lg-2 col-md-3 col-sm-4">
+                            <div class="form-group ">
+                                <label for="cep">CEP
+                                    <span class="tooltip1 right" data-text="Após diigtar o CEP, o sistema irá buscar os dados
                                 do Logradouro de forma automática.">
-                                    <i class="fa fa-question  icone text-center  "></i>
-                                </span>
-                            </label>
-                            <input type="text" class="form-control" id="FornCep">
+                                        <i class="fa fa-question  icone text-center  "></i>
+                                    </span>
+                                </label>
+                                <input type="text" class="form-control" id="FornCep">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-5 col-md-3 col-sm-4">
-                        <div class="form-group ">
-                            <label for="logradouro">logradouro</label>
-                            <input type="text" class="form-control" id="FornLogradouro">
+                        <div class="col-lg-5 col-md-3 col-sm-4">
+                            <div class="form-group ">
+                                <label for="logradouro">logradouro</label>
+                                <input type="text" class="form-control" id="FornLogradouro">
+                            </div>
+                        </div>
+
+                        <div class=" col-lg-3 col-md-4 col-sm-4">
+                            <div class="form-group ">
+                                <label for="complemento">Complemento</label>
+                                <input type="text" class="form-control" id="FornComplemento">
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2">
+                            <div class="form-group ">
+                                <label for="estado">Estado</label>
+                                <input type="text" class="form-control" id="FornEstado">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-5 col-sm-4">
+                            <div class="form-group ">
+                                <label for="cidade">Cidade</label>
+                                <input type="text" class="form-control" id="FornCidade">
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-5 col-sm-4">
+                            <div class="form-group ">
+                                <label for="bairro">Bairro</label>
+                                <input type="text" class="form-control" id="FornBairro">
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2">
+                            <div class="form-group ">
+                                <label for="numero">Numero</label>
+                                <input type="text" class="form-control" id="FornNumero">
+                            </div>
                         </div>
                     </div>
 
-                    <div class=" col-lg-4 col-md-4 col-sm-4">
-                        <div class="form-group ">
-                            <label for="complemento">Complemento</label>
-                            <input type="text" class="form-control" id="FornComplemento">
+                    <div class="row text-white">
+                        <div class="col-lg-5 col-md-4 col-sm-4">
+                            <div class="form-group ">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="FornEmail">
+                            </div>
                         </div>
+                        <div class="col-lg-2 col-md-3 col-sm-3">
+                            <div class="form-group ">
+                                <label for="Forncelular">Celular</label>
+                                <input type="text" class="form-control" id="FornCelular">
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="col-lg-1 col-md-2 col-sm-2">
-                        <div class="form-group ">
-                            <label for="estado">Estado</label>
-                            <input type="text" class="form-control" id="FornEstado">
+
+                    <div class="row text-white text-center">
+                        <div class=" col-12 mt-3  ">
+                            <button class="btn btn-small btn-secondary  font-weight-bold" type="button">
+                                <i class="fa fa-plus"></i>
+                                Novo Fornecedor
+                            </button>
+                            <button class="btn btn-danger font-weight-bold" type="button">
+                                <i class="fa fa-trash"></i>
+                                Apagar
+                            </button>
+                            <button class="btn btn-warning font-weight-bold" type="button">
+                                <i class="fa fa-pencil"></i>
+                                Alterar Dados
+                            </button>
+                            <button class="btn btn-success font-weight-bold" type="button">
+                                <i class="fa fa-check"></i>
+                                Confirmar
+                            </button>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-md-5 col-sm-4">
-                        <div class="form-group ">
-                            <label for="cidade">Cidade</label>
-                            <input type="text" class="form-control" id="FornCidade">
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-5 col-sm-4">
-                        <div class="form-group ">
-                            <label for="bairro">Bairro</label>
-                            <input type="text" class="form-control" id="FornBairro">
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-2 col-sm-2">
-                        <div class="form-group ">
-                            <label for="numero">Numero</label>
-                            <input type="text" class="form-control" id="FornNumero">
-                        </div>
+
                     </div>
                 </div>
 
-                <div class="row text-white">
-                    <div class="col-lg-5 col-md-4 col-sm-4">
-                        <div class="form-group ">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" id="FornEmail">
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-3">
-                        <div class="form-group ">
-                            <label for="Forncelular">Celular</label>
-                            <input type="text" class="form-control" id="FornCelular">
-                        </div>
-                    </div>
 
+
+                <div class="col-lg-3 col-md-12 ">
+                    <h2 class="text-white mt-3">Localizar Fornecedor </h2>
+                    <table class="table table-hover bg-light text-center">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Nome Fornecedor
+                                    <div>
+
+                                        <input class="form-control " type="text" name=""
+                                            placeholder="Digite para buscar um fornecedor">
+                                    </div>
+
+
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <td scope="row" colspan="2">Mark</td>
+
+                            </tr>
+                            <tr>
+                                <td scope="row" colspan="2">Jacob</td>
+
+
+                            </tr>
+                            <tr>
+                                <td scope="row" colspan="2">Thornton</td>
+
+
+                            </tr>
+
+                        </tbody>
+
+
+                    </table>
                 </div>
 
-                <div class="row text-white">
-                    <div class=" col-12 mt-3  ">
-                        <button class="btn btn-small btn-secondary  font-weight-bold" type="button">
-                            <i class="fa fa-plus"></i>
-                            Novo Fornecedor
-                        </button>
-                        <button class="btn btn-danger font-weight-bold" type="button">
-                            <i class="fa fa-trash"></i>
-                            Apagar
-                        </button>
-                        <button class="btn btn-warning font-weight-bold" type="button">
-                            <i class="fa fa-pencil"></i>
-                            Alterar Dados
-                        </button>
-                        <button class="btn btn-success font-weight-bold" type="button">
-                            <i class="fa fa-check"></i>
-                            Confirmar
-                        </button>
-                    </div>
 
-                </div>
             </div>
 
+            <div class="row ">
+                <div class="col-lg-6 col-md-12">
+                    <h3 class="text-white mt-4 text-center">Compras desse fornecedor </h3>
+                    <table class="table table-hover bg-light text-center">
+                        <thead class="thead-dark">
+                            <tr class=" text-white">
+                                <th scope="col">Data</th>
+                                <th scope="col">Ordem Compra</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Usuário</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <td scope="row"></td>
+                                <td></td>
+                                <td></td>
+                                <td colspan="2">Mark</td>
+
+                            </tr>
+                            <tr>
+                                <td scope="row"></td>
+                                <td></td>
+                                <td></td>
+                                <td colspan="2">Jacob</td>
+                            </tr>
+                            <tr>
+
+                                <td scope="row"></td>
+                                <td></td>
+                                <td></td>
+                                <td colspan="2">Thornton</td>
 
 
-            <div class="col-md-3 ">
-                <h2 class="text-white mt-3">Localizar Fornecedor </h2>
-                <table class="table table-hover bg-light text-center">
-                    <thead>
-                        <tr>
-                            <th scope="col">Nome Fornecedor</th>
+                            </tr>
+                        <tfoot>
+                            <td scope="row" colspan="3">Quantidade de Compras:</td>
+                            <td> 10</td>
+                        </tfoot>
+                        </tbody>
 
+                    </table>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <h3 class="text-white mt-4  text-center">Ultimos Produtos comprados desse fornecedor </h3>
+                    <table class="table table-hover bg-light text-center">
+                        <thead class="thead-dark">
+                            <tr class=" text-white">
+                                <th scope="col">Data</th>
+                                <th scope="col">Produto/Serviço</th>
+                                <th scope="col">Val Unit</th>
+                                <th scope="col">Sub Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                        </tr>
-                        <tr>
-                            <th scope="row" class="row">
-
-                                <i class="fa fa-search col-1"></i>
-
-                                <input class="form-control col-10" type="text" name=""
-                                    placeholder="Digite para buscar um fornecedor">
-                            </th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        <tr>
-                            <th scope="row" colspan="2">Mark</th>
-
-                        </tr>
-                        <tr>
-                            <th scope="row" colspan="2">Jacob</th>
-
-
-                        </tr>
-                        <tr>
-                            <th scope="row" colspan="2">Thornton</th>
-
-
-                        </tr>
-
-                    </tbody>
-
-
-                </table>
+                            <tr>
+                                <td scope="row"></td>
+                                <td></td>
+                                <td></td>
+                                <td colspan="2">0</td>
+                            </tr>
+                            <tr>
+                                <td scope="row"></td>
+                                <td></td>
+                                <td></td>
+                                <td colspan="2">0</td>
+                            </tr>
+                            <tr>
+                                <td scope="row"></td>
+                                <td></td>
+                                <td></td>
+                                <td colspan="2">0</td>
+                            </tr>
+                        <tfoot>
+                            <td scope="row" colspan="3">Quantidade de Compras:</td>
+                            <td> 10</td>
+                        </tfoot>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
 
         </div>
-
-        <div class="row ">
-            <div class="col-md-6">
-                <h2 class="text-white mt-3 text-center">Compras desse fornecedor </h2>
-                <table class="table table-hover bg-light text-center">
-                    <thead class="bg-dark">
-                        <tr class=" text-white">
-                            <th scope="col">Data</th>
-                            <th scope="col">Ordem Compra</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Usuário</th>
-    
-                        </tr>
-    
-                    </thead>
-                    <tbody>
-    
-                        <tr>
-                            <th scope="row"></th>
-                            <th scope="row"></th>
-                            <th scope="row"></th>
-                            <th scope="row">Mark</th>
-    
-                        </tr>
-                        <tr>
-                            <th scope="row"></th>
-                            <th scope="row"></th>
-                            <th scope="row"></th>
-                            <th scope="row" colspan="2">Jacob</th>
-    
-    
-                        </tr>
-                        <tr>
-                            <th scope="row"></th>
-                            <th scope="row"></th>
-                            <th scope="row"></th>
-                            <th scope="row" colspan="2">Thornton</th>
-    
-    
-                        </tr>
-                        <tr>
-                            <th scope="row" colspan="3">Quantidade de Compras:</th>
-                            <th scope="row"> 10</th>
-                        </tr>
-                    </tbody>
-    
-                </table>
+        <footer>
+            <!--footer navbar-fixed-bottom-->
+            <div class="footer navbar-fixed-bottom bg-white ">
+                <div class=" text-center pt-2">
+                    <h5> SAC 0800 123 098 121
+                        <i class="fa fa-twitter"></i>
+                        <i class="fa fa-facebook"></i>
+                        <i class="fa fa-instagram"></i>
+                        <i class="fa fa-youtube"></i>
+                    </h5>
+                </div>
             </div>
-            <div class="col-md-6">
-                <h4 class="text-white mt-3 text-center">Ultimos Produtos comprados desse fornecedor </h4>
-                <table class="table table-hover bg-light text-center">
-                    <thead class="bg-dark">
-                        <tr class=" text-white">
-                            <th scope="col">Data</th>
-                            <th scope="col">Produto/Serviço</th>
-                            <th scope="col">Val Unit</th>
-                            <th scope="col">Sub Total</th>
-    
-                        </tr>
-    
-                    </thead>
-                    <tbody>
-    
-                        <tr>
-                            <th scope="row"></th>
-                            <th scope="row"></th>
-                            <th scope="row"></th>
-                            <th scope="row">0</th>
-    
-                        </tr>
-                        <tr>
-                            <th scope="row"></th>
-                            <th scope="row"></th>
-                            <th scope="row"></th>
-                            <th scope="row" colspan="2">0</th>
-    
-    
-                        </tr>
-                        <tr>
-                            <th scope="row"></th>
-                            <th scope="row"></th>
-                            <th scope="row"></th>
-                            <th scope="row" colspan="2">0</th>
-    
-    
-                        </tr>
-                        <tr>
-                            <th scope="row" colspan="3">Quantidade de Compras:</th>
-                            <th scope="row"> 10</th>
-                        </tr>
-                    </tbody>
-    
-                </table>
-            </div>
-        </div>
-   
+        </footer>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+
+    <script src="../js/utils/animisition/animsition.min.js"></script>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/utils/jquery.mask.js"></script>
+    <script src="../js/fornecedores.js"></script>
 
 
-
-    <footer>
-        <div class=" footer navbar-fixed-bottom bg-white w-100 h-100">
-            <div class=" text-center pt-1">
-                <h5> SAC 0800 123 098 121
-                    <i class="fa fa-twitter"></i>
-                    <i class="fa fa-facebook"></i>
-                    <i class="fa fa-instagram"></i>
-                    <i class="fa fa-youtube"></i>
-                </h5>
-            </div>
-        </div>
-    </footer>
 </body>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="https://unpkg.com/@popperjs/core@2"></script>
-
-<script src="../js/utils/jquery.mask.js"></script>
-<script src="../js/main.js"></script>
-<script src="../js/fornecedores.js"></script>
-
 
 </html>

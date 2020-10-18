@@ -5,415 +5,428 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta name="author" content="Destro" />
-    <link rel="stylesheet" href="./styles/style.css">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="./js/utils/animisition/animsition.min.css" media="all" />
+
+    <link rel="stylesheet" href="./styles/style.css">
     <title>Meus Dados</title>
 </head>
 
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top row  ">
-        <a class="navbar-brand col-md-2">Brand</a>
-        <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse" aria-controls="my-nav"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div id="my-nav" class="collapse navbar-collapse ">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item ">
-                    <a class="nav-link " href="#">Vendas </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="#">Clientes </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="#">Produtos </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="./pages/compras.html">Compras </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="./pages/fornecedores.html">Fornecedores</a>
-                </li>
-                <li class="nav-item bg-roxo  ">
-                    <a class="nav-link active " href="#">Meus Dados </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="#">Gerenciar </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="/pages/login.html">Sair </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <div class="container-fluid">
-        <div class="row pt-5">
+<body class="animsition">
+    <div class="page-wrapper">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top row  ">
+            <a class="navbar-brand col-md-2">Brand</a>
+            <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse" aria-controls="my-nav"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="my-nav" class="collapse navbar-collapse ">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item ">
+                        <a class="nav-link " href="#">Vendas </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#">Clientes </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#">Produtos </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="./pages/compras.html">Compras </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="./pages/fornecedores.html">Fornecedores</a>
+                    </li>
+                    <li class="nav-item bg-roxo  ">
+                        <a class="nav-link active " href="#">Meus Dados </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#">Gerenciar </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" id="logout" href="#">Sair </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="row pt-5">
 
-            <div class="col-md-9">
-                <form action="">
-                    <div class="row mt-3 text-white">
-                        <div class="col-md-9">
-                            <h1>Atualize seus Dados</h1>
-                        </div>
-                        <div class="col-md-3">
-                            <h5 disable>Cadastro: 31/02/2020</h4>
-                        </div>
-
-                    </div>
-
-                    <div class="row text-white">
-                        <div class="col-lg-4 col-md-8">
-                            <div class="form-group ">
-                                <label for="">Nome/Razão Social</label>
-                                <input type="text" class="form-control" id="nomeRazao" required>
+                <div class=" col-lg-9 col-md-12">
+                    <form action="">
+                        <div class="row mt-3 text-white">
+                            <div class="col-md-9">
+                                <h1>Atualize seus Dados</h1>
                             </div>
-                        </div>
-                        <div class="col-lg-2 col-md-4 col-sm-6">
-                            <div class="form-group ">
-                                <label for="">Apelido</label>
-                                <input type="text" class="form-control" id="apelido" required>
+                            <div class="col-md-3">
+                                <h5 disable>Cadastro: 31/02/2020</h4>
                             </div>
+
                         </div>
 
-                        <div class="col-lg-2 col-md-4 col-sm-6">
-                            <div class="form-group ">
-                                <label for="documento">Documento</label>
-                                <input type="text" class="form-control" id="documento" required>
+                        <div class="row text-white">
+                            <div class="col-lg-4 col-md-8">
+                                <div class="form-group ">
+                                    <label for="">Nome/Razão Social</label>
+                                    <input type="text" class="form-control" id="nomeRazao" required>
+                                </div>
                             </div>
-                        </div>
-                        <div class=" col-lg-2 col-md-4 col-sm-6">
-                            <div class="form-group ">
-                                <label for="documento">Rg/IE</label>
-                                <input type="text" class="form-control" id="rgIe" required>
+                            <div class="col-lg-2 col-md-4 col-sm-6">
+                                <div class="form-group ">
+                                    <label for="">Apelido</label>
+                                    <input type="text" class="form-control" id="apelido" required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-2 col-md-4 col-sm-6">
-                            <div class="form-group ">
-                                <label for="tipo"> Tipo
-                                    <span class="tooltip1 bottom" data-text="Define se o cadastro será de Empresa (Jurídica),
+
+                            <div class="col-lg-2 col-md-4 col-sm-6">
+                                <div class="form-group ">
+                                    <label for="documento">Documento</label>
+                                    <input type="text" class="form-control" id="documento" required>
+                                </div>
+                            </div>
+                            <div class=" col-lg-2 col-md-4 col-sm-6">
+                                <div class="form-group ">
+                                    <label for="documento">Rg/IE</label>
+                                    <input type="text" class="form-control" id="rgIe" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-4 col-sm-6">
+                                <div class="form-group ">
+                                    <label for="tipo"> Tipo
+                                        <span class="tooltip1 bottom" data-text="Define se o cadastro será de Empresa (Jurídica),
                                 ou Pessoal (Fisíca)">
-                                        <i class="fa fa-question  icone text-center  "></i>
-                                    </span>
-                                </label>
+                                            <i class="fa fa-question  icone text-center  "></i>
+                                        </span>
+                                    </label>
 
-                                <select name="" class="form-control" id="tipo" required>
-                                    <option value="Fisíca" class="form-control">Fisíca</option>
-                                    <option value="Jurídica" class="form-control">Jurídica</option>
-                                </select>
+                                    <select name="" class="form-control" id="tipo" required>
+                                        <option value="Fisíca" class="form-control">Fisíca</option>
+                                        <option value="Jurídica" class="form-control">Jurídica</option>
+                                    </select>
+                                </div>
                             </div>
+
                         </div>
 
-                    </div>
-
-                    <div class="row text-white">
-                        <div class="col-lg-2 col-md-2 col-sm-3">
-                            <div class="form-group ">
-                                <label for="cep">CEP
-                                    <span class="tooltip1 right" data-text="Após diigtar o CEP, o sistema irá buscar os dados
+                        <div class="row text-white">
+                            <div class="col-lg-2 col-md-2 col-sm-3">
+                                <div class="form-group ">
+                                    <label for="cep">CEP
+                                        <span class="tooltip1 right" data-text="Após diigtar o CEP, o sistema irá buscar os dados
                                 do Logradouro de forma automática.">
-                                        <i class="fa fa-question  icone text-center  "></i>
-                                    </span>
-                                </label>
-                                <input type="text" class="form-control" id="cep" required>
+                                            <i class="fa fa-question  icone text-center  "></i>
+                                        </span>
+                                    </label>
+                                    <input type="text" class="form-control" id="cep" required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-5 col-md-4 col-sm-9">
-                            <div class="form-group ">
-                                <label for="logradouro">logradouro</label>
-                                <input type="text" class="form-control" id="logradouro">
+                            <div class="col-lg-5 col-md-4 col-sm-9">
+                                <div class="form-group ">
+                                    <label for="logradouro">logradouro</label>
+                                    <input type="text" class="form-control" id="logradouro">
+                                </div>
+                            </div>
+
+                            <div class=" col-lg-5 col-md-4 col-sm-12">
+                                <div class="form-group ">
+                                    <label for="complemento">Complemento</label>
+                                    <input type="text" class="form-control" id="complemento">
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+                                <div class="form-group ">
+                                    <label for="estado">Estado</label>
+                                    <input type="text" class="form-control" id="estado">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-5 col-sm-4">
+                                <div class="form-group ">
+                                    <label for="cidade">Cidade</label>
+                                    <input type="text" class="form-control" id="cidade">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-5 col-sm-4">
+                                <div class="form-group ">
+                                    <label for="bairro">Bairro</label>
+                                    <input type="text" class="form-control" id="bairro">
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+                                <div class="form-group ">
+                                    <label for="numero">Numero</label>
+                                    <input type="text" class="form-control" id="numero">
+                                </div>
                             </div>
                         </div>
 
-                        <div class=" col-lg-5 col-md-4 col-sm-12">
-                            <div class="form-group ">
-                                <label for="complemento">Complemento</label>
-                                <input type="text" class="form-control" id="complemento">
-                            </div>
-                        </div>
-                        <div class="col-lg-1 col-md-2 col-sm-2">
-                            <div class="form-group ">
-                                <label for="estado">Estado</label>
-                                <input type="text" class="form-control" id="estado">
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-5 col-sm-4">
-                            <div class="form-group ">
-                                <label for="cidade">Cidade</label>
-                                <input type="text" class="form-control" id="cidade">
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-5 col-sm-4">
-                            <div class="form-group ">
-                                <label for="bairro">Bairro</label>
-                                <input type="text" class="form-control" id="bairro">
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-2">
-                            <div class="form-group ">
-                                <label for="numero">Numero</label>
-                                <input type="text" class="form-control" id="numero">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row text-white">
-                        <div class="col-lg-5 col-md-4 col-sm-4">
-                            <div class="form-group ">
-                                <label for="email">Email
-                                    <span class="tooltip1 right" data-text="Todos os avisos importantes do sistema serão
+                        <div class="row text-white">
+                            <div class="col-lg-5 col-md-4 col-sm-4">
+                                <div class="form-group ">
+                                    <label for="email">Email
+                                        <span class="tooltip1 right" data-text="Todos os avisos importantes do sistema serão
                                 enviados para este e-mail">
-                                        <i class="fa fa-question  icone text-center  "></i>
-                                    </span>
-                                </label>
-                                <input type="email" class="form-control" id="email" required>
+                                            <i class="fa fa-question  icone text-center  "></i>
+                                        </span>
+                                    </label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-2 col-md-3 col-sm-3">
-                            <div class="form-group ">
-                                <label for="celular">Celular
-                                    <span class="tooltip1 bottom" data-text="Avisos importantes serão enviados por mensagem,
+                            <div class="col-lg-2 col-md-3 col-sm-3">
+                                <div class="form-group ">
+                                    <label for="celular">Celular
+                                        <span class="tooltip1 bottom" data-text="Avisos importantes serão enviados por mensagem,
                                 para este número de celular cadastrado.">
-                                        <i class="fa fa-question  icone text-center  "></i>
-                                    </span>
+                                            <i class="fa fa-question  icone text-center  "></i>
+                                        </span>
 
-                                </label>
-                                <input type="text" class="form-control" id="celular"required>
+                                    </label>
+                                    <input type="text" class="form-control" id="celular" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+                                <div class="form-group ">
+                                    <label for="sexo">Sexo</label>
+
+                                    <select name="" id="sexo" class="form-control" required>
+                                        <option value=""></option>
+                                        <option value="Masculino">Masculino</option>
+                                        <option value="Feminino">Feminino</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-3">
+                                <div class="form-group ">
+                                    <label for="nascimento">Nascimento</label>
+                                    <input type="date" class="form-control" id="nascimento" required>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-lg-2 col-md-2 col-sm-2">
-                            <div class="form-group ">
-                                <label for="sexo">Sexo</label>
 
-                                <select name="" id="sexo" class="form-control" required>
-                                    <option value=""></option>
-                                    <option value="Masculino">Masculino</option>
-                                    <option value="Feminino">Feminino</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-3 col-sm-3">
-                            <div class="form-group ">
-                                <label for="nascimento">Nascimento</label>
-                                <input type="date" class="form-control" id="nascimento" required>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row text-white">
-                        <div class="col-lg-5 col-md-5 col-sm-5">
-                            <div class="form-group ">
-                                <label for="usuarioPrincipal">Usuário Principal do sistema
-                                    <span class="tooltip1 right" data-text="Este usuário, é o principal de acesso ao sistema,
+                        <div class="row text-white">
+                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                <div class="form-group ">
+                                    <label for="usuarioPrincipal">Usuário Principal do sistema
+                                        <span class="tooltip1 right" data-text="Este usuário, é o principal de acesso ao sistema,
                                 que terá acesso total à todas ações.">
-                                        <i class="fa fa-question  icone text-center  "></i>
-                                    </span>
-                                </label>
-                                <input type="text" class="form-control" id="usuarioPrincipal">
+                                            <i class="fa fa-question  icone text-center  "></i>
+                                        </span>
+                                    </label>
+                                    <input type="text" class="form-control" id="usuarioPrincipal">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-5 col-sm-4">
+                                <div class="form-group ">
+                                    <label for="senhaAcesso">Senha de Acesso</label>
+                                    <input type="text" class="form-control" id="senhaAcesso">
+                                </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-5 col-sm-4">
-                            <div class="form-group ">
-                                <label for="senhaAcesso">Senha de Acesso</label>
-                                <input type="text" class="form-control" id="senhaAcesso">
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="row text-white">
-                        <div class="col-12">
-                            <div class="">
-                                <h1 class="text-white d-inline">Para o envio de E-mail </h1>
-                                <span class="tooltip1 right d-inline" data-text="Para que o sistema faça o envio por e-mail, usando o
+                        <div class="row text-white">
+                            <div class="col-12">
+                                <div class="">
+                                    <h1 class="text-white d-inline">Para o envio de E-mail </h1>
+                                    <span class="tooltip1 right d-inline" data-text="Para que o sistema faça o envio por e-mail, usando o
                             seu e-mail pessoal. Será necessário cadastrar as
                             informações de SMTP, Porta SMTP, Senha e Usuário.
                             Desta forma, todos os e-mails enviados pelo sistema
                             (por ex: Pedidos, Recibos, etc) terão o seu
                             e-mail pessoal como remetente.">
-                                    <i class="fa fa-question  icone text-center  "></i>
-                                </span>
+                                        <i class="fa fa-question  icone text-center  "></i>
+                                    </span>
+
+
+                                </div>
 
 
                             </div>
-
-
-                        </div>
-                        <div class="col-lg-5 col-md-3 col-sm-5">
-                            <div class="form-group ">
-                                <label for="smtp">SMTP</label>
-                                <input type="text" class="form-control" id="smtp" required>
+                            <div class="col-lg-5 col-md-3 col-sm-5">
+                                <div class="form-group ">
+                                    <label for="smtp">SMTP</label>
+                                    <input type="text" class="form-control" id="smtp" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-4">
+                                <div class="form-group ">
+                                    <label for="portaSmtp">Porta SMTP</label>
+                                    <input type="text" class="form-control" id="portaSmtp" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-4">
+                                <div class="form-group ">
+                                    <label for="senhaSmtp">Senha SMTP</label>
+                                    <input type="text" class="form-control" id="senhaSmtp" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-4">
+                                <div class="form-group ">
+                                    <label for="emailSmtp">Email SMTP</label>
+                                    <input type="text" class="form-control" id="emailSmtp" required>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-lg-2 col-md-3 col-sm-4">
-                            <div class="form-group ">
-                                <label for="portaSmtp">Porta SMTP</label>
-                                <input type="text" class="form-control" id="portaSmtp" required>
+
+                        <div class="row mt-5 mb-5">
+                            <div class="offset-lg-8 col-sm-5 col-md-8 offset-md-4">
+                                <button class="btn btn-warning mr-3 font-weight-bold" type="button">Alterar
+                                    Dados</button>
+                                <button class="btn btn-success font-weight-bold" type="submit">Confirmar</button>
                             </div>
+
                         </div>
-                        <div class="col-lg-2 col-md-3 col-sm-4">
-                            <div class="form-group ">
-                                <label for="senhaSmtp">Senha SMTP</label>
-                                <input type="text" class="form-control" id="senhaSmtp" required>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-3 col-sm-4">
-                            <div class="form-group ">
-                                <label for="emailSmtp">Email SMTP</label>
-                                <input type="text" class="form-control" id="emailSmtp" required>
-                            </div>
-                        </div>
-                    </div>
+                    </form>
 
-                    <div class="row mt-5 mb-5">
-                        <div class="offset-lg-8 col-sm-5 col-md-8 offset-md-4">
-                            <button class="btn btn-warning mr-3 font-weight-bold" type="button">Alterar Dados</button>
-                            <button class="btn btn-success font-weight-bold" type="submit">Confirmar</button>
-                        </div>
-
-                    </div>
-                </form>
-
-            </div>
+                </div>
 
 
 
-            <div class="col-md-3 ">
-                <h2 class="text-white mt-3">Usuários do Sistema </h2>
-                <table class="table table-hover bg-light">
-                    <thead>
-                        <tr>
-                            <th scope="col" colspan="2">Nome</th>
-                            <th scope="col">Tipo</th>
+                <div class="col-lg-3 col-md-12 ">
+                    <h3 class="text-white mt-3">Usuários do Sistema </h3>
+                    <table class="table table-hover bg-light">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col" colspan="2">Nome</th>
+                                <th scope="col">Tipo</th>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row" colspan="2">Mark</th>
-                            <td>Otto</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" colspan="2">Jacob</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td scope="row" colspan="2">Mark</td>
+                                <td>Otto</td>
+                            </tr>
+                            <tr>
+                                <td scope="row" colspan="2">Jacob</td>
 
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" colspan="2">Thornton</th>
+                                <td>@fat</td>
+                            </tr>
+                            <tr>
+                                <td scope="row" colspan="2">Thornton</td>
 
-                            <td>@twitter</td>
-                        </tr>
-                        <tr scope="row">
-                            <th colspan="3">
-                                <button class="btn btn-secondary w-100" type="button" data-toggle="modal"
-                                    data-target="#exampleModalCenter">
-                                    Adicionar novo usuário</button>
-                            </th>
+                                <td>@twitter</td>
+                            </tr>
+                            <tr>
+                                <td scope="row" colspan="3">
+                                    <button class="btn btn-secondary w-100" type="button" data-toggle="modal"
+                                        data-target="#exampleModalCenter">
+                                        Adicionar novo usuário</button>
+                                </td>
 
-                        </tr>
-                    </tbody>
+                            </tr>
+                        </tbody>
 
-                </table>
+                    </table>
+                </div>
+
             </div>
 
         </div>
+        <footer>
+            <div class=" footer navbar-fixed-bottom bg-white w-100 h-100">
+                <div class=" text-center pt-1">
+                    <h5> SAC 0800 123 098 121
+                        <i class="fa fa-twitter"></i>
+                        <i class="fa fa-facebook"></i>
+                        <i class="fa fa-instagram"></i>
+                        <i class="fa fa-youtube"></i>
+                    </h5>
+                </div>
+            </div>
+        </footer>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-roxo text-white">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Gerenciar usuários</h5>
+                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h2 class="text-center">Dados para acesso</h2>
 
+                        <form action="">
+                            <div class="row">
+                                <div class="col-7">
+                                    <div class="form-group">
+                                        <label for="">Nome usuário/apelido</label>
+                                        <input class="form-control" type="text" autocomplete="username"
+                                            id="nomeUsuario">
+                                    </div>
+
+                                </div>
+
+                                <div class="col-5">
+                                    <div class="form-group">
+                                        <label for="">Tipo acesso</label>
+                                        <select name="" id="tipoAcessoUsuario" class="form-control">
+                                            <option value=""></option>
+                                            <option value="1">Administrador</option>
+                                            <option value="2">Basico</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="">Senha</label>
+                                        <input class="form-control" type="password" name="password"
+                                            autocomplete="new-password" id="senhaUsuario" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="">Comfirmar Senha</label>
+                                        <input class="form-control" type="password" autocomplete="new-password"
+                                            id="confirmaSenhaUsuario" required>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer button-group">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">
+                            <i class="fa fa-times"></i>
+                            Cancelar
+                        </button>
+                        <button type="button" class="btn btn-success">
+                            <i class="fa fa-check"></i>
+                            Confirmar
+                        </button>
+
+
+
+                    </div>
+                    <!--
+                    <div class="bg-roxo text-center">
+                        <small class=" text-white text-center ">
+                            Empresa X - Avenida Major Nicacio, 1306 - Sala 3 - Franca -
+                            SP
+                        </small>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </div>
     </div>
-    <footer>
-        <div class=" footer navbar-fixed-bottom bg-white w-100 h-100">
-            <div class=" text-center pt-1">
-                <h5> SAC 0800 123 098 121
-                    <i class="fa fa-twitter"></i>
-                    <i class="fa fa-facebook"></i>
-                    <i class="fa fa-instagram"></i>
-                    <i class="fa fa-youtube"></i>
-                </h5>
-            </div>
-        </div>
-    </footer>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-roxo text-white">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Gerenciar usuários</h5>
-                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <h2 class="text-center">Dados para acesso</h2>
-                    <div class="row">
-                        <div class="col-7">
-                            <div class="form-group">
-                                <label for="">Nome usuário/apelido</label>
-                                <input class="form-control" type="text" name="" id="nomeUsuario">
-                            </div>
-
-                        </div>
-
-                        <div class="col-5">
-                            <div class="form-group">
-                                <label for="">Tipo acesso</label>
-                                <select name="" id="tipoAcessoUsuario" class="form-control">
-                                    <option value=""></option>
-                                    <option value="1">Administrador</option>
-                                    <option value="2">Basico</option>
-                                </select>
-                            </div>
-
-                        </div>
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="">Senha</label>
-                                <input class="form-control" type="password" name="" id="senhaUsuario">
-                            </div>
-
-                        </div>
-
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="">Comfirmar Senha</label>
-                                <input class="form-control" type="password" name="" id="confirmaSenhaUsuario">
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-                <div class="modal-footer button-group">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">
-                        <i class="fa fa-times"></i>
-                        Cancelar
-                    </button>
-                    <button type="button" class="btn btn-success">
-                        <i class="fa fa-check"></i>
-                        Confirmar
-                    </button>
-
-
-
-                </div>
-                <div class="bg-roxo text-center">
-                    <small class=" text-white text-center ">
-                        Empresa X - Avenida Major Nicacio, 1306 - Sala 3 - Franca -
-                        SP
-                    </small>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
 
 
-    <script src="js/utils/jquery.mask.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/index.js"></script>
+    <script src="./js/utils/animisition/animsition.min.js"></script>
+    <script src="./js/main.js"></script>
+
+    <script src="./js/utils/jquery.mask.js"></script>
+    <script src="./js/index.js"></script>
 </body>
 
 
