@@ -1,4 +1,4 @@
-var novaURL = "/pages/login.html";
+var novaURL = "login.html";
 
 async function isloggedIn2() {
 
@@ -18,7 +18,7 @@ function name() {
   if (user == 1) {
     console.log(user)
     //$(window.document.location).attr('href', "../index.html");
-    window.location.href = "/index.html";
+    window.location.href = "index.html";
   } else {
 
     $(window.document.location).attr('href', novaURL);
@@ -35,7 +35,7 @@ setTimeout(function () {
 $("#logout").on("click", () => {
 
   sessionStorage.removeItem('user')
-  $(window.document.location).attr('href', "../pages/login.html")
+  $(window.document.location).attr('href', "login.html")
 });
 
 
