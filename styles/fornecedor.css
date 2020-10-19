@@ -1,3 +1,7 @@
 .container-fluid{
-    height: auto !important;
+   /* height: auto !important;*/
+}
+body{
+    height: 100vh !important;
+
 }
