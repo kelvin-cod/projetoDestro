@@ -30,3 +30,57 @@ function doneTyping() {
         $("#estado").val(response.uf);
     });
 }
+
+
+
+function enviar () {
+
+    let obj = JSON.stringify({
+        nome:  $("#nome").val(),
+        apelido:  $("#apelido").val(),
+        documento:  $("#documento").val(),
+        rgie:  $("#rgie").val(),
+        tipo:  $("#tipo").val(),
+        cep:  $("#cep").val(),
+        logradouro:  $("#logradouro").val(),
+        bairro:  $("#bairro").val(),
+        cidade:  $("#cidade").val(),
+        complemento:  $("#complemento").val(),
+        estado:  $("#estado").val(),
+        codIbge:  $("#codIbge").val(),
+        sexo:  $("#sexo").val(),
+        celular:  $("#celular").val(),
+        email:  $("#email").val(),
+        usuarioPrincipal:  $("#usuarioPrincipal").val(),
+        senhaPrincipal:  $("#senhaPrincipal").val(),
+        smtp:  $("#smtp").val(),
+        portalSmtp:  $("#portalSmtp").val(),
+        senhaSmtp:  $("#senhaSmtp").val(),
+        emailSmtp:  $("# emailSmtp").val()
+    });
+
+    let http = ``
+
+    $.ajax({
+        url: http,
+        type: 'PUt',
+        data: obj
+    }).then(function (response) { //
+     console.log(response)
+    });
+};
+
+function getdata(){
+    let http = 'https://destrobackend.herokuapp.com/data/get/1'
+
+    $.ajax({
+        url: http,
+        type: 'GET'
+    }).then(function (response) { //
+     console.log(response)
+     $("#nome").val(response[0].nome)
+    });
+
+}
+
+window.onload = getdata();
