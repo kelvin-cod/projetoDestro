@@ -54,8 +54,7 @@ function enviar() {
         nascimento: $("#nascimento").val().toLocaleString(),
         email: $("#email").val(),
         usuarioPrincipal: $("#usuarioPrincipal").val(),
-        senhaPrincipal: $("#senhaAcesso").val(),
-       
+        senhaPrincipal: $("#senhaPrincipal").val()
     };
 /*
  smtp: $("#smtp").val(),
@@ -98,7 +97,7 @@ function getdata() {
         $("#celular").val(response[0].Celular);
         $("#nascimento").val(response[0].Nascimento);
         $("#usuarioPrincipal").val(response[0].UsuarioPrincipal);
-
+        $("#senhaPrincipal").val(response[0].SenhaPrincipal);
         $('select[name="tipo"]').val(response[0].TipoPessoa);
         $('select[name="sexo"]').val(response[0].Sexo);
 
