@@ -55,12 +55,14 @@ function enviar() {
         email: $("#email").val(),
         usuarioPrincipal: $("#usuarioPrincipal").val(),
         senhaPrincipal: $("#senhaAcesso").val(),
-        smtp: $("#smtp").val(),
+       
+    };
+/*
+ smtp: $("#smtp").val(),
         portaSmtp: $("#portaSmtp").val(),
         senhaSmtp: $("#senhaSmtp").val(),
         emailSmtp: $("#emailSmtp").val()
-    };
-
+*/
     //let http = `http://localhost:3000/data/update/1`
     let http = 'https://destrobackend.herokuapp.com/data/update/1'
     console.log(obj)
