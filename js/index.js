@@ -51,7 +51,7 @@ function enviar() {
         codIbge: "",
         sexo: parseInt($("#sexo").val()),
         celular: $("#celular").val(),
-        nascimento: $("#nascimento").val().toLocaleString(),
+        nascimento: "2020/06/05",
         email: $("#email").val(),
         usuarioPrincipal: $("#usuarioPrincipal").val(),
         senhaPrincipal: $("#senhaPrincipal").val()
