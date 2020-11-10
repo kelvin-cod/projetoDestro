@@ -60,7 +60,8 @@ function enviar() {
         emailSmtp: $("#emailSmtp").val()
     };
 
-    let http = `http://localhost:3000/data/update/1`
+    //let http = `http://localhost:3000/data/update/1`
+    let http = 'https://destrobackend.herokuapp.com/data/update/1'
     console.log(JSON.stringify(obj))
     $.ajax({
         url: http,
