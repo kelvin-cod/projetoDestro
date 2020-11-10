@@ -33,52 +33,71 @@ function doneTyping() {
 
 
 
-function enviar () {
+function enviar() {
+    let obj = {};
+    obj = {
+        nome: $("#nomeRazao").val(),
+        apelido: $("#apelido").val(),
+        documento: $("#documento").val(),
+        rgie: $("#rgIe").val(),
+        tipo: $("#tipo").val(),
+        cep: $("#cep").val(),
+        logradouro: $("#logradouro").val(),
+        bairro: $("#bairro").val(),
+        cidade: $("#cidade").val(),
+        complemento: $("#complemento").val(),
+        estado: $("#estado").val(),
+        codIbge: "",
+        sexo: $("#sexo").val(),
+        celular: $("#celular").val(),
+        nascimento: $("#nascimento").val(),
+        email: $("#email").val(),
+        usuarioPrincipal: $("#usuarioPrincipal").val(),
+        senhaPrincipal: $("#senhaAcesso").val(),
+        smtp: $("#smtp").val(),
+        portalSmtp: $("#portaSmtp").val(),
+        senhaSmtp: $("#senhaSmtp").val(),
+        emailSmtp: $("#emailSmtp").val()
+    };
 
-    let obj = JSON.stringify({
-        nome:  $("#nome").val(),
-        apelido:  $("#apelido").val(),
-        documento:  $("#documento").val(),
-        rgie:  $("#rgie").val(),
-        tipo:  $("#tipo").val(),
-        cep:  $("#cep").val(),
-        logradouro:  $("#logradouro").val(),
-        bairro:  $("#bairro").val(),
-        cidade:  $("#cidade").val(),
-        complemento:  $("#complemento").val(),
-        estado:  $("#estado").val(),
-        codIbge:  $("#codIbge").val(),
-        sexo:  $("#sexo").val(),
-        celular:  $("#celular").val(),
-        email:  $("#email").val(),
-        usuarioPrincipal:  $("#usuarioPrincipal").val(),
-        senhaPrincipal:  $("#senhaPrincipal").val(),
-        smtp:  $("#smtp").val(),
-        portalSmtp:  $("#portalSmtp").val(),
-        senhaSmtp:  $("#senhaSmtp").val(),
-        emailSmtp:  $("# emailSmtp").val()
-    });
-
-    let http = ``
-
+    let http = `http://localhost:3000/data/update/1`
+    console.log(JSON.stringify(obj))
     $.ajax({
         url: http,
-        type: 'PUt',
-        data: obj
+        type: 'PUT',
+        data: JSON.stringify(obj)
     }).then(function (response) { //
-     console.log(response)
+        //console.log(response)
     });
 };
 
-function getdata(){
+function getdata() {
     let http = 'https://destrobackend.herokuapp.com/data/get/1'
 
     $.ajax({
         url: http,
         type: 'GET'
     }).then(function (response) { //
-     console.log(response)
-     $("#nome").val(response[0].nome)
+
+        $("#nomeRazao").val(response[0].Nom);
+        $("#apelido").val();
+        $("#documento").val(response[0].Doc);
+        $("#rgIe").val(response[0].Rgle);
+        $("#cep").val(response[0].Cep);
+        $("#logradouro").val(response[0].Logradouro);
+        $("#complemento").val(response[0].Complemento);
+        $("#estado").val(response[0].Estado);
+        $("#cidade").val(response[0].Cidade);
+        $("#bairro").val(response[0].Bairro);
+        $("#numero").val(response[0].Num);
+        $("#email").val(response[0].Email);
+        $("#celular").val(response[0].Celular);
+        $("#nascimento").val(response[0].Nascimento);
+        $("#usuarioPrincipal").val(response[0].UsuarioPrincipal);
+
+        $('select[name="tipo"]').val(response[0].TipoPessoa);
+        $('select[name="sexo"]').val(response[0].Sexo);
+
     });
 
 }

@@ -103,9 +103,9 @@
                                         </span>
                                     </label>
 
-                                    <select name="" class="form-control" id="tipo" required>
-                                        <option value="Fisíca" class="form-control">Fisíca</option>
-                                        <option value="Jurídica" class="form-control">Jurídica</option>
+                                    <select name="tipo" class="form-control" id="tipo" required>
+                                        <option value="0" class="form-control">Fisíca</option>
+                                        <option value="1" class="form-control">Jurídica</option>
                                     </select>
                                 </div>
                             </div>
@@ -191,10 +191,10 @@
                                 <div class="form-group ">
                                     <label for="sexo">Sexo</label>
 
-                                    <select name="" id="sexo" class="form-control" required>
+                                    <select name="sexo" id="sexo" class="form-control" required>
                                         <option value=""></option>
-                                        <option value="Masculino">Masculino</option>
-                                        <option value="Feminino">Feminino</option>
+                                        <option value="1">Masculino</option>
+                                        <option value="2">Feminino</option>
                                     </select>
                                 </div>
                             </div>
@@ -253,19 +253,19 @@
                             <div class="col-lg-2 col-md-3 col-sm-4">
                                 <div class="form-group ">
                                     <label for="portaSmtp">Porta SMTP</label>
-                                    <input type="text" class="form-control" id="portaSmtp" required>
+                                    <input type="text" class="form-control" id="portaSmtp">
                                 </div>
                             </div>
                             <div class="col-lg-2 col-md-3 col-sm-4">
                                 <div class="form-group ">
                                     <label for="senhaSmtp">Senha SMTP</label>
-                                    <input type="text" class="form-control" id="senhaSmtp" required>
+                                    <input type="text" class="form-control" id="senhaSmtp" >
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-3 col-sm-4">
                                 <div class="form-group ">
                                     <label for="emailSmtp">Email SMTP</label>
-                                    <input type="text" class="form-control" id="emailSmtp" required>
+                                    <input type="text" class="form-control" id="emailSmtp" >
                                 </div>
                             </div>
                         </div>
@@ -274,7 +274,7 @@
                             <div class="offset-lg-8 col-sm-5 col-md-8 offset-md-4">
                                 <button class="btn btn-warning mr-3 font-weight-bold" type="button">Alterar
                                     Dados</button>
-                                <button class="btn btn-success font-weight-bold" type="submit">Confirmar</button>
+                                <button class="btn btn-success font-weight-bold" type="button" onclick="enviar()">Confirmar</button>
                             </div>
 
                         </div>
@@ -295,6 +295,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <!--
                             <tr>
                                 <td scope="row" colspan="2">Mark</td>
                                 <td>Otto</td>
@@ -309,6 +310,7 @@
 
                                 <td>@twitter</td>
                             </tr>
+                            -->
                             <tfoot>
                                 <td scope="row" colspan="3">
                                     <button class="btn btn-secondary w-100" type="button" data-toggle="modal"
