@@ -84,7 +84,7 @@ function getdata() {
     }).then(function (response) { //
 
         $("#nomeRazao").val(response[0].Nom);
-        $("#apelido").val();
+        $("#apelido").val(response[0].Apelido);
         $("#documento").val(response[0].Doc);
         $("#rgIe").val(response[0].Rgle);
         $("#cep").val(response[0].Cep);
@@ -101,7 +101,6 @@ function getdata() {
         $("#senhaPrincipal").val(response[0].SenhaPrincipal);
         $('select[name="tipo"]').val(response[0].TipoPessoa);
         $('select[name="sexo"]').val(response[0].Sexo);
-
     });
 
 }
