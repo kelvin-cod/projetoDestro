@@ -62,7 +62,7 @@ function enviar() {
 
     //let http = `http://localhost:3000/data/update/1`
     let http = 'https://destrobackend.herokuapp.com/data/update/1'
-    console.log(JSON.stringify(obj))
+    console.log(obj)
     $.ajax({
         url: http,
         type: 'PUT',
