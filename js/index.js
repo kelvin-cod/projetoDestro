@@ -43,6 +43,7 @@ function enviar() {
         tipo: $("#tipo").val(),
         cep: $("#cep").val(),
         logradouro: $("#logradouro").val(),
+        num: $("#numero").val(),
         bairro: $("#bairro").val(),
         cidade: $("#cidade").val(),
         complemento: $("#complemento").val(),
@@ -55,7 +56,7 @@ function enviar() {
         usuarioPrincipal: $("#usuarioPrincipal").val(),
         senhaPrincipal: $("#senhaAcesso").val(),
         smtp: $("#smtp").val(),
-        portalSmtp: $("#portaSmtp").val(),
+        portaSmtp: $("#portaSmtp").val(),
         senhaSmtp: $("#senhaSmtp").val(),
         emailSmtp: $("#emailSmtp").val()
     };
