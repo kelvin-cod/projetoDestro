@@ -71,6 +71,7 @@ function enviar() {
         data: obj
     }).then(function (response) { //
         //console.log(response)
+        location.reload();
     });
 };
 
