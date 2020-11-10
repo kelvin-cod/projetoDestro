@@ -66,7 +66,7 @@ function enviar() {
     $.ajax({
         url: http,
         type: 'PUT',
-        data: JSON.stringify(obj)
+        data: obj
     }).then(function (response) { //
         //console.log(response)
     });
