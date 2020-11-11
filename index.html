@@ -294,7 +294,7 @@
 
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="tabelaUsuario">
                             <!--
                             <tr>
                                 <td scope="row" colspan="2">Mark</td>
@@ -367,7 +367,7 @@
                                 <div class="col-5">
                                     <div class="form-group">
                                         <label for="">Tipo acesso</label>
-                                        <select name="" id="tipoAcessoUsuario" class="form-control">
+                                        <select name="" id="tipoAcesso" class="form-control">
                                             <option value=""></option>
                                             <option value="1">Administrador</option>
                                             <option value="2">Basico</option>
@@ -399,13 +399,10 @@
                             <i class="fa fa-times"></i>
                             Cancelar
                         </button>
-                        <button type="button" class="btn btn-success">
+                        <button type="button" class="btn btn-success" onclick="enviarUsuario()">
                             <i class="fa fa-check"></i>
                             Confirmar
                         </button>
-
-
-
                     </div>
                     <!--
                     <div class="bg-roxo text-center">

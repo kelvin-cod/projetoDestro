@@ -56,22 +56,22 @@ function enviar() {
         usuarioPrincipal: $("#usuarioPrincipal").val(),
         senhaPrincipal: $("#senhaPrincipal").val()
     };
-/*
- smtp: $("#smtp").val(),
-        portaSmtp: $("#portaSmtp").val(),
-        senhaSmtp: $("#senhaSmtp").val(),
-        emailSmtp: $("#emailSmtp").val()
-*/
+    /*
+     smtp: $("#smtp").val(),
+            portaSmtp: $("#portaSmtp").val(),
+            senhaSmtp: $("#senhaSmtp").val(),
+            emailSmtp: $("#emailSmtp").val()
+    */
     //let http = `http://localhost:3000/data/update/1`
     let http = 'https://destrobackend.herokuapp.com/data/update/1'
-    console.log(obj)
+
     $.ajax({
         url: http,
         type: 'PUT',
         data: obj
     }).then(function (response) { //
         //console.log(response)
-        location.reload();
+        getdata();
     });
 };
 
@@ -102,7 +102,50 @@ function getdata() {
         $('select[name="tipo"]').val(response[0].TipoPessoa);
         $('select[name="sexo"]').val(response[0].Sexo);
     });
-
 }
+
+function enviarUsuario() {
+    let obj = {};
+    obj = {
+        nomeApelido: $("#nomeApelido").val(),
+        tipoAcesso: $("#tipoAcesso").val(),
+        senha: $("#senhaUsuario").val(),
+        idEmpresa: 1
+    };
+
+    let http = 'https://destrobackend.herokuapp.com/data/usuario/1'
+    console.log(obj)
+    $.ajax({
+        url: http,
+        type: 'PUT',
+        data: obj
+    }).then(function (response) { //
+        //console.log(response)
+        getdata();
+    });
+};
+
+
+function getUsuario() {
+    let http = 'https://destrobackend.herokuapp.com/data/get/usuario/1'
+    let tbl = ''
+    $.ajax({
+        url: http,
+        type: 'GET'
+    }).then(function (response) { //
+        $.each(response, function (i, item) {
+
+            tbl +=
+                '<tr><td>' + item.nomeApelido +
+                '</td><td>' + item.Tipo_Pedido
+
+            '</td></tr>';
+        });
+        $('#tabelaUsuario').append(tbl);
+
+    });
+}
+
+
 
 window.onload = getdata();
