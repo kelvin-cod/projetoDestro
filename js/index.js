@@ -108,7 +108,7 @@ function enviarUsuario() {
     let obj = {};
     obj = {
         nomeApelido: $("#nomeApelido").val(),
-        tipoAcesso: $("#tipoAcesso").val(),
+        tipoAcesso: parseInt($("#tipoAcesso").val()),
         senha: $("#senhaUsuario").val(),
         idEmpresa: 1
     };
