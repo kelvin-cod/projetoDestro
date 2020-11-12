@@ -113,8 +113,8 @@ function enviarUsuario() {
         idEmpresa: 1
     };
 
-    //let http = 'https://destrobackend.herokuapp.com/data/usuario/1'
-    let http = 'http://localhost:3000/data/usuario/1'
+    let http = 'https://destrobackend.herokuapp.com/data/usuario/1'
+   // let http = 'http://localhost:3000/data/usuario/1'
     console.log(obj)
     $.ajax({
         url: http,
@@ -143,11 +143,8 @@ function getUsuario() {
                 tipo = 'Básico'
             }
             tbl +=
-                '<tr><td>' + item.nomeUsuario + '</td>'
-                +
+                '<tr onclick="abrirModal(' + '_id '+ ')"><td>' + item.nomeUsuario + '</td>' +
                 '<td>' + tipo + '</td>'
-
-
             '</tr>';
         });
 
