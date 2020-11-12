@@ -177,20 +177,29 @@ function abrirModal(_id) {
 
 
 }
-function atualizaUsuario(){
+
+function atualizaUsuario() {
     $("#nomeApelido").val()
     $('select[name="tipoAcesso"]').val("");
     $("#senhaUsuario").val()
     $("#confirmaSenhaUsuario").val()
 
 }
-$("adicionarUsuario").on("click", function(){
+
+$("#adicionarUsuario").on("click", () =>{
+    $("#footerModalBotao").show()
+    $("#footerModal").html('');
     $("#nomeApelido").val("")
     $('select[name="tipoAcesso"]').val("")
     $("#senhaUsuario").val("")
     $("#confirmaSenhaUsuario").val("")
-    
-    $('#exampleModalCenter').modal('show', 'focus'); 
+    $("#footerModal").append(`
+    <div><button type="button" class="btn btn-danger" data-dismiss="modal">
+    <i class="fa fa-times"></i>Cancelar</button>
+    <button type="button" class="btn btn-success" onclick="enviarUsuario()">
+    <i class="fa fa-check"></i> Enviar </button></div>`);
+
+    $('#exampleModalCenter').modal('show', 'focus');
 })
 
 window.onload = getdata(), getUsuario();
