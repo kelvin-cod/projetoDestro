@@ -106,6 +106,7 @@ function getdata() {
 
 function enviarUsuario() {
     let obj = {};
+
     obj = {
         nomeUsuario: $("#nomeApelido").val(),
         tipoAcesso: parseInt($("#tipoAcesso").val()),
@@ -114,7 +115,7 @@ function enviarUsuario() {
     };
 
     let http = 'https://destrobackend.herokuapp.com/data/usuario/1'
-   // let http = 'http://localhost:3000/data/usuario/1'
+    // let http = 'http://localhost:3000/data/usuario/1'
     console.log(obj)
     $.ajax({
         url: http,
@@ -126,9 +127,8 @@ function enviarUsuario() {
     });
 };
 
-
 function getUsuario() {
-    let http = 'https://destrobackend.herokuapp.com/data/get/usuario/1'
+    let http = 'https://destrobackend.herokuapp.com/data/list/usuario/1'
     let tbl = '';
     let tipo = ''
     $.ajax({
@@ -143,7 +143,7 @@ function getUsuario() {
                 tipo = 'Básico'
             }
             tbl +=
-                '<tr onclick="abrirModal(' + '_id '+ ')"><td>' + item.nomeUsuario + '</td>' +
+                '<tr onclick="abrirModal(' + item.idUsuarioSistema + ')"><td>' + item.nomeUsuario + '</td>' +
                 '<td>' + tipo + '</td>'
             '</tr>';
         });
@@ -153,6 +153,36 @@ function getUsuario() {
     });
 }
 
+function abrirModal(_id) {
+    let http = 'https://destrobackend.herokuapp.com/data/get/usuario/' + _id
+    $("#footerModal").html('');
+    $.ajax({
+        url: http,
+        type: 'GET'
+    }).then(function (response) { //
+        $("#nomeApelido").val(response[0].nomeUsuario)
+        $('select[name="tipoAcesso"]').val(response[0].tipoAcesso);
+        $("#senhaUsuario").val(response[0].senha)
+        $("#confirmaSenhaUsuario").val(response[0].senha)
 
+        $("#footerModalBotao").hide()
+        $("#footerModal").append(`
+        <div><button type="button" class="btn btn-danger" data-dismiss="modal">
+        <i class="fa fa-trash"></i>Excluir </button>
+        <button type="button" class="btn btn-success" onclick="atualizaUsuario()">
+        <i class="fa fa-check"></i> Atualizar </button></div>`);
+
+        $('#exampleModalCenter').modal('show', 'focus');
+    });
+
+
+}
+function atualizaUsuario(){
+    $("#nomeApelido").val()
+    $('select[name="tipoAcesso"]').val("");
+    $("#senhaUsuario").val()
+    $("#confirmaSenhaUsuario").val()
+
+}
 
 window.onload = getdata(), getUsuario();
