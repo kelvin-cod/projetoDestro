@@ -184,5 +184,13 @@ function atualizaUsuario(){
     $("#confirmaSenhaUsuario").val()
 
 }
+$("adicionarUsuario").on("click", function(){
+    $("#nomeApelido").val("")
+    $('select[name="tipoAcesso"]').val("")
+    $("#senhaUsuario").val("")
+    $("#confirmaSenhaUsuario").val("")
+    
+    $('#exampleModalCenter').modal('show', 'focus'); 
+})
 
 window.onload = getdata(), getUsuario();
