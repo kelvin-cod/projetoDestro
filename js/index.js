@@ -115,7 +115,7 @@ function enviarUsuario() {
     };
 
     let http = 'https://destrobackend.herokuapp.com/data/usuario/1'
-    // let http = 'http://localhost:3000/data/usuario/1'
+  // let http = 'http://localhost:3000/data/usuario/1'
     console.log(obj)
     $.ajax({
         url: http,
@@ -123,6 +123,7 @@ function enviarUsuario() {
         data: obj
     }).then(function (response) { //
         //console.log(response)
+        $('#exampleModalCenter').modal('close', 'focus');
         getdata();
     });
 };
