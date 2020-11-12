@@ -107,17 +107,18 @@ function getdata() {
 function enviarUsuario() {
     let obj = {};
     obj = {
-        nomeApelido: $("#nomeApelido").val(),
+        nomeUsuario: $("#nomeApelido").val(),
         tipoAcesso: parseInt($("#tipoAcesso").val()),
         senha: $("#senhaUsuario").val(),
         idEmpresa: 1
     };
 
-    let http = 'https://destrobackend.herokuapp.com/data/usuario/1'
+    //let http = 'https://destrobackend.herokuapp.com/data/usuario/1'
+    let http = 'http://localhost:3000/data/usuario/1'
     console.log(obj)
     $.ajax({
         url: http,
-        type: 'PUT',
+        type: 'POST',
         data: obj
     }).then(function (response) { //
         //console.log(response)
@@ -128,19 +129,28 @@ function enviarUsuario() {
 
 function getUsuario() {
     let http = 'https://destrobackend.herokuapp.com/data/get/usuario/1'
-    let tbl = ''
+    let tbl = '';
+    let tipo = ''
     $.ajax({
         url: http,
         type: 'GET'
     }).then(function (response) { //
+        console.log(response)
         $.each(response, function (i, item) {
-
+            if (item.tipoAcesso == 1) {
+                tipo = 'Administrador'
+            } else {
+                tipo = 'Básico'
+            }
             tbl +=
-                '<tr><td>' + item.nomeApelido +
-                '</td><td>' + item.Tipo_Pedido
+                '<tr><td>' + item.nomeUsuario + '</td>'
+                +
+                '<td>' + tipo + '</td>'
 
-            '</td></tr>';
+
+            '</tr>';
         });
+
         $('#tabelaUsuario').append(tbl);
 
     });
@@ -148,4 +158,4 @@ function getUsuario() {
 
 
 
-window.onload = getdata();
+window.onload = getdata(), getUsuario();
