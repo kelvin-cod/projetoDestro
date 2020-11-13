@@ -162,6 +162,7 @@ function getUsuario() {
 function abrirModal(_id) {
     let http = 'https://destrobackend.herokuapp.com/data/get/usuario/' + _id
     $("#footerModal").html('');
+    $("input").prop("disabled", false);
     $.ajax({
         url: http,
         type: 'GET'
