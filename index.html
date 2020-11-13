@@ -259,25 +259,32 @@
                             <div class="col-lg-2 col-md-3 col-sm-4">
                                 <div class="form-group ">
                                     <label for="senhaSmtp">Senha SMTP</label>
-                                    <input type="text" class="form-control" id="senhaSmtp">
+                                    <input type="password" class="form-control" id="senhaSmtp">
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-3 col-sm-4">
                                 <div class="form-group ">
                                     <label for="emailSmtp">Email SMTP</label>
-                                    <input type="text" class="form-control" id="emailSmtp">
+                                    <input type="email" class="form-control" id="emailSmtp">
                                 </div>
                             </div>
                         </div>
-
+                   
                         <div class="row mt-5 mb-5">
-                            <div class="offset-lg-8 col-sm-5 col-md-8 offset-md-4">
-                                <button class="btn btn-warning mr-3 font-weight-bold" type="button">Alterar
+                            <div class="col-12  text-center text-danger"  >
+                                <h6 id="msgEdicao">Habilitado para Edição</h6>
+                            </div>
+                            <div class="offset-lg-5 col-sm-5 col-md-8 offset-md-4">
+                                <button class="btn btn-warning mr-3 font-weight-bold" type="button" id="alterarDados">
+                                    <i class="fa fa-pencil"></i>
+                                    Alterar
                                     Dados</button>
                                 <button class="btn btn-success font-weight-bold" type="button"
-                                    onclick="enviar()">Confirmar</button>
+                                    onclick="enviar()">
+                                    <i class="fa fa-check"></i>
+                                     Confirmar</button>
                             </div>
-
+                        
                         </div>
                     </form>
 

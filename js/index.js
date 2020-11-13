@@ -54,14 +54,15 @@ function enviar() {
         nascimento: "2020/06/05",
         email: $("#email").val(),
         usuarioPrincipal: $("#usuarioPrincipal").val(),
-        senhaPrincipal: $("#senhaPrincipal").val()
+        senhaPrincipal: $("#senhaPrincipal").val(),
+        smtp: $("#smtp").val(),
+        portaSmtp: $("#portaSmtp").val(),
+        senhaSmtp: $("#senhaSmtp").val(),
+        emailSmtp: $("#emailSmtp").val()
+
     };
-    /*
-     smtp: $("#smtp").val(),
-            portaSmtp: $("#portaSmtp").val(),
-            senhaSmtp: $("#senhaSmtp").val(),
-            emailSmtp: $("#emailSmtp").val()
-    */
+
+
     //let http = `http://localhost:3000/data/update/1`
     let http = 'https://destrobackend.herokuapp.com/data/update/1'
 
@@ -101,6 +102,10 @@ function getdata() {
         $("#senhaPrincipal").val(response[0].SenhaPrincipal);
         $('select[name="tipo"]').val(response[0].TipoPessoa);
         $('select[name="sexo"]').val(response[0].Sexo);
+        $("#smtp").val(response[0].smtp);
+        $("#portaSmtp").val(response[0].portaSmtp);
+        $("#senhaSmtp").val(response[0].senhaSmtp);
+        $("#emailSmtp").val(response[0].emailSmtp);
     });
 }
 
@@ -115,7 +120,7 @@ function enviarUsuario() {
     };
 
     let http = 'https://destrobackend.herokuapp.com/data/usuario/1'
-  // let http = 'http://localhost:3000/data/usuario/1'
+    // let http = 'http://localhost:3000/data/usuario/1'
     console.log(obj)
     $.ajax({
         url: http,
@@ -187,7 +192,7 @@ function atualizaUsuario() {
 
 }
 
-$("#adicionarUsuario").on("click", () =>{
+$("#adicionarUsuario").on("click", () => {
     $("#footerModalBotao").show()
     $("#footerModal").html('');
     $("#nomeApelido").val("")
@@ -203,4 +208,25 @@ $("#adicionarUsuario").on("click", () =>{
     $('#exampleModalCenter').modal('show', 'focus');
 })
 
-window.onload = getdata(), getUsuario();
+
+let altera
+$("#alterarDados").on("click", function () {
+
+    // habilita o campo 
+
+    altera += 0
+    if (altera == 0) {
+        $("#msgEdicao").hide()
+        $("input").prop("disabled", true);
+        altera += 1
+    } else {
+        altera = 0
+   
+        $("#msgEdicao").show()
+        $("input").prop("disabled", false);
+    }
+
+
+
+})
+window.onload = getdata(), getUsuario(), $("input").prop("disabled", true), $("#msgEdicao").hide();
