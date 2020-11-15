@@ -5,9 +5,10 @@
 
 .container-fluid {
     background-color: rgb(119, 119, 187);
+}
 
+body {
     height: 100vh !important;
-
 }
 
 .bg-roxo {
@@ -107,13 +108,26 @@ label {
         width: 250px;
         margin-left: 15px;
     }
+
     .container-fluid {
-       
-    
-        height:auto !important;
-    
+
+
+        height: auto !important;
+
     }
-    
+
+
+}
+
+@media (max-width:575px) {
+
+    .container-fluid {
+
+
+        height: auto !important;
+
+    }
+
 
 }
 

@@ -22,12 +22,12 @@ function doneTyping() {
         url: viacep,
         type: 'GET'
     }).then(function (response) { //
-        console.log(response)
         $("#bairro").val(response.bairro);
         $("#logradouro").val(response.logradouro);
         $("#endereco").val(response.endereco);
         $("#cidade").val(response.localidade);
         $("#estado").val(response.uf);
+        $("#ibge").val(response.ibge);
     });
 }
 
@@ -48,7 +48,7 @@ function enviar() {
         cidade: $("#cidade").val(),
         complemento: $("#complemento").val(),
         estado: $("#estado").val(),
-        codIbge: "",
+        codIbge: $("#ibge").val(),
         sexo: parseInt($("#sexo").val()),
         celular: $("#celular").val(),
         nascimento: "2020/06/05",
@@ -72,7 +72,9 @@ function enviar() {
         data: obj
     }).then(function (response) { //
         //console.log(response)
+        alert("Atualizado com sucesso!")
         getdata();
+
     });
 };
 
@@ -96,6 +98,7 @@ function getdata() {
         $("#bairro").val(response[0].Bairro);
         $("#numero").val(response[0].Num);
         $("#email").val(response[0].Email);
+        $("#ibge").val(response[0].CodIbge);
         $("#celular").val(response[0].Celular);
         $("#nascimento").val(response[0].Nascimento);
         $("#usuarioPrincipal").val(response[0].UsuarioPrincipal);
@@ -121,15 +124,15 @@ function enviarUsuario() {
 
     let http = 'https://destrobackend.herokuapp.com/data/usuario/1'
     // let http = 'http://localhost:3000/data/usuario/1'
-    console.log(obj)
+
     $.ajax({
         url: http,
         type: 'POST',
         data: obj
     }).then(function (response) { //
         //console.log(response)
-        $('#exampleModalCenter').modal('close', 'focus');
-        getdata();
+        $('#exampleModalCenter').modal('hide');
+        getUsuario();
     });
 };
 
@@ -141,7 +144,7 @@ function getUsuario() {
         url: http,
         type: 'GET'
     }).then(function (response) { //
-        console.log(response)
+
         $.each(response, function (i, item) {
             if (item.tipoAcesso == 1) {
                 tipo = 'Administrador'
@@ -161,12 +164,11 @@ function getUsuario() {
 
 function abrirModal(_id) {
     let http = 'https://destrobackend.herokuapp.com/data/get/usuario/' + _id
-    $("#footerModal").html('');
-    $("input").prop("disabled", false);
     $.ajax({
         url: http,
         type: 'GET'
     }).then(function (response) { //
+        $("#footerModal").html('');
         $("#nomeApelido").val(response[0].nomeUsuario)
         $('select[name="tipoAcesso"]').val(response[0].tipoAcesso);
         $("#senhaUsuario").val(response[0].senha)
@@ -174,32 +176,75 @@ function abrirModal(_id) {
 
         $("#footerModalBotao").hide()
         $("#footerModal").append(`
-        <div><button type="button" class="btn btn-danger" data-dismiss="modal">
+        <div><button type="button" class="btn btn-danger mr-1" onclick="excluirModal(${_id})">
         <i class="fa fa-trash"></i>Excluir </button>
-        <button type="button" class="btn btn-success" onclick="atualizaUsuario()">
+        <button type="button" class="btn btn-success" onclick="atualizaUsuario(${_id})">
         <i class="fa fa-check"></i> Atualizar </button></div>`);
 
         $('#exampleModalCenter').modal('show', 'focus');
     });
 
-
+    $("input").prop("disabled", true)
+}
+let id
+function excluirModal(_id) {
+    id = _id
+    $('#excluirModal').modal('show', 'focus');
 }
 
-function atualizaUsuario() {
-    $("#nomeApelido").val()
-    $('select[name="tipoAcesso"]').val("");
-    $("#senhaUsuario").val()
-    $("#confirmaSenhaUsuario").val()
+$('#modal-btn-sim').on("click", () => {
+
+    //let http = 'https://destrobackend.herokuapp.com/data/delete/usuario/' + _id
+    let http = 'http://localhost:3000/data/delete/usuario/' + id
+    $.ajax({
+        url: http,
+        type: 'DELETE'
+    }).then(function (response) { //
+        //console.log(response)
+        $('#excluirModal').modal('hide');
+        $('#exampleModalCenter').modal('hide');
+        $("#tabelaUsuario").html('');
+
+        getUsuario();
+    });
+})
+
+function atualizaUsuario(_id) {
+    let obj = {};
+    mySmallModalLabel
+    obj = {
+        nomeUsuario: $("#nomeApelido").val(),
+        tipoAcesso: parseInt($("#tipoAcesso").val()),
+        senha: $("#senhaUsuario").val()
+    };
+
+    let http = 'https://destrobackend.herokuapp.com/data/usuario/' + _id
+    // let http = 'http://localhost:3000/data/usuario/1'
+
+    $.ajax({
+        url: http,
+        type: 'PUT',
+        data: obj
+    }).then(function (response) { //
+        //console.log(response)
+        $('#exampleModalCenter').modal('hide');
+        $("#tabelaUsuario").html('');
+
+        getUsuario();
+    });
 
 }
 
 $("#adicionarUsuario").on("click", () => {
+
     $("#footerModalBotao").show()
     $("#footerModal").html('');
+
     $("#nomeApelido").val("")
     $('select[name="tipoAcesso"]').val("")
     $("#senhaUsuario").val("")
     $("#confirmaSenhaUsuario").val("")
+
     $("#footerModal").append(`
     <div><button type="button" class="btn btn-danger" data-dismiss="modal">
     <i class="fa fa-times"></i>Cancelar</button>
@@ -209,6 +254,19 @@ $("#adicionarUsuario").on("click", () => {
     $('#exampleModalCenter').modal('show', 'focus');
 })
 
+
+
+
+$('#exampleModalCenter').on('shown.bs.modal', function (e) {
+
+    $("input").prop("disabled", false);
+    $("select").prop("disabled", false);
+})
+
+$('#exampleModalCenter').on('hide.bs.modal', function (e) {
+    $("input").prop("disabled", true);
+    $("select").prop("disabled", true);
+})
 
 let altera
 $("#alterarDados").on("click", function () {
@@ -222,12 +280,19 @@ $("#alterarDados").on("click", function () {
         altera += 1
     } else {
         altera = 0
-   
+
         $("#msgEdicao").show()
         $("input").prop("disabled", false);
     }
-
-
-
 })
-window.onload = getdata(), getUsuario(), $("input").prop("disabled", true), $("#msgEdicao").hide();
+
+
+function aorecarregar() {
+    getdata();
+    getUsuario();
+    $("input").prop("disabled", true);
+    $("select").prop("disabled", true);
+    $("#msgEdicao").hide();
+}
+
+window.onload = aorecarregar();
