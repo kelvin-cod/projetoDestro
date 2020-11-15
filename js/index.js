@@ -80,12 +80,14 @@ function enviar() {
 
 function getdata() {
     let http = 'https://destrobackend.herokuapp.com/data/get/1'
-
+ 
     $.ajax({
         url: http,
         type: 'GET'
     }).then(function (response) { //
-
+        let data =  new Date(response[0].dataCadastro)
+        console.log(response)
+     
         $("#nomeRazao").val(response[0].Nom);
         $("#apelido").val(response[0].Apelido);
         $("#documento").val(response[0].Doc);
@@ -109,6 +111,7 @@ function getdata() {
         $("#portaSmtp").val(response[0].portaSmtp);
         $("#senhaSmtp").val(response[0].senhaSmtp);
         $("#emailSmtp").val(response[0].emailSmtp);
+        $("#cadastro").text(data.toLocaleDateString())
     });
 }
 
