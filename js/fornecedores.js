@@ -32,14 +32,14 @@ function doneTyping() {
 
 function getProvider() {
     let http = 'https://destrobackend.herokuapp.com/provider/list/1'
- 
+
     $.ajax({
         url: http,
         type: 'GET'
     }).then(function (response) { //
-        let data =  new Date(response[0].dataCadastro)
+        let data = new Date(response[0].dataCadastro)
         console.log(response)
-     
+
         $("#nomeRazao").val(response[0].Nom);
         $("#apelido").val(response[0].Apelido);
         $("#documento").val(response[0].Doc);
@@ -52,47 +52,49 @@ function getProvider() {
         $("#bairro").val(response[0].Bairro);
         $("#numero").val(response[0].Num);
         $("#email").val(response[0].Email);
-       // $("#ibge").val(response[0].CodIbge);
+        // $("#ibge").val(response[0].CodIbge);
         $("#celular").val(response[0].Celular);
         //$("#nascimento").val(response[0].Nascimento);
         $('select[name="tipo"]').val(response[0].TipoPessoa);
         $("#cadastro").text(data.toLocaleDateString())
     });
 }
+
 function postProvider() {
     let obj = {};
     obj = {
-        nome: $("#nomeRazao").val(),
-        apelido: $("#apelido").val(),
-        documento: $("#documento").val(),
-        rgie: $("#rgIe").val(),
-        tipo: parseInt($("#tipo").val()),
-        cep: $("#cep").val(),
-        logradouro: $("#logradouro").val(),
-        num: $("#numero").val(),
-        bairro: $("#bairro").val(),
-        cidade: $("#cidade").val(),
-        complemento: $("#complemento").val(),
-        estado: $("#estado").val(),
-      //  codIbge: $("#ibge").val(),
-        celular: $("#celular").val(),
-        email: $("#email").val(),
-        pontoReferencia: $("#pontoReferencia").val()
+        nome: $("#FornNomeRazao").val(),
+        apelido: $("#FornApelido").val(),
+        documento: $("#FornDocumento").val(),
+        rgie: $("#FornRgIe").val(),
+        tipo: parseInt($("#FornTipo").val()),
+        cep: $("#FornCep").val(),
+        logradouro: $("#FornLogradouro").val(),
+        num: $("#FornNumero").val(),
+        bairro: $("#FornBairro").val(),
+        cidade: $("#FornCidade").val(),
+        complemento: $("#FornComplemento").val(),
+        estado: $("#FornEstado").val(),
+        //  codIbge: $("#ibge").val(),
+        celular: $("#FornCelular").val(),
+        email: $("#FornEmail").val(),
+        pontoReferencia: $("#FornPontoReferencia").val(),
+        idEmpresa: 1
 
     };
 
 
     //let http = `http://localhost:3000/data/update/1`
     let http = 'https://destrobackend.herokuapp.com/provider/create'
-
+console.log(obj)
     $.ajax({
         url: http,
         type: 'POST',
         data: obj
     }).then(function (response) { //
         //console.log(response)
-       // alert("Atualizado com sucesso!")
-       getProvider();
+        // alert("Atualizado com sucesso!")
+        getProvider();
 
     });
 };
