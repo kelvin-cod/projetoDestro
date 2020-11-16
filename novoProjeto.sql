@@ -116,6 +116,7 @@ CREATE TABLE TabFornecedor(
 	IdEmpresa INT NOT NULL,
 	IdFornecedor INT AUTO_INCREMENT PRIMARY KEY,
 	Nom VARCHAR(200) NOT NULL,
+	Apelido varchar(70) null,
 	TipoPessoa INT NOT NULL,
 	Doc INT NOT NULL,
 	Rgle  VARCHAR(50) NOT NULL,
