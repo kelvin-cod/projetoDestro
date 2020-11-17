@@ -30,9 +30,9 @@ function doneTyping() {
     });
 }
 
-function getProvider() {
-    let http = 'https://destrobackend.herokuapp.com/provider/list/1'
-
+function getOneProvider(_id) {
+    let http = `https://destrobackend.herokuapp.com/provider/list/${_id}`
+    //let http = `http://localhost:3000/provider/list/${_id}`
     $.ajax({
         url: http,
         type: 'GET'
@@ -40,20 +40,21 @@ function getProvider() {
         let data = new Date(response[0].dataCadastro)
         console.log(response)
 
-        $("#nomeRazao").val(response[0].Nom);
-        $("#apelido").val(response[0].Apelido);
-        $("#documento").val(response[0].Doc);
-        $("#rgIe").val(response[0].Rgle);
-        $("#cep").val(response[0].Cep);
-        $("#logradouro").val(response[0].Logradouro);
-        $("#complemento").val(response[0].Complemento);
-        $("#estado").val(response[0].Estado);
-        $("#cidade").val(response[0].Cidade);
-        $("#bairro").val(response[0].Bairro);
-        $("#numero").val(response[0].Num);
-        $("#email").val(response[0].Email);
+        $("#FornNomeRazao").val(response[0].Nom);
+        $("#FornApelido").val(response[0].Apelido);
+        $("#FornDocumento").val(response[0].Doc);
+        $("#FornRgIe").val(response[0].Rgle);
+        $("#FornCep").val(response[0].Cep);
+        $("#FornLogradouro").val(response[0].Logradouro);
+        $("#FornComplemento").val(response[0].Complemento);
+        $("#FornEstado").val(response[0].Estado);
+        $("#FornCidade").val(response[0].Cidade);
+        $("#FornBairro").val(response[0].Bairro);
+        $("#FornNumero").val(response[0].Num);
+        $("#FornEmail").val(response[0].Email);
         // $("#ibge").val(response[0].CodIbge);
-        $("#celular").val(response[0].Celular);
+        $("#FornCelular").val(response[0].Celular);
+        $("#FornPontoReferencia").val(response[0].PontoReferencia);
         //$("#nascimento").val(response[0].Nascimento);
         $('select[name="tipo"]').val(response[0].TipoPessoa);
         $("#cadastro").text(data.toLocaleDateString())
@@ -84,9 +85,9 @@ function postProvider() {
     };
 
 
-    //let http = `http://localhost:3000/data/update/1`
+    //let http = `http://localhost:3000/provider/create`
     let http = 'https://destrobackend.herokuapp.com/provider/create'
-console.log(obj)
+    console.log(obj)
     $.ajax({
         url: http,
         type: 'POST',
@@ -98,3 +99,34 @@ console.log(obj)
 
     });
 };
+
+function getProvider() {
+    let http = 'https://destrobackend.herokuapp.com/provider/list/all/1'
+    // let http = 'http://localhost:3000/provider/list/all/1'
+    let tbl = '';
+    let tipo = ''
+    $.ajax({
+        url: http,
+        type: 'GET'
+    }).then(function (response) { //
+        console.log(response)
+        $.each(response, function (i, item) {
+
+            tbl +=
+                '<tr onclick="getOneProvider(' + item.IdFornecedor + ')">' +
+                '<td scope="row" colspan="2">' + item.Nom + '</td>' +
+                '</tr>';
+        });
+
+        $('#tabelaFornecedor').append(tbl);
+
+    });
+}
+
+
+function aoIniciar() {
+    getProvider();
+    $("input").prop("disabled", true);
+    $("select").prop("disabled", true);
+}
+window.onload = aoIniciar();

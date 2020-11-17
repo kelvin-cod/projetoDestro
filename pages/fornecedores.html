@@ -61,7 +61,7 @@
                             <h1>Dados do Fornecedor</h1>
                         </div>
                         <div class="col-md-3">
-                            <h5 disable>Cadastro: 31/02/2020</h4>
+                            <h5 disable>Cadastro: <span id="cadastro"></span></h4>
                         </div>
 
                     </div>
@@ -101,7 +101,7 @@
                                     </span>
                                 </label>
 
-                                <select name="tipo" class="form-control" id="Forntipo">
+                                <select name="tipo" class="form-control" id="FornTipo">
                                     <option value="1" class="form-control">Fisico</option>
                                     <option value="2" class="form-control">juridico</option>
                                 </select>
@@ -147,7 +147,7 @@
                                 <input type="text" class="form-control" id="FornCidade">
                             </div>
                         </div>
-                        <div class="col-lg-2 col-md-5 col-sm-4">
+                        <div class="col-lg-3 col-md-5 col-sm-4">
                             <div class="form-group ">
                                 <label for="bairro">Bairro</label>
                                 <input type="text" class="form-control" id="FornBairro">
@@ -159,7 +159,7 @@
                                 <input type="text" class="form-control" id="FornNumero">
                             </div>
                         </div>
-                        <div class="col-lg-5 col-md-6 col-sm-6">
+                        <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="form-group ">
                                 <label for="FornPontoReferencia">Ponto de Referencia</label>
                                 <input type="text" class="form-control" id="FornPontoReferencia">
@@ -174,7 +174,7 @@
                                 <input type="email" class="form-control" id="FornEmail">
                             </div>
                         </div>
-                        <div class="col-lg-2 col-md-3 col-sm-3">
+                        <div class="col-lg-3 col-md-3 col-sm-3">
                             <div class="form-group ">
                                 <label for="Forncelular">Celular</label>
                                 <input type="text" class="form-control" id="FornCelular">
@@ -225,22 +225,9 @@
 
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="tabelaFornecedor">
 
-                            <tr>
-                                <td scope="row" colspan="2">Mark</td>
-
-                            </tr>
-                            <tr>
-                                <td scope="row" colspan="2">Jacob</td>
-
-
-                            </tr>
-                            <tr>
-                                <td scope="row" colspan="2">Thornton</td>
-
-
-                            </tr>
+                          
 
                         </tbody>
 
