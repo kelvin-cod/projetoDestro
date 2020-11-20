@@ -55,240 +55,243 @@
             </div>
         </nav>
         <div class="container-fluid pb-5">
-            <div class="row pt-5">
-                <div class="col-lg-9 col-md-12">
-                    <div class="row mt-3 text-white">
-                        <div class="col-md-12">
-                            <h1>Produtos</h1>
+            <form action="">
+                <div class="row pt-5">
+                    <div class="col-lg-9 col-md-12">
+                        <div class="row mt-3 text-white">
+                            <div class="col-md-12">
+                                <h1>Produtos</h1>
+                            </div>
+                        </div>
+
+                        <div class="row text-white">
+                            <div class="col-lg-6 col-md-8">
+                                <div class="form-group ">
+                                    <label for="">Nome/Descrição do Produto</label>
+                                    <input type="text" class="form-control" id="prodNome">
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-4 col-sm-6">
+                                <div class="form-group ">
+                                    <label for="prodTipo">Tipo</label>
+                                    <select name="" class="form-control" id="prodTipo">
+                                        <option value="1" class="form-control">Produto</option>
+                                        <option value="2" class="form-control">Serviço</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2 col-md-4 col-sm-6">
+                                <div class="form-group ">
+                                    <label for="ncm">NCM</label>
+                                    <input type="text" class="form-control" id="ncm">
+                                </div>
+                            </div>
+                            <div class=" col-lg-2 col-md-4 col-sm-6">
+                                <div class="form-group ">
+                                    <label for="cest">CEST</label>
+                                    <input type="text" class="form-control" id="cest">
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="row text-white">
+                            <div class="col-lg-2 col-md-3 col-sm-4">
+                                <div class="form-group ">
+                                    <label for="precoCompra">Preço de Compra
+
+                                    </label>
+                                    <input type="text" class="form-control" id="precoCompra">
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-4">
+                                <div class="form-group ">
+                                    <label for="valorFrete">Valor do Frete</label>
+                                    <input type="text" class="form-control" id="valorFrete">
+                                </div>
+                            </div>
+
+                            <div class=" col-lg-2 col-md-2  col-sm-4">
+                                <div class="form-group ">
+                                    <label for="adicionais">Adicionais</label>
+                                    <input type="text" class="form-control" id="adicionais">
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+                                <div class="form-group ">
+                                    <label for="precoVenda">Preço de Venda</label>
+                                    <input type="text" class="form-control" id="precoVenda">
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="row text-white">
+                            <div class="col-lg-2 col-md-3 col-sm-12">
+                                <div class="form-group ">
+                                    <label for="dataAlteracao">Ult. Alteração</label>
+                                    <input type="text" class="form-control" id="dataAlteracao" disabled
+                                        value="10/10/2020">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-12">
+                                <div class="form-group ">
+                                    <label for="usuarioAlteracao">Usuario Ult. Alteração</label>
+                                    <input type="text" class="form-control" id="usuarioAlteracao" disabled
+                                        value="destro">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row text-white">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="form-group ">
+                                    <label for="obsProduto">Observação deste Produto</label>
+                                    <input type="text" class="form-control" id="obsProduto">
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="row text-white text-center">
+                            <div class=" col-12 mt-3  ">
+                                <button class="btn btn-small btn-secondary  font-weight-bold" type="button">
+                                    <i class="fa fa-plus"></i>
+                                    Novo Produto
+                                </button>
+                                <button class="btn btn-danger font-weight-bold" type="button">
+                                    <i class="fa fa-trash"></i>
+                                    Apagar
+                                </button>
+                                <button class="btn btn-warning font-weight-bold" type="button">
+                                    <i class="fa fa-pencil"></i>
+                                    Alterar Dados
+                                </button>
+                                <button class="btn btn-success font-weight-bold" type="button">
+                                    <i class="fa fa-check"></i>
+                                    Confirmar
+                                </button>
+                            </div>
+
                         </div>
                     </div>
 
-                    <div class="row text-white">
-                        <div class="col-lg-6 col-md-8">
-                            <div class="form-group ">
-                                <label for="">Nome/Descrição do Produto</label>
-                                <input type="text" class="form-control" id="prodNome">
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-4 col-sm-6">
-                            <div class="form-group ">
-                                <label for="prodTipo">Tipo</label>
-                                <select name="" class="form-control" id="prodTipo">
-                                    <option value="1" class="form-control">Produto</option>
-                                    <option value="2" class="form-control">Serviço</option>
-                                </select>
-                            </div>
-                        </div>
 
-                        <div class="col-lg-2 col-md-4 col-sm-6">
-                            <div class="form-group ">
-                                <label for="ncm">NCM</label>
-                                <input type="text" class="form-control" id="ncm">
-                            </div>
-                        </div>
-                        <div class=" col-lg-2 col-md-4 col-sm-6">
-                            <div class="form-group ">
-                                <label for="cest">CEST</label>
-                                <input type="text" class="form-control" id="cest">
-                            </div>
-                        </div>
-                       
 
+                    <div class="col-lg-3 col-md-12 ">
+                        <h2 class="text-white mt-3 text-center">Localizar Produto</h2>
+                        <table class="table table-hover bg-light text-center">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Nome/Descrição do Produto</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td scope="row">Mark</td>
+
+                                </tr>
+                                <tr>
+                                    <td scope="row">Jacob</td>
+
+
+                                </tr>
+                                <tr>
+                                    <td scope="row">Thornton</td>
+
+
+                                </tr>
+
+                            </tbody>
+
+
+                        </table>
                     </div>
 
-                    <div class="row text-white">
-                        <div class="col-lg-2 col-md-3 col-sm-4">
-                            <div class="form-group ">
-                                <label for="precoCompra">Preço de Compra
-                                   
-                                </label>
-                                <input type="text" class="form-control" id="precoCompra">
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-3 col-sm-4">
-                            <div class="form-group ">
-                                <label for="valorFrete">Valor do Frete</label>
-                                <input type="text" class="form-control" id="valorFrete">
-                            </div>
-                        </div>
 
-                        <div class=" col-lg-2 col-md-2  col-sm-4">
-                            <div class="form-group ">
-                                <label for="adicionais">Adicionais</label>
-                                <input type="text" class="form-control" id="adicionais">
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-2">
-                            <div class="form-group ">
-                                <label for="precoVenda">Preço de Venda</label>
-                                <input type="text" class="form-control" id="precoVenda">
-                            </div>
-                        </div>
-                 
-                    
-                    </div>
-                    <div class="row text-white">
-                        <div class="col-lg-2 col-md-3 col-sm-12">
-                            <div class="form-group ">
-                                <label for="dataAlteracao">Ult. Alteração</label>
-                                <input type="text" class="form-control" id="dataAlteracao" disabled value="10/10/2020">
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-3 col-sm-12">
-                            <div class="form-group ">
-                                <label for="usuarioAlteracao">Usuario Ult. Alteração</label>
-                                <input type="text" class="form-control" id="usuarioAlteracao" disabled value="destro">
-                            </div>
-                        </div>
-                   
-                    </div>
-                    <div class="row text-white">
-                        <div class="col-lg-12 col-md-12 col-sm-12">
-                            <div class="form-group ">
-                                <label for="obsProduto">Observação deste Produto</label>
-                                <input type="text" class="form-control" id="obsProduto">
-                            </div>
-                        </div>
-                      
-
-                    </div>
-
-                    <div class="row text-white text-center">
-                        <div class=" col-12 mt-3  ">
-                            <button class="btn btn-small btn-secondary  font-weight-bold" type="button">
-                                <i class="fa fa-plus"></i>
-                                Novo Produto
-                            </button>
-                            <button class="btn btn-danger font-weight-bold" type="button">
-                                <i class="fa fa-trash"></i>
-                                Apagar
-                            </button>
-                            <button class="btn btn-warning font-weight-bold" type="button">
-                                <i class="fa fa-pencil"></i>
-                                Alterar Dados
-                            </button>
-                            <button class="btn btn-success font-weight-bold" type="button">
-                                <i class="fa fa-check"></i>
-                                Confirmar
-                            </button>
-                        </div>
-
-                    </div>
                 </div>
 
+                <div class="row ">
+                    <div class="col-lg-4 col-md-12">
+                        <h3 class="text-white mt-4 text-center">Vendas/Mês </h3>
+                        <table class="table table-hover bg-light text-center">
+                            <thead class="thead-dark">
+                                <tr class=" text-white">
+                                    <th scope="col">Copetência</th>
+                                    <th scope="col">Quant.Vendida</th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+
+                                <tr>
+                                    <td scope="row"></td>
+                                    <td>10</td>
 
 
-                <div class="col-lg-3 col-md-12 ">
-                    <h2 class="text-white mt-3 text-center">Localizar Produto</h2>
-                    <table class="table table-hover bg-light text-center">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">Nome/Descrição do Produto</th>
+                                </tr>
+                                <tr>
+                                    <td scope="row"></td>
+                                    <td>20</td>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td scope="row">Mark</td>
+                                </tr>
+                                <tr>
 
-                            </tr>
-                            <tr>
-                                <td scope="row">Jacob</td>
+                                    <td scope="row"></td>
+                                    <td>30</td>
 
 
-                            </tr>
-                            <tr>
-                                <td scope="row">Thornton</td>
 
+                                </tr>
 
-                            </tr>
+                            </tbody>
 
-                        </tbody>
+                        </table>
+                    </div>
+                    <div class="col-lg-8 col-md-12">
+                        <h3 class="text-white mt-4  text-center">Últimas compras deste produto</h3>
+                        <table class="table table-hover bg-light text-center">
+                            <thead class="thead-dark">
+                                <tr class=" text-white">
+                                    <th scope="col">Data</th>
+                                    <th scope="col">Quant.</th>
+                                    <th scope="col">Val Unit</th>
+                                    <th scope="col">Fornecedor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
+                                <tr>
+                                    <td scope="row"></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row"></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row"></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>0</td>
+                                </tr>
 
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-
-
-            </div>
-
-            <div class="row ">
-                <div class="col-lg-4 col-md-12">
-                    <h3 class="text-white mt-4 text-center">Vendas/Mês </h3>
-                    <table class="table table-hover bg-light text-center">
-                        <thead class="thead-dark">
-                            <tr class=" text-white">
-                                <th scope="col">Copetência</th>
-                                <th scope="col">Quant.Vendida</th>
-                            </tr>
-
-                        </thead>
-                        <tbody>
-
-                            <tr>
-                                <td scope="row"></td>
-                                <td>10</td>
-                      
-
-                            </tr>
-                            <tr>
-                                <td scope="row"></td>
-                                <td>20</td>
-              
-                            </tr>
-                            <tr>
-
-                                <td scope="row"></td>
-                                <td>30</td>
-                 
-
-
-                            </tr>
-           
-                        </tbody>
-
-                    </table>
-                </div>
-                <div class="col-lg-8 col-md-12">
-                    <h3 class="text-white mt-4  text-center">Últimas compras deste produto</h3>
-                    <table class="table table-hover bg-light text-center">
-                        <thead class="thead-dark">
-                            <tr class=" text-white">
-                                <th scope="col">Data</th>
-                                <th scope="col">Quant.</th>
-                                <th scope="col">Val Unit</th>
-                                <th scope="col">Fornecedor</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            <tr>
-                                <td scope="row"></td>
-                                <td></td>
-                                <td></td>
-                                <td >0</td>
-                            </tr>
-                            <tr>
-                                <td scope="row"></td>
-                                <td></td>
-                                <td></td>
-                                <td >0</td>
-                            </tr>
-                            <tr>
-                                <td scope="row"></td>
-                                <td></td>
-                                <td></td>
-                                <td >0</td>
-                            </tr>
-                    
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
+            </form>
 
         </div>
-            <!--<footer >
+        <!--<footer >
         footer navbar-fixed-bottom
             <div class="footer navbar-fixed-bottom bg-white ">
                 <div class=" text-center pt-2">
@@ -302,6 +305,31 @@
             </div>
         </footer>-->
     </div>
+    <!--MODAL-->
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"
+        id="excluirModal">
+        <div class="modal-dialog modal-sm modal-dialog-centered">
+            <div class="modal-content ">
+                <div class="modal-header bg-black" style="color: aliceblue;">
+                    <h5 class="modal-title text-white">Confirmar Exclusão?</h5>
+                    <button type="button" class="close text-white " data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body m-3">
+                    <h3 class="text-center" id="confirmar">Confirmar Exclusão?</h3>
+                    <div class="gif" id="gif"></div>
+                </div>
+
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-danger" id="modal-btn-nao" data-dismiss="modal">Não</button>
+                    <button type="button" class="btn btn-success" id="modal-btn-sim">Sim</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--FIM MODAL-->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
@@ -310,7 +338,7 @@
 
     <script src="../js/main.js"></script>
     <script src="../js/utils/jquery.mask.js"></script>
-
+    <script src="../js/produtos.js"></script>
 
 </body>
 

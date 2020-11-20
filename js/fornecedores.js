@@ -38,7 +38,7 @@ function getOneProvider(_id) {
         type: 'GET'
     }).then(function (response) { //
         let data = new Date(response[0].dataCadastro)
-        console.log(response)
+        // console.log(response)
 
         $("#FornNomeRazao").val(response[0].Nom);
         $("#FornApelido").val(response[0].Apelido);
@@ -57,7 +57,23 @@ function getOneProvider(_id) {
         $("#FornPontoReferencia").val(response[0].PontoReferencia);
         //$("#nascimento").val(response[0].Nascimento);
         $('select[name="tipo"]').val(response[0].TipoPessoa);
-        $("#cadastro").text(data.toLocaleDateString())
+        $("#cadastro").text(data.toLocaleDateString());
+
+        $("#btnAtualiza").html("");
+        $("#btnAtualiza").append(`
+            <button class="btn btn-success font-weight-bold"
+             type="button" onclick="updateProvider(${response[0].IdFornecedor})">
+        <i class="fa fa-check"></i>
+        Atualizar
+    </button>`)
+
+        $("#btnExcluir").html("");
+        $("#btnExcluir").append(`
+        <button class="btn btn-success font-weight-bold"
+         type="button" onclick="excluirModal(${response[0].IdFornecedor})">
+    <i class="fa fa-check"></i>
+    Atualizar
+    </button>`)
     });
 }
 
@@ -87,7 +103,7 @@ function postProvider() {
 
     //let http = `http://localhost:3000/provider/create`
     let http = 'https://destrobackend.herokuapp.com/provider/create'
-    console.log(obj)
+    // console.log(obj)
     $.ajax({
         url: http,
         type: 'POST',
@@ -100,11 +116,84 @@ function postProvider() {
     });
 };
 
+function updateProvider(_id) {
+    let obj = {};
+    obj = {
+        nome: $("#FornNomeRazao").val(),
+        apelido: $("#FornApelido").val(),
+        documento: $("#FornDocumento").val(),
+        rgie: $("#FornRgIe").val(),
+        tipo: parseInt($("#FornTipo").val()),
+        cep: $("#FornCep").val(),
+        logradouro: $("#FornLogradouro").val(),
+        num: $("#FornNumero").val(),
+        bairro: $("#FornBairro").val(),
+        cidade: $("#FornCidade").val(),
+        complemento: $("#FornComplemento").val(),
+        estado: $("#FornEstado").val(),
+        //  codIbge: $("#ibge").val(),
+        celular: $("#FornCelular").val(),
+        email: $("#FornEmail").val(),
+        pontoReferencia: $("#FornPontoReferencia").val()
+    };
+
+
+    let http = `https://destrobackend.herokuapp.com/provider/update/${_id}`
+    // console.log(obj)
+    $.ajax({
+        url: http,
+        type: 'PUT',
+        data: obj
+    }).then(function (response) { //
+        //console.log(response)
+        // alert("Atualizado com sucesso!")
+        $('#tabelaFornecedor').html("");
+        getProvider();
+        $('#fornForm input').val("");
+    });
+};
+
+function excluirModal(_id) {
+    id = _id
+    $('#excluirModal').modal('show', 'focus');
+}
+
+$('#modal-btn-sim').on("click", () => {
+
+    //let http = 'https://destrobackend.herokuapp.com/data/delete/usuario/' + _id
+    let http = `https://destrobackend.herokuapp.com/provider/delete/${_id}`
+    $.ajax({
+        url: http,
+        type: 'DELETE'
+    }).then(function (response) { //
+        //console.log(response)
+        $('#excluirModal').modal('hide');
+        $('#exampleModalCenter').modal('hide');
+       
+    });
+})
+
+function deleteProvider(_id) {
+
+    let http = `https://destrobackend.herokuapp.com/provider/delete/${_id}`
+    // console.log(obj)
+    $.ajax({
+        url: http,
+        type: 'DELETE',
+        data: obj
+    }).then(function (response) { //
+        //console.log(response)
+        // alert("Atualizado com sucesso!")
+        $('#tabelaFornecedor').html("");
+        getProvider();
+        $('#fornForm input').val("");
+    });
+};
+
 function getProvider() {
     let http = 'https://destrobackend.herokuapp.com/provider/list/all/1'
     // let http = 'http://localhost:3000/provider/list/all/1'
     let tbl = '';
-    let tipo = ''
     $.ajax({
         url: http,
         type: 'GET'
@@ -122,6 +211,24 @@ function getProvider() {
 
     });
 }
+
+let altera
+$("#alterarDados").on("click", function () {
+
+    // habilita o campo 
+
+    altera += 0
+    if (altera == 0) {
+        $("#msgEdicao").hide()
+        $("input").prop("disabled", true);
+        altera += 1
+    } else {
+        altera = 0
+
+        $("#msgEdicao").show()
+        $("input").prop("disabled", false);
+    }
+})
 
 
 function aoIniciar() {

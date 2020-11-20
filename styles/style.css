@@ -28,6 +28,13 @@ label {
     font-weight: 600;
 }
 
+@media (max-width:1600px) {
+    .container-fluid {
+        height: 100vh !important;
+    }
+
+}
+
 @media (max-width:1336px) {}
 
 .icone {

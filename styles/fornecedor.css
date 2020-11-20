@@ -1,7 +1,16 @@
-.container-fluid{
-   /* height: auto !important;*/
+.container-fluid {
+    height: auto !important;
 }
-body{
-    height: 100vh !important;
 
+@media (min-width:1600px) {
+    .container-fluid {
+        height: 100vh !important;
+    }
+
+}
+
+.btn-orange{
+    color: rgb(209, 205, 199);
+    background-color: rgb(255, 187, 0);
+    border-color: rgb(0, 0, 0);
 }
