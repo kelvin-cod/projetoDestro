@@ -84,13 +84,13 @@
                             <div class="col-lg-2 col-md-4 col-sm-6">
                                 <div class="form-group ">
                                     <label for="ncm">NCM</label>
-                                    <input type="text" class="form-control" id="ncm">
+                                    <input type="text" class="form-control" id="prodNcm">
                                 </div>
                             </div>
                             <div class=" col-lg-2 col-md-4 col-sm-6">
                                 <div class="form-group ">
                                     <label for="cest">CEST</label>
-                                    <input type="text" class="form-control" id="cest">
+                                    <input type="text" class="form-control" id="prodCest">
                                 </div>
                             </div>
 
@@ -101,28 +101,27 @@
                             <div class="col-lg-2 col-md-3 col-sm-4">
                                 <div class="form-group ">
                                     <label for="precoCompra">Preço de Compra
-
                                     </label>
-                                    <input type="text" class="form-control" id="precoCompra">
+                                    <input type="text" class="form-control" id="prodPrecoCompra">
                                 </div>
                             </div>
                             <div class="col-lg-2 col-md-3 col-sm-4">
                                 <div class="form-group ">
                                     <label for="valorFrete">Valor do Frete</label>
-                                    <input type="text" class="form-control" id="valorFrete">
+                                    <input type="text" class="form-control" id="prodValorFrete">
                                 </div>
                             </div>
 
                             <div class=" col-lg-2 col-md-2  col-sm-4">
                                 <div class="form-group ">
                                     <label for="adicionais">Adicionais</label>
-                                    <input type="text" class="form-control" id="adicionais">
+                                    <input type="text" class="form-control" id="prodAdicionais">
                                 </div>
                             </div>
                             <div class="col-lg-2 col-md-2 col-sm-2">
                                 <div class="form-group ">
                                     <label for="precoVenda">Preço de Venda</label>
-                                    <input type="text" class="form-control" id="precoVenda">
+                                    <input type="text" class="form-control" id="prodPrecoVenda">
                                 </div>
                             </div>
 
@@ -132,14 +131,14 @@
                             <div class="col-lg-2 col-md-3 col-sm-12">
                                 <div class="form-group ">
                                     <label for="dataAlteracao">Ult. Alteração</label>
-                                    <input type="text" class="form-control" id="dataAlteracao" disabled
-                                        value="10/10/2020">
+                                    <input type="text" class="form-control" id="prodDataUltAlteracao" disabled
+                                        >
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-3 col-sm-12">
                                 <div class="form-group ">
-                                    <label for="usuarioAlteracao">Usuario Ult. Alteração</label>
-                                    <input type="text" class="form-control" id="usuarioAlteracao" disabled
+                                    <label for="usuarioAlteracao">Usuario Ult.Alteração</label>
+                                    <input type="text" class="form-control" id="prodUltAlteracao" disabled
                                         value="destro">
                                 </div>
                             </div>
@@ -149,7 +148,7 @@
                             <div class="col-lg-12 col-md-12 col-sm-12">
                                 <div class="form-group ">
                                     <label for="obsProduto">Observação deste Produto</label>
-                                    <input type="text" class="form-control" id="obsProduto">
+                                    <input type="text" class="form-control" id="prodObs">
                                 </div>
                             </div>
 
@@ -170,7 +169,7 @@
                                     <i class="fa fa-pencil"></i>
                                     Alterar Dados
                                 </button>
-                                <button class="btn btn-success font-weight-bold" type="button">
+                                <button class="btn btn-success font-weight-bold" type="button" onclick="postProvider()">
                                     <i class="fa fa-check"></i>
                                     Confirmar
                                 </button>
