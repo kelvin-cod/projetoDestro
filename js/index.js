@@ -280,12 +280,14 @@ $("#alterarDados").on("click", function () {
     if (altera == 0) {
         $("#msgEdicao").hide()
         $("input").prop("disabled", true);
+        $("select").prop("disabled", true);
         altera += 1
     } else {
         altera = 0
 
         $("#msgEdicao").show()
         $("input").prop("disabled", false);
+        $("select").prop("disabled", false);
     }
 })
 

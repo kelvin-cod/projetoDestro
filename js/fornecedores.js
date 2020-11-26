@@ -69,10 +69,10 @@ function getOneProvider(_id) {
 
         $("#btnExcluir").html("");
         $("#btnExcluir").append(`
-        <button class="btn btn-success font-weight-bold"
+        <button class="btn btn-danger font-weight-bold"
          type="button" onclick="excluirModal(${response[0].IdFornecedor})">
-    <i class="fa fa-check"></i>
-    Atualizar
+    <i class="fa fa-trash"></i>
+  Excluir
     </button>`)
     });
 }
@@ -169,7 +169,7 @@ $('#modal-btn-sim').on("click", () => {
         //console.log(response)
         $('#excluirModal').modal('hide');
         $('#exampleModalCenter').modal('hide');
-       
+
     });
 })
 
@@ -198,7 +198,7 @@ function getProvider() {
         url: http,
         type: 'GET'
     }).then(function (response) { //
-        console.log(response)
+
         $.each(response, function (i, item) {
 
             tbl +=
@@ -221,12 +221,16 @@ $("#alterarDados").on("click", function () {
     if (altera == 0) {
         $("#msgEdicao").hide()
         $("input").prop("disabled", true);
+        $("#buscaFornecedor").attr("Disabled", false);
+        $("select").prop("disabled", true);
         altera += 1
     } else {
         altera = 0
 
         $("#msgEdicao").show()
         $("input").prop("disabled", false);
+        $("#buscaFornecedor").attr("Disabled", false);
+        $("select").prop("disabled", false);
     }
 })
 
@@ -234,6 +238,8 @@ $("#alterarDados").on("click", function () {
 function aoIniciar() {
     getProvider();
     $("input").prop("disabled", true);
+    $("#buscaFornecedor").attr("Disabled", false);
     $("select").prop("disabled", true);
+  
 }
 window.onload = aoIniciar();

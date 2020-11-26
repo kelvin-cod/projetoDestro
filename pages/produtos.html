@@ -12,6 +12,7 @@
 
     <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="../styles/produtos.css">
+    <link rel="stylesheet" href="../js/utils/Toastr/build/toastr.css">
 
     <title>Produtos</title>
 </head>
@@ -55,12 +56,15 @@
             </div>
         </nav>
         <div class="container-fluid pb-5">
-            <form action="">
+            <form action="" id="formProduto">
                 <div class="row pt-5">
                     <div class="col-lg-9 col-md-12">
                         <div class="row mt-3 text-white">
-                            <div class="col-md-12">
+                            <div class="col-md-9">
                                 <h1>Produtos</h1>
+                            </div>
+                            <div class="col-md-3">
+                                <h5>Cadastro: <span id="cadastro"></span></h5>
                             </div>
                         </div>
 
@@ -68,13 +72,13 @@
                             <div class="col-lg-6 col-md-8">
                                 <div class="form-group ">
                                     <label for="">Nome/Descrição do Produto</label>
-                                    <input type="text" class="form-control" id="prodNome">
+                                    <input type="text" class="form-control" id="prodNome" required>
                                 </div>
                             </div>
                             <div class="col-lg-2 col-md-4 col-sm-6">
                                 <div class="form-group ">
                                     <label for="prodTipo">Tipo</label>
-                                    <select name="" class="form-control" id="prodTipo">
+                                    <select name="tipo" class="form-control" id="prodTipo">
                                         <option value="1" class="form-control">Produto</option>
                                         <option value="2" class="form-control">Serviço</option>
                                     </select>
@@ -121,7 +125,13 @@
                             <div class="col-lg-2 col-md-2 col-sm-2">
                                 <div class="form-group ">
                                     <label for="precoVenda">Preço de Venda</label>
-                                    <input type="text" class="form-control" id="prodPrecoVenda">
+                                    <input type="number" class="form-control" id="prodPrecoVenda">
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+                                <div class="form-group ">
+                                    <label for="unidades">Unidades</label>
+                                    <input type="text" class="form-control" id="prodUnidades">
                                 </div>
                             </div>
 
@@ -131,15 +141,13 @@
                             <div class="col-lg-2 col-md-3 col-sm-12">
                                 <div class="form-group ">
                                     <label for="dataAlteracao">Ult. Alteração</label>
-                                    <input type="text" class="form-control" id="prodDataUltAlteracao" disabled
-                                        >
+                                    <input type="text" class="form-control" id="prodDataUltAlteracao" readonly>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-3 col-sm-12">
                                 <div class="form-group ">
                                     <label for="usuarioAlteracao">Usuario Ult.Alteração</label>
-                                    <input type="text" class="form-control" id="prodUltAlteracao" disabled
-                                        value="destro">
+                                    <input type="text" class="form-control" id="prodUltAlteracao" readonly>
                                 </div>
                             </div>
 
@@ -157,22 +165,30 @@
 
                         <div class="row text-white text-center">
                             <div class=" col-12 mt-3  ">
-                                <button class="btn btn-small btn-secondary  font-weight-bold" type="button">
+                                <button class="btn btn-small btn-secondary font-weight-bold" type="button"
+                                    id="novoProduto">
                                     <i class="fa fa-plus"></i>
                                     Novo Produto
                                 </button>
-                                <button class="btn btn-danger font-weight-bold" type="button">
-                                    <i class="fa fa-trash"></i>
-                                    Apagar
+                                <div id="btnExcluir" style="display: inline;">
+                                    <button class="btn btn-danger font-weight-bold" type="button">
+                                        <i class="fa fa-trash"></i>
+                                        Excluir
+                                    </button>
+                                </div>
+
+                                <button class="btn btn-warning font-weight-bold " type="button" id="alterarDados">
+                                    <i class="fa fa-pencil"></i>Alterar Dados
                                 </button>
-                                <button class="btn btn-warning font-weight-bold" type="button">
-                                    <i class="fa fa-pencil"></i>
-                                    Alterar Dados
-                                </button>
-                                <button class="btn btn-success font-weight-bold" type="button" onclick="postProvider()">
-                                    <i class="fa fa-check"></i>
-                                    Confirmar
-                                </button>
+
+                                <div id="btnAtualiza" style="display: inline;">
+                                    <button class="btn btn-success font-weight-bold" type="button"
+                                        onclick="postProduct()">
+                                        <i class="fa fa-check"></i>
+                                        Enviar
+                                    </button>
+
+                                </div>
                             </div>
 
                         </div>
@@ -185,26 +201,24 @@
                         <table class="table table-hover bg-light text-center">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col">Nome/Descrição do Produto</th>
-
+                                    <th scope="col">Nome/Descrição do Produto
+                                        <div>
+                                            <input class="form-control buscaProduto " type="text" name="buscaProduto" 
+                                            alt="tabelaProduto"
+                                                placeholder="Digite para buscar um Produto" id="buscaProduto">
+                                        </div>
+                                    </th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td scope="row">Mark</td>
-
-                                </tr>
-                                <tr>
-                                    <td scope="row">Jacob</td>
-
-
-                                </tr>
+                            <tbody id="tabelaProduto">
+                                <!--
+                                
                                 <tr>
                                     <td scope="row">Thornton</td>
 
 
                                 </tr>
-
+-->
                             </tbody>
 
 
@@ -226,7 +240,7 @@
 
                             </thead>
                             <tbody>
-
+                                <!--
                                 <tr>
                                     <td scope="row"></td>
                                     <td>10</td>
@@ -246,7 +260,7 @@
 
 
                                 </tr>
-
+-->
                             </tbody>
 
                         </table>
@@ -263,7 +277,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-
+                                <!--
                                 <tr>
                                     <td scope="row"></td>
                                     <td></td>
@@ -282,7 +296,7 @@
                                     <td></td>
                                     <td>0</td>
                                 </tr>
-
+-->
                             </tbody>
                         </table>
                     </div>
@@ -337,7 +351,12 @@
 
     <script src="../js/main.js"></script>
     <script src="../js/utils/jquery.mask.js"></script>
+    <script src="../js/utils/Toastr/toastr.js"></script>
+    <script src="../node_modules/jquery.quicksearch/dist/jquery.quicksearch.js"></script>
+    
     <script src="../js/produtos.js"></script>
+  
+       
 
 </body>
 
