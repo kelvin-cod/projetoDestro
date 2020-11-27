@@ -4,6 +4,11 @@ $("#FornCep").mask("00000-000");
 /*função cep correios*/
 var typingTimer; //timer identifier
 var doneTypingInterval = 1000; //time in ms, 1 second for example
+user = {
+    idUser: 1,
+    idEmpresa: 1,
+    nome: "Destro"
+}
 
 $("#FornCep").keydown(function () {
     clearTimeout(typingTimer);
@@ -100,7 +105,9 @@ function postProvider() {
 
     };
 
-
+    if (obj.nome == "" || obj.rgie == "") {
+        return false
+    }
     //let http = `http://localhost:3000/provider/create`
     let http = 'https://destrobackend.herokuapp.com/provider/create'
     // console.log(obj)
@@ -149,6 +156,7 @@ function updateProvider(_id) {
         // alert("Atualizado com sucesso!")
         $('#tabelaFornecedor').html("");
         getProvider();
+        
         $('#fornForm input').val("");
     });
 };
@@ -190,8 +198,11 @@ function deleteProvider(_id) {
     });
 };
 
+
+let https = 'https://destrobackend.herokuapp.com'
+
 function getProvider() {
-    let http = 'https://destrobackend.herokuapp.com/provider/list/all/1'
+    let http = `${https}/provider/list/all/${user.idEmpresa}`
     // let http = 'http://localhost:3000/provider/list/all/1'
     let tbl = '';
     $.ajax({
@@ -240,6 +251,6 @@ function aoIniciar() {
     $("input").prop("disabled", true);
     $("#buscaFornecedor").attr("Disabled", false);
     $("select").prop("disabled", true);
-  
+
 }
 window.onload = aoIniciar();

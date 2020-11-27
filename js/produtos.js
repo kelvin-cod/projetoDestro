@@ -32,7 +32,7 @@
 
      if (obj.descricao == "") {
          toastr.error("Nome/Descrição inválida")
-      return false
+         return false
      }
      let http = `${https}/products/create`
      // console.log(obj)
@@ -60,12 +60,12 @@
          url: http,
          type: 'GET'
      }).then(function (response) { //
-         
+
          $.each(response, function (i, item) {
 
              tbl +=
                  '<tr onclick="getOneProduct(' + item.IdProduto + ')">' +
-                 '<td scope="row" >' + item.Descricao + '</td>' +
+                 '<td  >' + item.Descricao + '</td>' +
                  '</tr>';
          });
 
@@ -81,7 +81,7 @@
          url: http,
          type: 'GET'
      }).then(function (response) { //
-       // console.log(response)
+         // console.log(response)
          let data = new Date(response[0].dataCadastro)
 
          $("#btnAtualiza").html("");
@@ -183,7 +183,7 @@
 
      altera += 0
      if (altera == 0) {
-    
+
          $("input").prop("disabled", true);
          $("select").prop("disabled", true);
          $("#buscaProduto").attr("Disabled", false);
@@ -246,4 +246,12 @@
 
  })
 
+
+ $('#buscaProduto').bind('keydown keypress keyup change', function () {
+     var search = this.value;
+     var $li = $("#tabelaProduto tr td").hide();
+     $li.filter(function () {
+         return $(this).text().indexOf(search) >= 0;
+     }).show();
+ });
  window.onload = aoIniciar()

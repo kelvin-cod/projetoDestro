@@ -387,58 +387,8 @@
 
     <script src="../js/utils/jquery.mask.js"></script>
     <script src="../js/main.js"></script>
-
-
-    <script>
-        var hoje = '';
-        var item = 0;
-        async function getDate() {
-            hoje = await new Date();
-            yr = hoje.getFullYear();
-            mt = hoje.getMonth() + 1;
-            dy = hoje.getDate();
-            return yr + "-" + mt + "-" + dy;
-        }
-        //$("#data").val(data.toLocaleDateString())
-
-        getDate().then(resp => {
-            document.getElementById("data").value = resp
-        });
-
-        $(function () {
-
-            var valorCalculado = 0;
-
-            $(".valor-calculado").each(function () {
-                valorCalculado += parseFloat($(this).text());
-            });
-            $("#qtdtotal").text(valorCalculado.toLocaleString("pt-BR", {
-                style: "currency",
-                currency: "BRL"
-            }));
-
-        });
-        $(function () {
-
-            var valorCalculadoPago = 0;
-
-            $(".valor-pago-calculado").each(function () {
-                valorCalculadoPago += parseFloat($(this).text());
-            });
-            $("#qtdtotalPago").text(valorCalculadoPago.toLocaleString("pt-BR", {
-                style: "currency",
-                currency: "BRL"
-            }));
-        });
-
-
-        function autoItem(tabela) {
-
-            let aux = parseInt($(`.item${tabela}`).last().text())
-            item = aux + 1;
-            return item
-        };
-    </script>
+    <script src="../js/compras.js"></script>
+    
     <script>
         (function ($) {
             AddTableRow = function (tabela) {

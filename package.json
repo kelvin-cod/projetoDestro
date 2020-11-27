@@ -12,7 +12,6 @@
     "@popperjs/core": "^2.4.4",
     "bootstrap": "^4.5.2",
     "jquery": "^3.5.1",
-    "jquery.quicksearch": "^2.4.0",
     "popper.js": "^1.16.1",
     "server": "^1.0.30"
   }

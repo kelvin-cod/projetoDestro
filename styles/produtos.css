@@ -2,7 +2,7 @@
     height: auto !important;
 }
 
-@media (max-width:1600px) {
+@media (min-width:1300px) {
     .container-fluid {
         height: 100vh !important;
     }
