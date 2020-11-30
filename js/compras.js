@@ -65,19 +65,33 @@ function getProvider() {
         url: http,
         type: 'GET'
     }).done(function (response) { //
-        console.log(response)
+        // console.log(response)
         selectbox4.find('option').remove();
-        
+
         $.each(response, function (i, d) {
-
-
             $('<option>').val(d.idFornecedor).text(d.Nom).appendTo(selectbox4);
-
-
         });
-
-
-
     });
 }
+
+
+function getProduct() {
+    let selectbox5 = $('[name="produtosServico"]');
+    let http = `${https}/products/list/all/${user.idUser}`
+    //let http = `http://localhost:3000/products/list/all/${user.idUser}`
+
+    $.ajax({
+        url: http,
+        type: 'GET'
+    }).done(function (response) { //
+        console.log(response)
+        selectbox5.find('option').remove();
+
+        $.each(response, function (i, item) {
+            $('<option>').val(item.idProduto).text(item.Descricao).appendTo(selectbox5);
+        });
+    });
+}
+
+
 window.onload = getProvider()

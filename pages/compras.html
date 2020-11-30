@@ -107,7 +107,7 @@
                                 <thead class="thead-dark">
                                     <tr class=" text-white">
                                         <th scope="col">item</th>
-                                        <th scope="col" >Produto/Serviço</th>
+                                        <th scope="col">Produto/Serviço</th>
                                         <th scope="col">Quant</th>
                                         <th scope="col">Val Unit</th>
                                         <th scope="col">Sub Total</th>
@@ -116,6 +116,7 @@
 
                                 </thead>
                                 <tbody>
+                                    <!--
 
                                     <tr>
                                         <td scope="row" class="itemProdutos">1</td>
@@ -141,26 +142,26 @@
                                         <td>10</td>
 
 
-                                    </tr>
+                                    </tr>-->
 
                                 </tbody>
                                 <tfoot>
-                                    <td class="bg-roxo"  colspan="2">
+                                    <td class="bg-roxo" colspan="2">
                                         <button class="btn btn-success mr-5" onclick="AddTableRow('products-table')"
-                                        type="button">
-                                        <i class="fa fa-plus"></i>
-                                        Adicionar
-                                        Produto
-                                    </button>
+                                            type="button">
+                                            <i class="fa fa-plus"></i>
+                                            Adicionar
+                                            Produto
+                                        </button>
 
 
                                     </td>
-                              
-                                    <td scope="row" class="text-right bg-roxo text-white" colspan="2" >
-                                   
-                                        
+
+                                    <td scope="row" class="text-right bg-roxo text-white" colspan="2">
+
+
                                         Valor total dos
-                                         Produtos/Serviços:</td>
+                                        Produtos/Serviços:</td>
                                     <td>30 </td>
                                 </tfoot>
                             </table>
@@ -388,22 +389,32 @@
     <script src="../js/utils/jquery.mask.js"></script>
     <script src="../js/main.js"></script>
     <script src="../js/compras.js"></script>
-    
+
     <script>
         (function ($) {
-            AddTableRow = function (tabela) {
+            let item = 1;
+            AddTableRow = async function (tabela) {
 
                 let newRow = $("<tr>");
                 let cols = "";
                 if (tabela == "products-table") {
                     autoItem("Produtos");
+                    getProduct();
+              
                     cols += `<td scope="row" class="itemProdutos">${item}</td>`;
-                    cols += '<td >&nbsp;</td>';
+                    cols += `<td >
+                                <select name="produtosServico" id="produtosServico" class="form-control">
+                                    <option value=""></option>
+                                </select>
+                            </td>`;
+                    cols += `<td><input class="form-control" type="text"></td>`;
                     cols += '<td>&nbsp;</td>';
-                    cols += '<td>&nbsp;</td>';
-                    cols += '<td disable>&nbsp;</td>';
+                    cols += '<td disabled>&nbsp;</td>';
+                    item += 1
                     newRow.append(cols);
+                   
                     $(`#products-table`).append(newRow);
+
                 } else if (tabela == "tabelaFaturamento") {
                     autoItem("Faturamento");
                     cols += `<td scope="row" class="itemFaturamento">${item}</td>`;
@@ -427,4 +438,5 @@
         })(jQuery);
     </script>
 </body>
+
 </html>
