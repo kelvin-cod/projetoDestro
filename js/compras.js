@@ -5,12 +5,17 @@ async function getDate() {
     yr = hoje.getFullYear();
     mt = hoje.getMonth() + 1;
     dy = hoje.getDate();
+
+    if (dy < 10) {
+        dy = "0" + dy
+    }
     return yr + "-" + mt + "-" + dy;
 }
 //$("#data").val(data.toLocaleDateString())
 
 getDate().then(resp => {
-    document.getElementById("data").value = resp
+
+    $("#data").val(resp)
 });
 
 $(function () {
@@ -39,6 +44,19 @@ $(function () {
     }));
 });
 
+function somarTotal() {
+
+    let valorTotal = 0;
+
+    $(".ValorTotal").each(function () {
+        valorTotal += parseFloat($(this).text().replace('R$', '').replace('.',''));
+
+    });
+    $("#ValoTotalSomado").text(valorTotal.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    }));
+};
 
 function autoItem(tabela) {
 
@@ -57,6 +75,7 @@ user = {
 }
 
 function getProvider() {
+
     var selectbox4 = $('#fornecedor');
     let http = `${https}/provider/list/all/${user.idEmpresa}`
     // let http = 'http://localhost:3000/provider/list/all/1'
@@ -75,23 +94,74 @@ function getProvider() {
 }
 
 
-function getProduct() {
-    let selectbox5 = $('[name="produtosServico"]');
+function getProduct(_id, Iditem) {
+    //  let selectbox5 = $('[name="produtosServico"]');
+    $(`#Total${Iditem}`).hide()
+    let selectbox5 = $(`${_id}`);
+
     let http = `${https}/products/list/all/${user.idUser}`
     //let http = `http://localhost:3000/products/list/all/${user.idUser}`
 
     $.ajax({
         url: http,
         type: 'GET'
-    }).done(function (response) { //
-        console.log(response)
-        selectbox5.find('option').remove();
+    }).done(async function (response) { //
 
-        $.each(response, function (i, item) {
-            $('<option>').val(item.idProduto).text(item.Descricao).appendTo(selectbox5);
+        //selectbox5.find('option').remove();
+        // selectbox5.append(`<option value=""></option>`)
+        let resp = await $.each(response, function (i, item) {
+            $('<option>').val(item.Preco.toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL"
+            })).text(item.Descricao).appendTo(selectbox5);
+
         });
+        let val = await $(`#Prod${Iditem} option:selected`).val()
+
+        $(`#Val${Iditem}`).text(val)
+
+
+        let tot = await (parseFloat($(`#Val${Iditem}`).text().replace('R$', '')) * $(`#Quant${Iditem}`).val()).toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL"
+        })
+
+        $(`#Total${Iditem}`).text(tot)
+        $(`#Total${Iditem}`).show()
+        somarTotal()
     });
 }
 
+function QuantVerifica(Iditem) {
+    let tot = (parseFloat($(`#Val${Iditem}`).text().replace('R$', '')) * $(`#Quant${Iditem}`).val()).toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    })
 
-window.onload = getProvider()
+    $(`#Total${Iditem}`).text(tot);
+    somarTotal()
+}
+
+
+function verifica(_id) {
+    $(`#Val${_id}`).text($(`#Prod${_id} option:selected`).val())
+    let tot = (parseFloat($(`#Val${_id}`).text().replace('R$', '')) * $(`#Quant${_id}`).val()).toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    })
+
+    $(`#Total${_id}`).text(tot)
+    somarTotal()
+}
+
+
+async function init() {
+    await getProvider();
+    // await getProduct()
+}
+
+try {
+    window.onload = init()
+} catch (error) {
+    console.log(error)
+}
