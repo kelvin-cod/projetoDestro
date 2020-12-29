@@ -12,6 +12,7 @@
 
  function postProduct() {
      let obj = {};
+
      obj = {
          descricao: $("#prodNome").val(),
          tipo: parseInt($("#prodTipo").val()),

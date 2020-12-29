@@ -156,7 +156,7 @@ function updateProvider(_id) {
         // alert("Atualizado com sucesso!")
         $('#tabelaFornecedor').html("");
         getProvider();
-        
+
         $('#fornForm input').val("");
     });
 };
@@ -253,4 +253,6 @@ function aoIniciar() {
     $("select").prop("disabled", true);
 
 }
+
+
 window.onload = aoIniciar();

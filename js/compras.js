@@ -1,5 +1,25 @@
 var hoje = '';
 var item = 0;
+let Compra = {
+    Usuario: "",
+    idEmpresa: 0,
+    Fornecedor: 0,
+    Tipo: 0,
+    Dat: '',
+    DatPrevEntrega: '',
+    DatEntrega: '',
+    Obs: '',
+    Produtos: []
+}
+let https = 'https://destrobackend.herokuapp.com';
+let local = 'http://localhost:3000';
+user = {
+    idUser: 1,
+    idEmpresa: 1,
+    name: "Destro"
+}
+
+/**_______________________________________________________________________ */
 async function getDate() {
     hoje = await new Date();
     yr = hoje.getFullYear();
@@ -15,9 +35,10 @@ async function getDate() {
 
 getDate().then(resp => {
 
-    $("#data").val(resp)
+    // $("#data").val(resp)
 });
-
+let newData = new Date
+$("#data").val(newData.toLocaleDateString())
 $(function () {
 
     var valorCalculado = 0;
@@ -31,6 +52,7 @@ $(function () {
     }));
 
 });
+
 $(function () {
 
     var valorCalculadoPago = 0;
@@ -49,7 +71,7 @@ function somarTotal() {
     let valorTotal = 0;
 
     $(".ValorTotal").each(function () {
-        valorTotal += parseFloat($(this).text().replace('R$', '').replace('.',''));
+        valorTotal += parseFloat($(this).text().replace('R$', '').replace('.', ''));
 
     });
     $("#ValoTotalSomado").text(valorTotal.toLocaleString("pt-BR", {
@@ -67,12 +89,6 @@ function autoItem(tabela) {
 
 
 /*____________________________________________________________________ */
-let https = 'https://destrobackend.herokuapp.com'
-user = {
-    idUser: 1,
-    idEmpresa: 1,
-    nome: "Destro"
-}
 
 function getProvider() {
 
@@ -88,7 +104,7 @@ function getProvider() {
         selectbox4.find('option').remove();
 
         $.each(response, function (i, d) {
-            $('<option>').val(d.idFornecedor).text(d.Nom).appendTo(selectbox4);
+            $('<option>').val(d.IdFornecedor).text(d.Nom).appendTo(selectbox4);
         });
     });
 }
@@ -113,7 +129,7 @@ function getProduct(_id, Iditem) {
             $('<option>').val(item.Preco.toLocaleString("pt-BR", {
                 style: "currency",
                 currency: "BRL"
-            })).text(item.Descricao).appendTo(selectbox5);
+            })).text(item.Descricao).attr("val", item.IdProduto).appendTo(selectbox5);
 
         });
         let val = await $(`#Prod${Iditem} option:selected`).val()
@@ -154,9 +170,67 @@ function verifica(_id) {
     somarTotal()
 }
 
+$("#novoCompras").on("click", () => {
 
-async function init() {
-    await getProvider();
+    item = 01;
+    $("#formCompras")[0].reset();
+    getDate().then(resp => {
+
+        $("#data").val(resp)
+    });
+
+    $(`#products-table`).html("");
+    $("#ValoTotalSomado").text("R$ 0,00");
+
+})
+
+$("#confirmar").on("click", () => {
+    // let http = `${https}/shop/create`;
+    let http = `http://localhost:3000/shop/create`;
+    Compra.idEmpresa = user.idEmpresa;
+    Compra.Usuario = user.name
+    Compra.Dat = $("#data").val()
+    Compra.DatEntrega = $("#DatEntrega").val();
+    Compra.DatPrevEntrega = $("#DatPrevEntrega").val();
+    Compra.Fornecedor = parseInt($("#fornecedor option:selected").val());
+    Compra.Tipo = parseInt($("#tipo option:selected").val());
+    Compra.Obs = $("#Obs").val();
+
+    let prodTotal = $("#products-table").find('tr').length
+    Compra.Produtos = [] // zera o array
+    let obj = {
+        idEmpresa: 0,
+        Quant: 0,
+        Produto: 0
+    }
+    for (let i = 0; i < prodTotal; i++) {
+        //IdEmpresa, IdCompra, Quant, Produto, CodFabrica, Log
+
+
+        obj.idEmpresa = user.idEmpresa
+        obj.Quant = parseInt($(`#Quant${i + 1}`).val());
+        obj.Produto = parseInt($(`#Prod${i + 1} option:selected`).attr('val'))
+        Compra.Produtos.push(obj) // preenche o array
+    }
+   
+    try {
+        $.ajax({
+            url: http,
+            type: 'POST',
+          //  data: Compra
+        }).done(function (response) {
+            toastr.success("Compra Realizada!")
+            //console.log(response)
+        })
+
+    } catch (error) {
+        console.log(error)
+    }
+
+})
+/**_______________________________________________________________________________________ */
+function init() {
+    getProvider();
     // await getProduct()
 }
 
@@ -165,3 +239,52 @@ try {
 } catch (error) {
     console.log(error)
 }
+/**________________________TABELAS_______________________________________________ */
+(function ($) {
+    var item = 01;
+
+    AddTableRow = function (tabela) {
+
+        let newRow = $("<tr>");
+        let cols = "";
+        if (tabela == "products-table") {
+            autoItem("Produtos");
+            cols += `<td scope="row" class="itemProdutos">${item}</td>`;
+            cols +=
+                `<td><select name="" id="Prod${item}" class="form-control" onchange="verifica(${item})"></select></td>`;
+            cols +=
+                `<td style="width:140px" ><input class="form-control" type="number" min="1" value="1" id="Quant${item}" onchange="QuantVerifica(${item})"></td>`;
+            cols += `<td id="Val${item}"> </td>`;
+            cols += `<td id="Total${item}" class="ValorTotal"> ${ $(`#Quant${item}`).val()} </td>`;
+
+
+            newRow.append(cols);
+
+            $(`#products-table`).append(newRow);
+
+            getProduct(`#Prod${item}`, `${item}`)
+            somarTotal()
+            item += 1
+
+        } else if (tabela == "tabelaFaturamento") {
+            autoItem("Faturamento");
+            cols += `<td scope="row" class="itemFaturamento">${item}</td>`;
+            cols += '<td >&nbsp;</td>';
+            cols += '<td>&nbsp;</td>';
+            cols += '<td>&nbsp;</td>';
+            cols += '<td class="valor-calculado">000,00</td>';
+            cols +=
+                '<td ><select name="" id="" class="form-control"> <option value="1">Dinheiro</option><option value="2">Crédito</option><option value="3">Débito</option><option value="4">Cheque Vista</option><option value="5">Cheque Prazo</option></select></td>';
+            cols += '<td>000,00</td>';
+            cols += '<td>&nbsp;</td>';
+            cols +=
+                '<td><button class="btn btn-warning btn-custom"><i class="fa fa-pencil "></i></button>        <button class="btn btn-danger  btn-custom"><i class="fa fa-trash"></i></button></td>'
+            newRow.append(cols);
+
+            $(`#tabelaFaturamento`).append(newRow);
+        }
+
+        // return false;
+    };
+
+})(jQuery);

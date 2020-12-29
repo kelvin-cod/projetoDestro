@@ -55,6 +55,7 @@
         </nav>
         <div class="container-fluid">
             <div class="row pt-5">
+
                 <div class="col-lg-8 col-md-12">
                     <div class="row mt-3 text-white">
                         <div class="col-lg-9 col-md-8">
@@ -64,109 +65,113 @@
                             <label for="">Nº Ordem de Compra</label>
                             <input type="text" class="form-control text-center font-weight-bold" disabled value="0001">
                         </div>
-
                     </div>
 
-
-                    <div class="row text-white">
-                        <div class="col-lg-3 col-md-3">
-                            <div class="form-group ">
-                                <label for="data">Data</label>
-                                <input type="date" class="form-control" id="data">
+                    <form action="" id="formCompras">
+                        <div class="row text-white">
+                            <div class="col-lg-2 col-md-2">
+                                <div class="form-group ">
+                                    <label for="data">Data</label>
+                                    <input type="text" class="form-control" id="data" disabled>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-6 col-md-4 col-sm-6">
-                            <div class="form-group ">
-                                <label for="">Fornecedor</label>
+                            <div class="col-lg-6 col-md-5 col-sm-6">
+                                <div class="form-group ">
+                                    <label for="">Fornecedor</label>
 
-                                <select name="" id="fornecedor" class="form-control">
-                                    <option value=""></option>
+                                    <select name="" id="fornecedor" class="form-control">
+                       
 
-                                </select>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="col-lg-3 col-md-4 col-sm-6">
-                            <div class="form-group ">
-                                <label for="tipo">Tipo</label>
+                            <div class="col-lg-3 col-md-3 col-sm-6">
+                                <div class="form-group ">
+                                    <label for="tipo">Tipo</label>
 
-                                <select name="" id="tipo" class="form-control">
-                                    <option value=""></option>
-                                    <option value="1">Ordem de Compra</option>
-                                    <option value="2">Reposicao Automatica</option>
-                                    <option value="3">Compra Efetivada</option>
-                                </select>
+                                    <select name="" id="tipo" class="form-control" required>
+                             
+                                        <option value="1">Ordem de Compra</option>
+                                        <option value="2">Reposicao Automatica</option>
+                                        <option value="3">Compra Efetivada</option>
+                                    </select>
+                                </div>
                             </div>
+                            <div class="col-lg-1 col-md-2">
+                                <div class="form-group ">
+                                    <label for="">Status</label>
+                                    <input type="text" id="Status" class="form-control" disabled value="Aberto">
+
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3">
+                                <div class="form-group ">
+                                    <label for="">Previsão Entrega</label>
+                                    <input type="date" id="DatPrevEntrega" class="form-control">
+
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3">
+                                <div class="form-group ">
+                                    <label for="">Entrega</label>
+                                    <input type="date" id="DatEntrega" class="form-control">
+
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group ">
+                                    <label for="">Obs</label>
+                                    <input type="text" id="Obs" class="form-control">
+
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <h4 class="text-white mt-3 text-center">Produtos/Serviço desta Compra </h4>
+                                <table class="table table-hover bg-light text-center">
+                                    <thead class="thead-dark">
+                                        <tr class=" text-white">
+                                            <th scope="col">Item</th>
+                                            <th scope="col">Produto/Serviço</th>
+                                            <th scope="col" style="width: fit-content;">Quant</th>
+                                            <th scope="col">Val Unit</th>
+                                            <th scope="col">Sub Total</th>
+
+                                        </tr>
+
+                                    </thead>
+                                    <tbody id="products-table">
+
+
+                                    </tbody>
+                                    <tfoot>
+                                        <td class="bg-roxo" colspan="2">
+                                            <button class="btn btn-success " onclick="AddTableRow('products-table')"
+                                                type="button">
+                                                <i class="fa fa-plus"></i>
+                                                Adicionar
+                                                Produto
+                                            </button>
+
+
+                                        </td>
+
+                                        <td scope="row" class="text-right bg-roxo text-white" colspan="2">
+
+
+                                            Valor total dos
+                                            Produtos/Serviços:</td>
+                                        <td id="ValoTotalSomado"> R$ 0,00</td>
+                                    </tfoot>
+                                </table>
+                            </div>
+
+
+
+
                         </div>
-
-
-
-                        <div class="col-lg-12">
-                            <h4 class="text-white mt-3 text-center">Produtos/Serviço desta Compra </h4>
-                            <table class="table table-hover bg-light text-center" id="products-table">
-                                <thead class="thead-dark">
-                                    <tr class=" text-white">
-                                        <th scope="col">Item</th>
-                                        <th scope="col">Produto/Serviço</th>
-                                        <th scope="col" style="width: fit-content;">Quant</th>
-                                        <th scope="col">Val Unit</th>
-                                        <th scope="col">Sub Total</th>
-
-                                    </tr>
-
-                                </thead>
-                                <tbody>
-
-
-                                    <!--
-                                    <tr>
-                                        <td scope="row" class="itemProdutos">2</td>
-                                        <td >Limpeza</td>
-                                        <td>10</td>
-                                        <td>0</td>
-                                        <td>10</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td scope="row" class="itemProdutos">3</td>
-                                        <td >Limpeza</td>
-                                        <td>10</td>
-                                        <td>0</td>
-                                        <td>10</td>
-
-
-                                    </tr>-->
-
-                                </tbody>
-                                <tfoot>
-                                    <td class="bg-roxo" colspan="2">
-                                        <button class="btn btn-success " onclick="AddTableRow('products-table')"
-                                            type="button">
-                                            <i class="fa fa-plus"></i>
-                                            Adicionar
-                                            Produto
-                                        </button>
-
-
-                                    </td>
-
-                                    <td scope="row" class="text-right bg-roxo text-white" colspan="2">
-
-
-                                        Valor total dos
-                                        Produtos/Serviços:</td>
-                                    <td id="ValoTotalSomado"> R$ 0,00</td>
-                                </tfoot>
-                            </table>
-                        </div>
-
-
-
-
-                    </div>
-
                 </div>
-
+                </form>
                 <div class="col-lg-4 col-md-12 ">
                     <h3 class="text-white mt-3">Últimas compras cadastradas </h3>
                     <table class="table table-hover bg-light text-center">
@@ -205,28 +210,39 @@
                 </div>
 
 
+
+
+
+
+
+
+
+
+
+
+
             </div>
-          <!--botoes-->
-          <div class="text-white  text-center mt-3 mb-3 col-lg-12">
+            <!--botoes-->
+            <div class="text-white  text-center mt-3 mb-3 col-lg-12">
 
-            <button class="btn btn-small btn-secondary  font-weight-bold" type="button">
-                <i class="fa fa-plus"></i>
-                Nova Compra
-            </button>
-            <button class="btn btn-danger font-weight-bold" type="button">
-                <i class="fa fa-trash"></i>
-                Apagar
-            </button>
-            <button class="btn btn-warning font-weight-bold" type="button">
-                <i class="fa fa-pencil"></i>
-                Alterar Dados
-            </button>
-            <button class="btn btn-success font-weight-bold" type="button">
-                <i class="fa fa-check"></i>
-                Confirmar
-            </button>
+                <button class="btn btn-small btn-secondary  font-weight-bold" type="button" id="novoCompras">
+                    <i class="fa fa-plus"></i>
+                    Nova Compra
+                </button>
+                <button class="btn btn-danger font-weight-bold" type="button">
+                    <i class="fa fa-trash"></i>
+                    Apagar
+                </button>
+                <button class="btn btn-warning font-weight-bold" type="button">
+                    <i class="fa fa-pencil"></i>
+                    Alterar Dados
+                </button>
+                <button class="btn btn-success font-weight-bold" type="button" id="confirmar">
+                    <i class="fa fa-check"></i>
+                    Confirmar
+                </button>
 
-        </div>
+            </div>
             <div class="row">
                 <div class="col-12">
                     <h4 class="text-white mt-3 text-center">Faturamento (Pagamentos) desta Compra </h4>
@@ -352,7 +368,7 @@
                     </table>
 
                 </div>
-      
+
             </div>
         </div>
         <footer>
@@ -386,104 +402,10 @@
 
     <script src="../js/utils/jquery.mask.js"></script>
     <script src="../js/main.js"></script>
+    <script src="../js/utils/Toastr/toastr.js"></script>
+    
     <script src="../js/compras.js"></script>
 
-    <script>
-        (function ($) {
-       
-            let item = 01;
-            AddTableRow = function (tabela) {
-             
-                let newRow = $("<tr>");
-                let cols = "";
-                if (tabela == "products-table") {
-                    autoItem("Produtos");
-                    cols += `<td scope="row" class="itemProdutos">${item}</td>`;
-                    cols += `<td><select name="" id="Prod${item}" class="form-control" onchange="verifica(${item})"></select></td>`;
-                    cols +=
-                        `<td style="width:140px" ><input class="form-control" type="number" min="1" value="1" id="Quant${item}" onchange="QuantVerifica(${item})"></td>`;
-                    cols += `<td id="Val${item}"> </td>`;
-                    cols += `<td id="Total${item}" class="ValorTotal"> ${ $(`#Quant${item}`).val()} </td>`;
-                 
-               
-                    newRow.append(cols);
-
-                    $(`#products-table`).append(newRow);
-
-                    getProduct(`#Prod${item}`, `${item}`)
-                   somarTotal()
-                    item += 1
-
-                } else if (tabela == "tabelaFaturamento") {
-                    autoItem("Faturamento");
-                    cols += `<td scope="row" class="itemFaturamento">${item}</td>`;
-                    cols += '<td >&nbsp;</td>';
-                    cols += '<td>&nbsp;</td>';
-                    cols += '<td>&nbsp;</td>';
-                    cols += '<td class="valor-calculado">000,00</td>';
-                    cols +=
-                        '<td ><select name="" id="" class="form-control"> <option value="1">Dinheiro</option><option value="2">Crédito</option><option value="3">Débito</option><option value="4">Cheque Vista</option><option value="5">Cheque Prazo</option></select></td>';
-                    cols += '<td>000,00</td>';
-                    cols += '<td>&nbsp;</td>';
-                    cols +=
-                        '<td><button class="btn btn-warning btn-custom"><i class="fa fa-pencil "></i></button>        <button class="btn btn-danger  btn-custom"><i class="fa fa-trash"></i></button></td>'
-                    newRow.append(cols);
-
-                    $(`#tabelaFaturamento`).append(newRow);
-                }
-
-                // return false;
-            };
-      
-        })(jQuery);
-    </script>
-    <!--
-     <script>
-        (function ($) {
-       
-            let item = 01;
-            AddTableRow = function (tabela) {
-             
-                let newRow = $("<tr>");
-                let cols = "";
-                if (tabela == "products-table") {
-                    autoItem("Produtos");
-                    cols += `<td scope="row" class="itemProdutos">${item}</td>`;
-                    cols += `<td id="Prod${item}" onchange="verifica(${item})">${$("#selectProducts").html()}</td>`;
-                    cols +=
-                        `<td style="width:150px" id="Quant${item}"><input class="form-control" type="number" min="1" value="1" ></td>`;
-                    cols += `<td id="Val${item}"> ${$(`#produtosServico option:selected` ).val()} </td>`;
-                    cols += `<td id="Total${item}"> ${ $(`#Quant${item}`).val()} </td>`;
-                    console.log(`${item}`, `id="Prod${item}"`)
-                    item += 1
-                    newRow.append(cols);
-
-                    $(`#products-table`).append(newRow);
-
-
-                } else if (tabela == "tabelaFaturamento") {
-                    autoItem("Faturamento");
-                    cols += `<td scope="row" class="itemFaturamento">${item}</td>`;
-                    cols += '<td >&nbsp;</td>';
-                    cols += '<td>&nbsp;</td>';
-                    cols += '<td>&nbsp;</td>';
-                    cols += '<td class="valor-calculado">000,00</td>';
-                    cols +=
-                        '<td ><select name="" id="" class="form-control"> <option value="1">Dinheiro</option><option value="2">Crédito</option><option value="3">Débito</option><option value="4">Cheque Vista</option><option value="5">Cheque Prazo</option></select></td>';
-                    cols += '<td>000,00</td>';
-                    cols += '<td>&nbsp;</td>';
-                    cols +=
-                        '<td><button class="btn btn-warning btn-custom"><i class="fa fa-pencil "></i></button>        <button class="btn btn-danger  btn-custom"><i class="fa fa-trash"></i></button></td>'
-                    newRow.append(cols);
-
-                    $(`#tabelaFaturamento`).append(newRow);
-                }
-
-                // return false;
-            };
-        })(jQuery);
-    </script>
-    -->
 </body>
 
 </html>
