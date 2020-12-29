@@ -6,6 +6,7 @@ let Compra = {
     Fornecedor: 0,
     Tipo: 0,
     Dat: '',
+    Concluida: "Aberto",
     DatPrevEntrega: '',
     DatEntrega: '',
     Obs: '',
@@ -109,6 +110,17 @@ function getProvider() {
     });
 }
 
+function getShop() {
+    let http = `${local}/shop/list/all/${user.idEmpresa}`
+    $.ajax({
+        url: http,
+        type: 'GET'
+
+    }).done(function (response) {
+
+        console.log(response)
+    })
+}
 
 function getProduct(_id, Iditem) {
     //  let selectbox5 = $('[name="produtosServico"]');
@@ -185,8 +197,8 @@ $("#novoCompras").on("click", () => {
 })
 
 $("#confirmar").on("click", () => {
-    // let http = `${https}/shop/create`;
-    let http = `http://localhost:3000/shop/create`;
+    let http = `${local}/shop/create`;
+    //let http = `http://localhost:3000/shop/create`;
     Compra.idEmpresa = user.idEmpresa;
     Compra.Usuario = user.name
     Compra.Dat = $("#data").val()
@@ -198,26 +210,27 @@ $("#confirmar").on("click", () => {
 
     let prodTotal = $("#products-table").find('tr').length
     Compra.Produtos = [] // zera o array
-    let obj = {
-        idEmpresa: 0,
-        Quant: 0,
-        Produto: 0
-    }
-    for (let i = 0; i < prodTotal; i++) {
-        //IdEmpresa, IdCompra, Quant, Produto, CodFabrica, Log
 
+    for (let i = 0; i < prodTotal; i++) {
+
+        let obj = {
+            idEmpresa: 0,
+            Quant: 0,
+            Produto: 0
+        }
 
         obj.idEmpresa = user.idEmpresa
         obj.Quant = parseInt($(`#Quant${i + 1}`).val());
         obj.Produto = parseInt($(`#Prod${i + 1} option:selected`).attr('val'))
         Compra.Produtos.push(obj) // preenche o array
     }
-   
+
     try {
+        console.log(Compra)
         $.ajax({
             url: http,
             type: 'POST',
-          //  data: Compra
+            data: Compra
         }).done(function (response) {
             toastr.success("Compra Realizada!")
             //console.log(response)
@@ -231,6 +244,7 @@ $("#confirmar").on("click", () => {
 /**_______________________________________________________________________________________ */
 function init() {
     getProvider();
+    getShop();
     // await getProduct()
 }
 
