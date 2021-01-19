@@ -72,7 +72,7 @@ function enviar() {
         data: obj
     }).then(function (response) { //
         //console.log(response)
-        alert("Atualizado com sucesso!")
+      //  alert("Atualizado com sucesso!")
         getdata();
 
     });
