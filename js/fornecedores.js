@@ -70,7 +70,7 @@ function getOneProvider(_id) {
              type="button" onclick="updateProvider(${response[0].IdFornecedor})">
         <i class="fa fa-check"></i>
         Atualizar
-    </button>`)
+    </button>`);
 
         $("#btnExcluir").html("");
         $("#btnExcluir").append(`
@@ -78,9 +78,51 @@ function getOneProvider(_id) {
          type="button" onclick="excluirModal(${response[0].IdFornecedor})">
     <i class="fa fa-trash"></i>
   Excluir
-    </button>`)
+    </button>`);
     });
+    tablesProviders(_id);
 }
+
+function tablesProviders(_id) {
+    //let http = `https://destrobackend.herokuapp.com/provider/list/tables/${_id}`
+    let http = `http://localhost:3000/provider/list/tables/${_id}`
+    let tbl = '';
+    let tbl2 = '';
+    $.ajax({
+        url: http,
+        type: 'GET'
+    }).then(function (response) {
+       // console.log(response)
+        $.each(response, function (i, item) {
+
+            Data = new Date(item.Dat)
+            tbl +=
+                '<tr scope="row" >' +
+                '<td  >' + (Data.getDate() + 1) + "/" + ((Data.getMonth() + 1)) + "/" + Data.getFullYear() + '</td>' +
+                '<td  >' + item.idCompra + '</td>' +
+                '<td  >' + item.Concluida + '</td>' +
+                '<td  >' + "Destro" + '</td>' + //item.idEmpresa
+                '</tr>';
+
+            tbl2 += '<tr scope="row" >' +
+                '<td  >' + (Data.getDate() + 1) + "/" + ((Data.getMonth() + 1)) + "/" + Data.getFullYear() + '</td>' +
+                '<td  >' + item.Descricao + '</td>' +
+                '<td  >' + item.PrecoVenda.toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL"
+                }) + '</td>' +
+                '<td  >' + +'</td>' +
+                '</tr>';
+        });
+
+        $("#comprasFornecedor").html("");
+        $("#ultimosComprados").html("");
+        $("#comprasFornecedor").append(tbl);
+        $("#ultimosComprados").append(tbl2);
+        $("#quantCompras").text(response.length);
+        $("#quantUltimos").text(response.length)
+    })
+};
 
 function postProvider() {
     let obj = {};
