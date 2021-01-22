@@ -49,6 +49,7 @@ getDate().then(resp => {
 });
 let newData = new Date
 $("#data").val(newData.toLocaleDateString())
+
 $(function () {
 
     var valorCalculado = 0;
@@ -56,10 +57,16 @@ $(function () {
     $(".valor-calculado").each(function () {
         valorCalculado += parseFloat($(this).text());
     });
+
     $("#qtdtotal").text(valorCalculado.toLocaleString("pt-BR", {
         style: "currency",
         currency: "BRL"
     }));
+
+    $(".valor-calculado").text(valorCalculado.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    }))
 
 });
 
@@ -432,7 +439,11 @@ function excluir() {
 
 };
 
-
+$("#teste").on("click", () => {
+    toastr.success("Compra Realizada!", "teste", {
+        positionClass: "toast-top-right"
+    })
+})
 
 function updateProduct(_id) {
     let http = `${https}/shop/update/${_id}`;
@@ -538,7 +549,6 @@ function doneTyping() {
                     '<td  >' + item.idCompra + '</td>' +
                     '<td  >' + item.Fornecedor + '</td>' +
                     '</tr>';
-
             });
             $('#tblCompras').html(tbl);
             //  $("resultSearch").hide();
@@ -602,12 +612,12 @@ function AddTableRow(tabela) {
     } else if (tabela == "tabelaFaturamento") {
         autoItem("Faturamento");
         //  cols += `<td class="itemFaturamento">${numItem}</td>`;
-        cols += `<td ><span class="form-control">${newData.toLocaleDateString()}</span></td>`;
-        cols += '<td width="180px" ><input type="text" id="documento" class="form-control"></td>';
-        cols += '<td width="140px"><input type="date" id="vencimento" class="form-control"></td>';
-        cols += `<td ><span class="valor-calculado form-control">R$ 00,00</span></td>`;
+        cols += `<td width="10%"><span class="form-control">${newData.toLocaleDateString()}</span></td>`;
+        cols += '<td width="15%" ><input type="text" id="documento" class="form-control"></td>';
+        cols += '<td width="10%"><input type="date" id="vencimento" class="form-control"></td>';
+        cols += `<td width="10%" ><span class="valor-calculado form-control">R$ 00,00</span></td>`;
         cols +=
-            `<td>
+            `<td width="20%" >
              <select name="" id="" class="form-control">
                 <option value="1">Dinheiro</option>
                 <option value="2">Crédito</option>
@@ -616,12 +626,13 @@ function AddTableRow(tabela) {
                 <option value="5">Cheque Prazo</option>
              </select>
              </td>`;
-        cols += `<td width="140px" onchange="SomarValPago()">
-    
-        <input type="text" id="ValPago" class="form-control TotalPago" value="0">
-   
+        cols += `<td width="10%" onchange="SomarValPago()">    
+        <input type="text" id="ValPago" class="form-control TotalPago" value="0">   
         </td>`;
-        cols += `<td width="140px"><span  class="form-control" disabled> ${newData.toLocaleDateString()}</span></td>`;
+
+        cols += `<td width="10%">
+        <span  class="form-control" > ${newData.toLocaleDateString()}</span>
+        </td>`;
         // cols +=
         //   `<td width="120px"> <button class="btn btn-danger btn-custom"><i class="fa fa-trash"></i></button>
         //  </td>`;
@@ -629,7 +640,7 @@ function AddTableRow(tabela) {
         newRow.append(cols);
 
         $(`#tabelaFaturamento`).append(newRow);
-        somarTotal()
+        somarTotal();
     }
 
     // return false;

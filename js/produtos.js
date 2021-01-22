@@ -5,7 +5,7 @@
  }
  let https = 'https://destrobackend.herokuapp.com'
  var d = new Date();
-
+ let local = 'http://localhost:3000';
  $("#prodDataUltAlteracao").val(d.toLocaleDateString());
  $("#prodUltAlteracao").val(user.nome)
  // alert(d.toLocaleString());
@@ -116,6 +116,7 @@
          $("#cadastro").text(data.toLocaleDateString());
 
      });
+     GettablesProducts(_id);
  }
 
  function updateProduct(_id) {
@@ -155,7 +156,58 @@
      }).fail(function (error) {
          console.log(error)
      })
+ };
+
+ function GettablesProducts(_id) {
+
+     // console.log(obj)
+     //let http = `http://localhost:3000/provider/create`
+     let http = `${https}/products/tables/${_id}`
+     // console.log(obj)
+     let tbl = '';
+     let tbl2 = '';
+     let Data;
+     let auxMes;
+     $('#ultimasCompras').html("");
+     $('#VendaMes').html("");
+     $.ajax({
+         url: http,
+         type: 'GET'
+     }).done(function (response) { //
+         console.log(response)
+
+         $.each(response, function (i, item) {
+             Data = new Date(item.Dat)
+             if ((Data.getMonth() + 1) < 10) {
+                auxMes = "0" + (Data.getMonth() + 1)
+            } else {
+                auxMes = (Data.getMonth() + 1)
+            }
+             tbl +=
+                 '<tr>' +
+                 '<td>' + (Data.getDate() + 1)  + "/" + auxMes  + "/" + Data.getFullYear() + '</td>' +
+                 '<td>' + item.TotalQuant + '</td>' +
+                 '<td>' + item.TotalVenda.toLocaleString("pt-BR", {
+                     style: "currency",
+                     currency: "BRL"
+                 }) + '</td>' +
+                 '<td>' + item.Nom + '</td>' +
+                 '</tr>';
+           
+             tbl2 += '<tr>' +
+                 '<td>' + auxMes + "/" + Data.getFullYear() + '</td>' +
+                 '<td>' + item.TotalQuant + '</td>' +
+                 '</tr>';
+         });
+
+         $('#ultimasCompras').append(tbl);
+         $('#VendaMes').append(tbl2);
+
+     }).fail(function (error) {
+         console.log(error)
+     })
  }
+
 
  function excluirModal(_id) {
      id = _id
@@ -206,6 +258,8 @@
 
  function aoIniciar() {
      getProduct();
+
+
      $("input").prop("disabled", true);
      $("select").prop("disabled", true);
 
