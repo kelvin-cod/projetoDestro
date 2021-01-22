@@ -64,7 +64,7 @@
                         <div class="col-lg-3 col-md-4 text-center">
                             <label for="">Nº Ordem de Compra</label> <br>
 
-                            <h5 class="" id="OrdemCompra"></h5>
+                            <h5 class="form-control" id="OrdemCompra"></h5>
                             <input type="text" class="form-control text-center font-weight-bold" disabled value="0001"
                                 hidden>
                         </div>
@@ -101,10 +101,10 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-lg-2 col-md-2 com-sm-3">
+                            <div class="col-lg-2 col-md-2 com-sm-3" onchange="">
                                 <div class="form-group ">
                                     <label for="">Status</label>
-                                    <input type="text" id="Status" class="form-control" disabled value="Aberto">
+                                    <input type="text" id="Status" class="form-control text-center" disabled value="Aberto">
 
                                 </div>
                             </div>
@@ -195,40 +195,14 @@
                     </table>
                 </div>
             </div>
-            <!--botoes-->
-            <div class="text-white  text-center mt-3 mb-3 col-lg-12">
 
-                <button class="btn btn-small btn-secondary  font-weight-bold" type="button" id="novoCompras">
-                    <i class="fa fa-plus"></i>
-                    Nova Compra
-                </button>
-                <div id="divApagar" style="display: inline;">
-                    <button class="btn btn-danger font-weight-bold" type="button" id="apagar">
-                        <i class="fa fa-trash"></i>
-                        Apagar
-                    </button>
-                </div>
-
-                <button class="btn btn-warning font-weight-bold" type="button" id="alterarDados">
-                    <i class="fa fa-pencil"></i>
-                    Alterar Dados
-                </button>
-                <div id="divConfirma" style="display: inline;">
-                    <button class="btn btn-success font-weight-bold" type="button" id="confirmar">
-                        <i class="fa fa-check"></i>
-                        Confirmar
-                    </button>
-                </div>
-
-
-            </div>
-            <div class="row text-center ml-2">
+            <div class="row text-center ">
                 <div class="col-12">
                     <h4 class="text-white mt-3 text-center">Faturamento (Pagamentos) desta Compra </h4>
                     <table class="table table-hover bg-light text-center " id="tabelaFaturamento" s>
                         <thead class="thead-dark">
 
-                            <th scope="col">Item</th>
+                            <!-- <th scope="col">Item</th>-->
                             <th scope="col">Data</th>
                             <th scope="col">Documento</th>
                             <th scope="col">Vencimento</th>
@@ -236,7 +210,7 @@
                             <th scope="col">Forma de Pagamento</th>
                             <th scope="col">Valor Pago</th>
                             <th scope="col">Data Pagto</th>
-                            <th scope="col">Excluir</th>
+                        <!-- <th scope="col">Excluir</th>-->
 
                         </thead>
                         <tbody>
@@ -280,17 +254,44 @@
                                     Pagamento
                                 </button>
                             </td>
-                            <td class="text-right bg-roxo text-white" colspan="2">
+                            <td class="text-right bg-roxo text-white" colspan="1">
                                 Valor Total Faturado:
                             </td>
-                            <td id="qtdtotal"></td>
+                            <td id="qtdtotal" class="valor-calculado ">R$00,00</td>
                             <td class="bg-roxo"></td>
                             <td id="qtdtotalPago"></td>
                             <td class="bg-roxo "></td>
-                            <td class="bg-roxo "></td>
+
                         </tfoot>
                     </table>
 
+                    <!--botoes-->
+                    <div class="text-white  text-center mt-3 mb-3 col-lg-12">
+
+                        <button class="btn btn-small btn-secondary  font-weight-bold" type="button" id="novoCompras">
+                            <i class="fa fa-plus"></i>
+                            Nova Compra
+                        </button>
+                        <div id="divApagar" style="display: inline;">
+                            <button class="btn btn-danger font-weight-bold" type="button" id="apagar">
+                                <i class="fa fa-trash"></i>
+                                Apagar
+                            </button>
+                        </div>
+
+                        <button class="btn btn-warning font-weight-bold" type="button" id="alterarDados">
+                            <i class="fa fa-pencil"></i>
+                            Alterar Dados
+                        </button>
+                        <div id="divConfirma" style="display: inline;">
+                            <button class="btn btn-success font-weight-bold" type="button" id="confirmar">
+                                <i class="fa fa-check"></i>
+                                Confirmar
+                            </button>
+                        </div>
+
+
+                    </div>
                 </div>
 
             </div>

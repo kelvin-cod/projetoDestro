@@ -24,6 +24,11 @@ let array = [];
 var numItem = 1;
 var numCompra = 0;
 var rowTblProdutc;
+
+$(".valor-calculado").text(00, 00. toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL"
+}))
 /**_______________________________________________________________________ */
 async function getDate() {
     hoje = await new Date();
@@ -79,10 +84,16 @@ function somarTotal() {
         valorTotal += parseFloat($(this).text().replace('R$', '').replace('.', ''));
 
     });
+
     $("#ValoTotalSomado").text(valorTotal.toLocaleString("pt-BR", {
         style: "currency",
         currency: "BRL"
     }));
+
+    $(".valor-calculado").text(valorTotal.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    }))
 };
 
 function autoItem(tabela) {
@@ -128,6 +139,7 @@ function getShop() {
 
     }).done(function (response) {
         //  console.log(response)
+        $("#OrdemCompra").text(response[0].idCompra + 1)
         $.each(response, function (i, item) {
             Data = new Date(item.Dat)
             tbl +=
@@ -138,7 +150,7 @@ function getShop() {
                 '</tr>';
 
         });
-        $('#tblCompras ').html(tbl);
+        $('#tblCompras').html(tbl);
         //  $('#tblCompras ').append(tbl);
     });
 };
@@ -171,6 +183,7 @@ function getProduct(_id, Iditem, parametro) {
         });
 
         if (parametro == 2) {
+
 
         } else {
             let val = await $(`#Prod${Iditem} option:selected`).attr("valor")
@@ -533,6 +546,22 @@ function doneTyping() {
         }
     });
 }
+
+function SomarValPago() {
+
+    let valorTotal = 0;
+
+    $(".TotalPago").each(function () {
+        valorTotal += parseFloat($(this).val().replace(',', '.'));
+
+    });
+
+    $("#qtdtotalPago").text(valorTotal.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    }));
+
+}
 /**_______________________________________________________________________________________ */
 function init() {
     getProvider();
@@ -572,11 +601,11 @@ function AddTableRow(tabela) {
         // console.log("numItem", numItem)
     } else if (tabela == "tabelaFaturamento") {
         autoItem("Faturamento");
-        cols += `<td class="itemFaturamento">${numItem}</td>`;
-        cols += '<td>&nbsp;</td>';
-        cols += '<td>&nbsp;</td>';
-        cols += '<td>&nbsp;</td>';
-        cols += '<td class="valor-calculado">000,00</td>';
+        //  cols += `<td class="itemFaturamento">${numItem}</td>`;
+        cols += `<td ><span class="form-control">${newData.toLocaleDateString()}</span></td>`;
+        cols += '<td width="180px" ><input type="text" id="documento" class="form-control"></td>';
+        cols += '<td width="140px"><input type="date" id="vencimento" class="form-control"></td>';
+        cols += `<td ><span class="valor-calculado form-control">R$ 00,00</span></td>`;
         cols +=
             `<td>
              <select name="" id="" class="form-control">
@@ -587,15 +616,20 @@ function AddTableRow(tabela) {
                 <option value="5">Cheque Prazo</option>
              </select>
              </td>`;
-        cols += '<td>000,00</td>';
-        cols += '<td>&nbsp;</td>';
-        cols +=
-            `<td> <button class="btn btn-danger btn-custom"><i class="fa fa-trash"></i></button>
-             </td>`;
+        cols += `<td width="140px" onchange="SomarValPago()">
+    
+        <input type="text" id="ValPago" class="form-control TotalPago" value="0">
+   
+        </td>`;
+        cols += `<td width="140px"><span  class="form-control" disabled> ${newData.toLocaleDateString()}</span></td>`;
+        // cols +=
+        //   `<td width="120px"> <button class="btn btn-danger btn-custom"><i class="fa fa-trash"></i></button>
+        //  </td>`;
         //<button class="btn btn-warning btn-custom"><i class="fa fa-pencil "></i></button>
         newRow.append(cols);
 
         $(`#tabelaFaturamento`).append(newRow);
+        somarTotal()
     }
 
     // return false;
