@@ -84,8 +84,8 @@ function getOneProvider(_id) {
 }
 
 function tablesProviders(_id) {
-    //let http = `https://destrobackend.herokuapp.com/provider/list/tables/${_id}`
-    let http = `http://localhost:3000/provider/list/tables/${_id}`
+    let http = `https://destrobackend.herokuapp.com/provider/list/tables/${_id}`
+   // let http = `http://localhost:3000/provider/list/tables/${_id}`
     let tbl = '';
     let tbl2 = '';
     $.ajax({
