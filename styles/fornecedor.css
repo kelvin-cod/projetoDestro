@@ -2,13 +2,14 @@
     height: auto !important;
 }
 
-@media (min-width:1300px) {
+@media (min-width:1024px) {
     .container-fluid {
         height: 100vh !important;
     }
 
 }
-.btn-orange{
+
+.btn-orange {
     color: rgb(209, 205, 199);
     background-color: rgb(255, 187, 0);
     border-color: rgb(0, 0, 0);

@@ -12,7 +12,7 @@
 
     <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="../styles/compras.css">
-    <link rel="stylesheet" href="../js/utils/Toastr/toastr.scss">
+    <link rel="stylesheet" href="../js/utils/Toastr/build/toastr.css">
     <title>Compras</title>
 </head>
 
@@ -61,7 +61,7 @@
                         <div class="col-lg-9 col-md-8">
                             <h1>Compras</h1>
                         </div>
-                        <div class="col-lg-3 col-md-4 text-center">
+                        <div class="col-lg-3 col-md-4 text-center col-sm-6">
                             <label for="">Nº Ordem de Compra</label> <br>
 
                             <h5 class="form-control" id="OrdemCompra"></h5>
@@ -72,13 +72,13 @@
 
                     <form action="" id="formCompras">
                         <div class="row text-white">
-                            <div class="col-lg-2 col-md-2">
+                            <div class="col-lg-2 col-md-2 col-sm-3">
                                 <div class="form-group ">
                                     <label for="data">Data</label>
                                     <input type="text" class="form-control" id="data" disabled>
                                 </div>
                             </div>
-                            <div class="col-lg-5 col-md-5 col-sm-6">
+                            <div class="col-lg-5 col-md-5 col-sm-9">
                                 <div class="form-group ">
                                     <label for="">Fornecedor</label>
 
@@ -89,7 +89,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-3 col-md-3 col-sm-6">
+                            <div class="col-lg-3 col-md-3 col-sm-8">
                                 <div class="form-group ">
                                     <label for="tipo">Tipo</label>
 
@@ -101,21 +101,22 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-lg-2 col-md-2 com-sm-3" onchange="">
+                            <div class="col-lg-2 col-md-2 col-sm-4" >
                                 <div class="form-group ">
                                     <label for="">Status</label>
-                                    <input type="text" id="Status" class="form-control text-center" disabled value="Aberto">
+                                    <input type="text" id="Status" class="form-control text-center" disabled
+                                        value="Aberto">
 
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-lg-3 col-md-3">
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6">
                                 <div class="form-group ">
                                     <label for="">Previsão Entrega</label>
                                     <input type="date" id="DatPrevEntrega" class="form-control">
 
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-lg-3 col-md-3">
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6">
                                 <div class="form-group ">
                                     <label for="">Entrega</label>
                                     <input type="date" id="DatEntrega" class="form-control">
@@ -162,7 +163,7 @@
                                         <td scope="row" class="text-right bg-roxo text-white" colspan="2">
                                             Valor total dos
                                             Produtos/Serviços:</td>
-                                        <td id="ValoTotalSomado"> R$ 0,00</td>
+                                        <td id="ValorTotalSomado"> R$ 0,00</td>
                                     </tfoot>
                                 </table>
                             </div>
@@ -175,7 +176,7 @@
 
                     <h3 class="text-white mt-3">Últimas compras cadastradas </h3>
                     <table class="table table-hover bg-light text-center" onmouseout="SelecionaProdutos()">
-                        <thead class="thead-dark">
+                        <thead class="thead-dark" >
 
                             <th scope="col">Data</th>
                             <th scope="col">Ordem Compra</th>
@@ -183,7 +184,7 @@
                             <tr scope="col" colspan="3" class="text-center">
                                 <input class="form-control buscaProduto " type="text" name="search" alt="tabelaProduto"
                                     placeholder="Digite para buscar uma Compra" id="buscaCompra">
-                                <label for="" id="resultSearch" class="resultSearch text-dark "></label>
+                                <label for="" id="resultSearch" class="resultSearch text-dark " oninput=" getShop()"></label>
                             </tr>
 
                         </thead>
@@ -197,9 +198,9 @@
             </div>
 
             <div class="row text-center justify-content-center ">
-                <div class="col-11">
+                <div class="col-lg-11 com-md-12 col-sm-12">
                     <h4 class="text-white mt-3 text-center">Faturamento (Pagamentos) desta Compra </h4>
-                    <table class="table table-hover bg-light text-center " id="tabelaFaturamento" s>
+                    <table class="table table-hover bg-light text-center " id="tabelaFaturamento">
                         <thead class="thead-dark">
 
                             <!-- <th scope="col">Item</th>-->
@@ -210,9 +211,9 @@
                             <th scope="col">Forma de Pagamento</th>
                             <th scope="col">Valor Pago</th>
                             <th scope="col">Data Pagto</th>
-                        <!-- <th scope="col">Excluir</th>-->
+                            <th scope="col">Excluir</th>
 
-                        </thead>
+                        </thead >
                         <tbody>
                             <!--
                             <tr>
@@ -250,8 +251,7 @@
                                 <button class="btn btn-success" onclick="AddTableRow('tabelaFaturamento')"
                                     type="button">
                                     <i class="fa fa-plus"></i>
-                                    Adicionar
-                                    Pagamento
+                                    Adicionar Pagamento
                                 </button>
                             </td>
                             <td class="text-right bg-roxo text-white" colspan="1">
@@ -261,12 +261,12 @@
                             <td class="bg-roxo"></td>
                             <td id="qtdtotalPago"></td>
                             <td class="bg-roxo "></td>
-
+                            <td class="bg-roxo "></td>
                         </tfoot>
                     </table>
 
                     <!--botoes-->
-                    <div class="text-white  text-center mt-5 mb-4  " >
+                    <div class="text-white  text-center mt-5 mb-4  ">
 
                         <button class="btn btn-small btn-secondary  font-weight-bold" type="button" id="novoCompras">
                             <i class="fa fa-plus"></i>
@@ -290,12 +290,7 @@
                             </button>
                         </div>
 
-                        <div id="divConfirma" style="display: inline;" hidden>
-                            <button class="btn btn-info font-weight-bold" type="button" id="teste">
-                                <i class="fa fa-check"></i>
-                               teste
-                            </button>
-                        </div>
+
                     </div>
                 </div>
 
@@ -329,7 +324,7 @@
     </div>
     <!--FIM MODAL-->
 
-    <footer hidden >
+    <footer hidden>
         <div class=" footer navbar-fixed-bottom bg-white  ">
             <div class=" text-center p-2">
                 <h5> SAC 0800 123 098 121

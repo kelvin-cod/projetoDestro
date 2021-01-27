@@ -179,13 +179,13 @@
          $.each(response, function (i, item) {
              Data = new Date(item.Dat)
              if ((Data.getMonth() + 1) < 10) {
-                auxMes = "0" + (Data.getMonth() + 1)
-            } else {
-                auxMes = (Data.getMonth() + 1)
-            }
+                 auxMes = "0" + (Data.getMonth() + 1)
+             } else {
+                 auxMes = (Data.getMonth() + 1)
+             }
              tbl +=
                  '<tr>' +
-                 '<td>' + (Data.getDate() + 1)  + "/" + auxMes  + "/" + Data.getFullYear() + '</td>' +
+                 '<td>' + (Data.getDate() + 1) + "/" + auxMes + "/" + Data.getFullYear() + '</td>' +
                  '<td>' + item.TotalQuant + '</td>' +
                  '<td>' + item.TotalVenda.toLocaleString("pt-BR", {
                      style: "currency",
@@ -193,7 +193,7 @@
                  }) + '</td>' +
                  '<td>' + item.Nom + '</td>' +
                  '</tr>';
-           
+
              tbl2 += '<tr>' +
                  '<td>' + auxMes + "/" + Data.getFullYear() + '</td>' +
                  '<td>' + item.TotalQuant + '</td>' +

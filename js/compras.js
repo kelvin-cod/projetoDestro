@@ -10,7 +10,8 @@ let Compra = {
     DatPrevEntrega: '',
     DatEntrega: '',
     Obs: '',
-    Produtos: []
+    Produtos: [],
+    Faturamentos: []
 }
 let https = 'https://destrobackend.herokuapp.com';
 let local = 'http://localhost:3000';
@@ -55,7 +56,7 @@ $(function () {
     var valorCalculado = 0;
 
     $(".valor-calculado").each(function () {
-        valorCalculado += parseFloat($(this).text());
+        valorCalculado += parseFloat($(this).text().replace(",", "."));
     });
 
     $("#qtdtotal").text(valorCalculado.toLocaleString("pt-BR", {
@@ -88,11 +89,11 @@ function somarTotal() {
     let valorTotal = 0;
 
     $(".ValorTotal").each(function () {
-        valorTotal += parseFloat($(this).text().replace('R$', '').replace('.', ''));
+        valorTotal += parseFloat($(this).text().replace('R$', '').replace(',', '.'));
 
     });
 
-    $("#ValoTotalSomado").text(valorTotal.toLocaleString("pt-BR", {
+    $("#ValorTotalSomado").text(valorTotal.toLocaleString("pt-BR", {
         style: "currency",
         currency: "BRL"
     }));
@@ -214,7 +215,7 @@ function getOneShop(_id) {
     // let http = `${https}/shop/list/${_id}`
     //zera o numero item
 
-    $("#ValoTotalSomado").text("R$ 0,00")
+    $("#ValorTotalSomado").text("R$ 0,00")
 
     $.ajax({
         url: http,
@@ -304,7 +305,7 @@ function SelecionaProdutos() {
 };
 
 function QuantVerifica(Iditem) {
-    let tot = (parseFloat($(`#Val${Iditem}`).text().replace('R$', '')) * $(`#Quant${Iditem}`).val()).toLocaleString("pt-BR", {
+    let tot = (parseFloat($(`#Val${Iditem}`).text().replace('R$', '').replace(",", ".")) * $(`#Quant${Iditem}`).val()).toLocaleString("pt-BR", {
         style: "currency",
         currency: "BRL"
     })
@@ -316,7 +317,7 @@ function QuantVerifica(Iditem) {
 function verifica(_id) {
 
     $(`#Val${_id}`).text($(`#Prod${_id} option:selected`).attr('valor'))
-    let tot = (parseFloat($(`#Val${_id}`).text().replace('R$', '')) * $(`#Quant${_id}`).val()).toLocaleString("pt-BR", {
+    let tot = (parseFloat($(`#Val${_id}`).text().replace('R$', '').replace(",", ".")) * $(`#Quant${_id}`).val()).toLocaleString("pt-BR", {
         style: "currency",
         currency: "BRL"
     });
@@ -326,6 +327,7 @@ function verifica(_id) {
 };
 
 $("#novoCompras").on("click", () => {
+    /*
     numItem = 1;
     $("#formCompras")[0].reset();
 
@@ -334,7 +336,7 @@ $("#novoCompras").on("click", () => {
     });
 
     $(`#products-table`).html("");
-    $("#ValoTotalSomado").text("R$ 0,00");
+    $("#ValorTotalSomado").text("R$ 0,00");
 
     $("#divConfirma").html("");
     $("#divConfirma").append(`<button class="btn btn-success font-weight-bold" type="button" id="confirmar">
@@ -344,7 +346,8 @@ $("#novoCompras").on("click", () => {
     <button class="btn btn-danger font-weight-bold" type="button" id="apagar" >
     <i class="fa fa-trash"></i>
     Apagar
-    </button>`);
+    </button>`);*/
+    location.reload()
 });
 
 
@@ -361,7 +364,9 @@ $("#confirmar").on("click", () => {
     Compra.Obs = $("#Obs").val();
 
     let prodTotal = $("#products-table tbody").find('tr').length;
+    let fatuTotal = $("#tabelaFaturamento tbody").find('tr').length;
     Compra.Produtos = []; // zera o array
+    Compra.Faturamentos = []; // zera o array
 
     for (let i = 0; i < prodTotal; i++) {
 
@@ -379,22 +384,65 @@ $("#confirmar").on("click", () => {
     };
 
     if (prodTotal == 0) {
-
-        return false;
-    }
-
-
-    $.ajax({
-        url: http,
-        type: 'POST',
-        data: Compra
-    }).then(function (response) {
-        toastr.success("Compra Realizada!", "teste", {
+        toastr.error("Sem Produto Adicionado", {
             positionClass: "toast-top-right"
         })
 
-        location.reload();
+        return false;
+    };
+    let array = []
+
+    $(".rowFaturamento").each(function () {
+        array.push($(this).attr("rowId"))
+    });
+
+    for (let i = 0; i < fatuTotal; i++) {
+
+
+        let obj = {
+            data: '',
+            documento: '',
+            vencimento: 0,
+            valor: 0,
+            formaPagamento: 0,
+            valorPago: 0,
+            idEmpresa: 0,
+            idUsuario: 0,
+            idCompra: 0,
+            dataPagto: ''
+        };
+
+        obj.data = $("#data").val();
+        obj.documento = $(`#documento${array[i]}`).val();
+        obj.vencimento = $(`#vencimento${i + 1}`).val();
+        obj.valor = $(`#valor${i + 1}`).val();
+        obj.formaPagamento = $(`#forma${i + 1}`).val();
+        obj.valorPago = $(`#valorPago${i + 1}`).val();
+        obj.idEmpresa = user.idEmpresa;
+        obj.idUsuario = user.idUser;
+        obj.dataPagto = $(`#dataPagamento${i + 1}`).val();
+
+        Compra.Faturamentos.push(obj); // preenche o array
+    };
+    console.log(Compra)
+    $.ajax({
+        // url: http,
+        type: 'POST',
+        data: Compra
+    }).then(function (response) {
+
+        //  location.reload();
         getShop();
+
+        toastr.success("Compra Realizada!", {
+            positionClass: "toast-top-right"
+        });
+
+    }).fail(() => {
+        toastr.fail("Compra não Realizada!", {
+            positionClass: "toast-top-right"
+        })
+
     });
 
 
@@ -408,7 +456,7 @@ $("#apagar").on("click", () => {
 
 $("#products-table tbody").on('click', 'tr', function () {
     rowTblProdutc = $(this).attr("id");
-    console.log(rowTblProdutc);
+
 });
 
 
@@ -426,7 +474,7 @@ function excluir() {
         url: http,
         type: 'POST'
     }).then(function (response) {
-        toastr.success("Compra Realizada!", "teste", {
+        toastr.success("Item Deletado!", {
             positionClass: "toast-top-right"
         })
 
@@ -439,11 +487,6 @@ function excluir() {
 
 };
 
-$("#teste").on("click", () => {
-    toastr.success("Compra Realizada!", "teste", {
-        positionClass: "toast-top-right"
-    })
-})
 
 function updateProduct(_id) {
     let http = `${https}/shop/update/${_id}`;
@@ -460,7 +503,8 @@ function updateProduct(_id) {
     Compra.Tipo = parseInt($("#tipo option:selected").val());
     Compra.Obs = $("#Obs").val();
 
-    let prodTotal = $("#products-table tbody").find('tr').length
+    let prodTotal = $("#products-table tbody").find('tr').length;
+    let fatuTotal = $("#tabelaFaturamento tbody").find('tr').length;
     Compra.Produtos = [] // zera o array
 
     for (let i = 0; i < prodTotal; i++) {
@@ -483,6 +527,7 @@ function updateProduct(_id) {
 
         Compra.Produtos.push(obj); // preenche o array
     };
+
     // console.log(Compra)
 
     $.ajax({
@@ -501,14 +546,19 @@ function updateProduct(_id) {
 };
 /**_______________________________________________________________________________________ */
 var typingTimer; //timer identifier
-var doneTypingInterval = 2000; //time in ms, 1 second for example
+var doneTypingInterval = 1500; //time in ms, 1 second for example
 $("#buscaCompra").on("keydown", () => {
 
     clearTimeout(typingTimer);
 
-    if ($('#buscaCompra').val) {
+    if ($('#buscaCompra').val()) {
         typingTimer = setTimeout(doneTyping, doneTypingInterval);
     }
+    if ($('#buscaCompra').val() === "") {
+        return getShop()
+
+    }
+
 });
 
 function doneTyping() {
@@ -571,6 +621,12 @@ function SomarValPago() {
         currency: "BRL"
     }));
 
+};
+
+function removeLinha(_id) {
+    $(`#rowFat${_id}`).remove();
+
+    // index = index -1;
 }
 /**_______________________________________________________________________________________ */
 function init() {
@@ -584,6 +640,7 @@ try {
 } catch (error) {
     console.log(error)
 }
+let index = 1;
 /**_______________________________________________________________________________________ */
 function AddTableRow(tabela) {
 
@@ -610,15 +667,18 @@ function AddTableRow(tabela) {
         numItem++;
         // console.log("numItem", numItem)
     } else if (tabela == "tabelaFaturamento") {
+
         autoItem("Faturamento");
+        numItem = index;
+        newRow = $(`<tr scope="row" id="rowFat${numItem}" rowId="${numItem}" class="rowFaturamento"> `);
         //  cols += `<td class="itemFaturamento">${numItem}</td>`;
         cols += `<td width="10%"><span class="form-control">${newData.toLocaleDateString()}</span></td>`;
-        cols += '<td width="15%" ><input type="text" id="documento" class="form-control"></td>';
-        cols += '<td width="10%"><input type="date" id="vencimento" class="form-control"></td>';
+        cols += `<td width="15%" ><input type="text" id="documento${numItem}" class="form-control"></td>`;
+        cols += `<td width="10%"><input type="date" id="vencimento${numItem}" class="form-control"></td>`;
         cols += `<td width="10%" ><span class="valor-calculado form-control">R$ 00,00</span></td>`;
         cols +=
             `<td width="20%" >
-             <select name="" id="" class="form-control">
+             <select name="" id="Forma${numItem}" class="form-control">
                 <option value="1">Dinheiro</option>
                 <option value="2">Crédito</option>
                 <option value="3">Débito</option>
@@ -627,19 +687,20 @@ function AddTableRow(tabela) {
              </select>
              </td>`;
         cols += `<td width="10%" onchange="SomarValPago()">    
-        <input type="text" id="ValPago" class="form-control TotalPago" value="0">   
+        <input type="text" id="ValPago${numItem}" class="form-control TotalPago" value="0">   
         </td>`;
 
         cols += `<td width="10%">
         <span  class="form-control" > ${newData.toLocaleDateString()}</span>
         </td>`;
-        // cols +=
-        //   `<td width="120px"> <button class="btn btn-danger btn-custom"><i class="fa fa-trash"></i></button>
-        //  </td>`;
+        cols +=
+            `<td width="120px"><button class="btn btn-danger btn-custom" onclick="removeLinha(${numItem})"><i class="fa fa-trash"></i></button>
+         </td>`;
         //<button class="btn btn-warning btn-custom"><i class="fa fa-pencil "></i></button>
         newRow.append(cols);
 
         $(`#tabelaFaturamento`).append(newRow);
+        index++;
         somarTotal();
     }
 
