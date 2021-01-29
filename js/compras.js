@@ -40,16 +40,28 @@ async function getDate() {
     if (dy < 10) {
         dy = "0" + dy
     }
+    if (mt < 10) {
+        mt = "0" + mt
+    }
     return yr + "-" + mt + "-" + dy;
 }
 //$("#data").val(data.toLocaleDateString())
-
+let dataAmericana = '';
 getDate().then(resp => {
 
-    // $("#data").val(resp)
+    dataAmericana = resp;
+    $("#DatPrevEntrega").attr("min", dataAmericana);
 });
 let newData = new Date
-$("#data").val(newData.toLocaleDateString())
+$("#data").val(newData.toLocaleDateString());
+
+function removeLimite() {
+    $("#DatPrevEntrega").attr("min", "1999-01-01");
+};
+
+function Limite(params) {
+    $(`#${params}`).attr("min", dataAmericana);
+};
 
 $(function () {
 
@@ -146,7 +158,7 @@ function getShop() {
         type: 'GET'
 
     }).done(function (response) {
-        //  console.log(response)
+        $('#tblCompras').html("");
         $("#OrdemCompra").text(response[0].idCompra + 1)
         $.each(response, function (i, item) {
             Data = new Date(item.Dat)
@@ -194,12 +206,12 @@ function getProduct(_id, Iditem, parametro) {
 
 
         } else {
-            let val = await $(`#Prod${Iditem} option:selected`).attr("valor")
-
+            let val = await $(`#Prod${Iditem} option:selected`).attr("valor");
+            console.log(val)
             $(`#Val${Iditem}`).text(val)
         }
 
-        let tot = await (parseFloat($(`#Val${Iditem}`).text().replace('R$', '')) * $(`#Quant${Iditem}`).val()).toLocaleString("pt-BR", {
+        let tot = await (parseFloat($(`#Val${Iditem}`).text().replace('R$', '').replace(",", ".")) * $(`#Quant${Iditem}`).val()).toLocaleString("pt-BR", {
             style: "currency",
             currency: "BRL"
         });
@@ -305,7 +317,7 @@ function SelecionaProdutos() {
 };
 
 function QuantVerifica(Iditem) {
-    let tot = (parseFloat($(`#Val${Iditem}`).text().replace('R$', '').replace(",", ".")) * $(`#Quant${Iditem}`).val()).toLocaleString("pt-BR", {
+    let tot = (parseFloat($(`#Val${Iditem}`).text().replace('R$', '')) * $(`#Quant${Iditem}`).val()).toLocaleString("pt-BR", {
         style: "currency",
         currency: "BRL"
     })
@@ -398,7 +410,6 @@ $("#confirmar").on("click", () => {
 
     for (let i = 0; i < fatuTotal; i++) {
 
-
         let obj = {
             data: '',
             documento: '',
@@ -411,22 +422,22 @@ $("#confirmar").on("click", () => {
             idCompra: 0,
             dataPagto: ''
         };
-
+        console.log($(`#ValorPago${array[i]}`).val())
         obj.data = $("#data").val();
         obj.documento = $(`#documento${array[i]}`).val();
-        obj.vencimento = $(`#vencimento${i + 1}`).val();
-        obj.valor = $(`#valor${i + 1}`).val();
-        obj.formaPagamento = $(`#forma${i + 1}`).val();
-        obj.valorPago = $(`#valorPago${i + 1}`).val();
+        obj.vencimento = $(`#vencimento${array[i]}`).val();
+        obj.valor = parseFloat($(`#qtdtotal`).text().replace("R$", "").replace(",", "."));
+        obj.formaPagamento = parseInt($(`#Forma${array[i]}`).val());
+        obj.valorPago = $(`#ValPago${array[i]}`).val().replace(",", ".");
         obj.idEmpresa = user.idEmpresa;
         obj.idUsuario = user.idUser;
-        obj.dataPagto = $(`#dataPagamento${i + 1}`).val();
+        obj.dataPagto = $("#data").val();
 
         Compra.Faturamentos.push(obj); // preenche o array
     };
     console.log(Compra)
     $.ajax({
-        // url: http,
+        url: http,
         type: 'POST',
         data: Compra
     }).then(function (response) {
@@ -535,7 +546,7 @@ function updateProduct(_id) {
         type: 'PUT',
         data: Compra
     }).then(function (response) {
-        toastr.success("Compra Realizada!", "teste", {
+        toastr.success("Compra Atualizada!", "Sucesso", {
             positionClass: "toast-top-right"
         })
         //console.log(response)
@@ -575,6 +586,7 @@ function doneTyping() {
     };
 
     if (Obj.Filter == "") {
+        getShop()
         return false;
     };
 
@@ -606,7 +618,7 @@ function doneTyping() {
         }
     });
 }
-
+//somar o falor pago da segunda tabela
 function SomarValPago() {
 
     let valorTotal = 0;
@@ -614,12 +626,12 @@ function SomarValPago() {
     $(".TotalPago").each(function () {
         valorTotal += parseFloat($(this).val().replace(',', '.'));
 
-    });
+    }); //soma os items coma mesma classe
 
     $("#qtdtotalPago").text(valorTotal.toLocaleString("pt-BR", {
         style: "currency",
         currency: "BRL"
-    }));
+    })); //exibe o total
 
 };
 
@@ -674,7 +686,7 @@ function AddTableRow(tabela) {
         //  cols += `<td class="itemFaturamento">${numItem}</td>`;
         cols += `<td width="10%"><span class="form-control">${newData.toLocaleDateString()}</span></td>`;
         cols += `<td width="15%" ><input type="text" id="documento${numItem}" class="form-control"></td>`;
-        cols += `<td width="10%"><input type="date" id="vencimento${numItem}" class="form-control"></td>`;
+        cols += `<td width="10%"><input type="date" id="vencimento${numItem}" class="form-control" min="${dataAmericana}"></td>`;
         cols += `<td width="10%" ><span class="valor-calculado form-control">R$ 00,00</span></td>`;
         cols +=
             `<td width="20%" >
@@ -687,7 +699,7 @@ function AddTableRow(tabela) {
              </select>
              </td>`;
         cols += `<td width="10%" onchange="SomarValPago()">    
-        <input type="text" id="ValPago${numItem}" class="form-control TotalPago" value="0">   
+        <input type="text" id="ValPago${numItem}" class="form-control TotalPago" value="0" pattern="[0-9]+$">   
         </td>`;
 
         cols += `<td width="10%">
@@ -702,6 +714,7 @@ function AddTableRow(tabela) {
         $(`#tabelaFaturamento`).append(newRow);
         index++;
         somarTotal();
+        console.log(dataAmericana)
     }
 
     // return false;

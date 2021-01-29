@@ -112,7 +112,7 @@
                             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6">
                                 <div class="form-group ">
                                     <label for="">Previsão Entrega</label>
-                                    <input type="date" id="DatPrevEntrega" class="form-control">
+                                    <input type="date" id="DatPrevEntrega" class="form-control" ondblclick="removeLimite()" onclick="Limite('DatPrevEntrega')">
 
                                 </div>
                             </div>
@@ -215,37 +215,10 @@
 
                         </thead >
                         <tbody>
-                            <!--
-                            <tr>
-                                <td scope="row" class="itemFaturamento">3</td>
-                                <td>12/02/2020</td>
-                                <td>12345678</td>
-                                <td>20/02/2020</td>
-                                <td class="valor-calculado">100,00</td>
-                                <td>
-                                    <select name="" id="" class="form-control">
-                                        <option value="1">Dinheiro</option>
-                                        <option value="2">Crédito</option>
-                                        <option value="3">Débito</option>
-                                        <option value="4">Cheque Vista</option>
-                                        <option value="5">Cheque Prazo</option>
-                                    </select>
-                                </td>
-                                <td class="valor-pago-calculado">100,00</td>
-                                <td>12/02/2020</td>
-                                <td>
-                                    <button class="btn btn-warning btn-custom">
-                                        <i class="fa fa-pencil "></i>
-                                    </button>
-                                    <button class="btn btn-danger  btn-custom">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
-
-                                </td>
-
-                            </tr>
+                         
 -->
                         </tbody>
+
                         <tfoot>
                             <td class="bg-roxo" scope="row" colspan="2">
                                 <button class="btn btn-success" onclick="AddTableRow('tabelaFaturamento')"
