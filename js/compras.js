@@ -25,7 +25,7 @@ let array = [];
 var numItem = 1;
 var numCompra = 0;
 var rowTblProdutc;
-
+let index = 1;
 $(".valor-calculado").text(00, 00. toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL"
@@ -48,11 +48,11 @@ async function getDate() {
 //$("#data").val(data.toLocaleDateString())
 let dataAmericana = '';
 getDate().then(resp => {
-
     dataAmericana = resp;
     $("#DatPrevEntrega").attr("min", dataAmericana);
 });
-let newData = new Date
+
+let newData = new Date;
 $("#data").val(newData.toLocaleDateString());
 
 function removeLimite() {
@@ -102,7 +102,6 @@ function somarTotal() {
 
     $(".ValorTotal").each(function () {
         valorTotal += parseFloat($(this).text().replace('R$', '').replace(',', '.'));
-
     });
 
     $("#ValorTotalSomado").text(valorTotal.toLocaleString("pt-BR", {
@@ -229,7 +228,6 @@ function getOneShop(_id) {
 
     $("#ValorTotalSomado").text("R$ 0,00");
     let cols = '';
-    let cols2 = '';
 
     $.ajax({
         url: http,
@@ -256,7 +254,7 @@ function getOneShop(_id) {
                 cols = `<tr ondblclick="excluirProduto(${numItem})" idItem="${item.IdItem}" id="row${numItem}">`
                 //<td scope="row" class="itemProdutos">${numItem}</td>`;
                 cols +=
-                    `<td><select name="${numItem}" id="Prod${numItem}" idItem="${item.IdItem}" class="form-control" onchange="verifica(${numItem})"></select></td>`;
+                    `<td><select name="ProdServ${numItem}" id="Prod${numItem}" idItem="${item.IdItem}" class="form-control" onchange="verifica(${numItem})"></select></td>`;
                 cols +=
                     `<td style="width:140px" >
                         <input class="form-control" type="number" min="1" 
@@ -275,58 +273,18 @@ function getOneShop(_id) {
                 }));
 
                 getProduct(`#Prod${numItem}`, `${numItem}`, 2);
-                array.push(item.IdProduto)
+
+                array.push(item.IdProduto);
+
                 //  $(`#Prod${numItem}`).val(item.IdProduto);
                 //  console.log(numItem, item.IdProduto)
                 //$(`select[name=${numItem}]`).val(item.IdProduto);
-                if (item.Forma == null) {
 
-                } else {
-
-
-                    let newRow = $(`<tr scope="row" id="rowFat${numItem}" rowId="${numItem}" class="rowFaturamento"> `);
-                    //  cols += `<td class="itemFaturamento">${numItem}</td>`;
-                    cols2 += `<td width="10%"><span class="form-control">${item.DatPagto.slice(8,10) + "/" + item.DatPagto.slice(5,7) + "/"  + item.DatPagto.slice(0,4)}</span></td>`;
-                    cols2 += `<td width="15%" ><input type="text" id="documento${numItem}" class="form-control"></td>`;
-                    cols2 += `<td width="10%"><input type="date" id="vencimento${numItem}" class="form-control" min="${dataAmericana}"></td>`;
-
-                    cols2 += `<td width="10%" ><span class="valor-calculado form-control">R$ 00,00</span></td>`;
-                    cols2 +=
-                        `<td width="20%" >
-                <select name="FormaPagamento" id="Forma${numItem}" class="form-control">
-                    <option value="1">Dinheiro</option>
-                    <option value="2">Crédito</option>
-                    <option value="3">Débito</option>
-                    <option value="4">Cheque Vista</option>
-                    <option value="5">Cheque Prazo</option>
-                </select>
-                </td>`;
-                    cols2 += `<td width="10%" onchange="SomarValPago()">    
-                <input type="text" id="ValPago${numItem}" class="form-control TotalPago" value="0" pattern="[0-9]+$">   
-                </td>`;
-
-                    cols2 += `<td width="10%">
-                <span  class="form-control" > ${item.DatPagto.slice(8,10) + "/" + item.DatPagto.slice(5,7) + "/"  + item.DatPagto.slice(0,4)  }</span>
-                </td>`;
-                    cols2 += `<td width="120px">
-                <button class="btn btn-danger btn-custom" onclick="removeLinha(${numItem})">
-                <i class="fa fa-trash"></i>
-                </button>
-                </td>`;
-                    //<button class="btn btn-warning btn-custom"><i class="fa fa-pencil "></i></button>
-                    newRow.append(cols2);
-
-                    $(`#tabelaFaturamento`).append(newRow);
-                    $(`#vencimento${numItem}`).val(item.Vencimento);
-                    $(`#ValPago${numItem}`).val(item.ValPagamento);
-                    $(`#Forma${numItem} option:selected`).val(item.Forma);
-                    somarTotal();
-                }
                 numItem++;
             });
 
         }
-
+        getPayments(_id)
         return numCompra;
     }).then(() => {
         //  SelecionaProdutos();
@@ -347,14 +305,13 @@ function getOneShop(_id) {
 
     setTimeout(function () {
         SelecionaProdutos();
-
     }, 1500);
 };
 
 function SelecionaProdutos() {
     let num = 1;
     for (let i = 0; i < array.length; i++) {
-        $(`select[name=${num}]`).val(array[i]);
+        $(`select[name=ProdServ${num}]`).val(array[i]);
         // console.log(i, $(`select[name=${num}]`).val())
         num++;
     }
@@ -382,6 +339,70 @@ function verifica(_id) {
     somarTotal();
 };
 
+function getPayments(_id) {
+    let http = `${https}/shop/list/payments/${_id}`;
+    let cols = "";
+    let ItemRow = 1;
+
+    $.ajax({
+        url: http,
+        type: 'GET'
+    }).done(function (response) { //
+        console.log(response)
+        $(`#tabelaFaturamento tbody`).html("");
+        $.each(response, function (i, item) {
+
+            //  cols += `<td class="itemFaturamento">${numItem}</td>`;
+            cols += `<tr scope="row" id="rowFat${ItemRow}" rowId="${ItemRow}" class="rowFaturamento" idpayment="${item.idPagamento}"> `;
+
+            cols += ` <td width="10%"><span class="form-control">${item.DatPagto.slice(8,10) + "/" + item.DatPagto.slice(5,7) + "/"  + item.DatPagto.slice(0,4)}</span></td>`;
+            cols += `<td width="15%" ><input type="text" id="documento${ItemRow}" class="form-control"></td>`;
+            cols += `<td width="10%"><input type="date" id="vencimento${ItemRow}" class="form-control" min="${dataAmericana}"></td>`;
+
+            cols += `<td width="10%" ><span class="valor-calculado form-control">R$ 00,00</span></td>`;
+            cols +=
+                `<td width="20%" >
+        <select name="FormaPagamento${ItemRow}" id="Forma${ItemRow}" class="form-control">
+            <option value="1">Dinheiro</option>
+            <option value="2">Crédito</option>
+            <option value="3">Débito</option>
+            <option value="4">Cheque Vista</option>
+            <option value="5">Cheque Prazo</option>
+        </select>
+        </td>`;
+            cols += `<td width="10%" onchange="SomarValPago()">    
+        <input type="text" id="ValPago${ItemRow}" class="form-control TotalPago" value="0" pattern="[0-9]+$">   
+        </td>`;
+
+            cols += `<td width="10%">
+        <span  class="form-control" > ${item.DatPagto.slice(8,10) + "/" + item.DatPagto.slice(5,7) + "/"  + item.DatPagto.slice(0,4)  }</span>
+        </td>`;
+            cols += `<td width="120px">
+        <button class="btn btn-danger btn-custom" onclick="removeLinhaGet(${ItemRow})">
+        <i class="fa fa-trash"></i>
+        </button>
+        </td></tr>`;
+            //<button class="btn btn-warning btn-custom"><i class="fa fa-pencil "></i></button>
+
+            //somarTotal();
+            //  newRow.append(cols);
+
+            $(`#tabelaFaturamento tbody`).append(cols);
+            $(`#vencimento${ItemRow}`).val(item.Vencimento);
+            $(`#documento${ItemRow}`).val(item.Documento);
+            $(`#ValPago${ItemRow}`).val(item.ValPagamento.toFixed(2));
+            // $(`#Forma${ItemRow} option:selected`).val(item.Forma);
+            $(`select[name=FormaPagamento${ItemRow}]`).val(item.Forma);
+            // qtdtotalPago
+            SomarValPago()
+            cols = '';
+            ItemRow = ItemRow + 1;
+            index = ItemRow
+        })
+    });
+
+
+}
 $("#novoCompras").on("click", () => {
     /*
     numItem = 1;
@@ -612,6 +633,7 @@ function updateProduct(_id) {
         obj.valor = parseFloat($(`#qtdtotal`).text().replace("R$", "").replace(",", "."));
         obj.formaPagamento = parseInt($(`#Forma${array[i]}`).val());
         obj.valorPago = $(`#ValPago${array[i]}`).val().replace(",", ".");
+        obj.idPagamento = $(`#rowFat${array[i]}`).attr("idpayment");
         obj.idEmpresa = user.idEmpresa;
         obj.idUsuario = user.idUser;
         obj.dataPagto = (newData.getFullYear()) + "/" + ((newData.getMonth() + 1)) + "/" + newData.getDate();
@@ -726,7 +748,39 @@ function removeLinha(_id) {
     $(`#rowFat${_id}`).remove();
 
     // index = index -1;
+};
+
+function removeLinhaGet(_id) {
+
+    $("#btnExcluirModal").html("");
+    $("#btnExcluirModal").append(`<button type="button" class="btn btn-success" id="modal-btn-sim" onclick="DeletePayment(${_id})">Sim</button> `)
+    $("#excluirModal").modal("show");
 }
+
+function DeletePayment(_id) {
+    let ID = $(`#rowFat${_id}`).attr("idpayment");
+    // let ID = $(this).attr("idpay");
+
+    let http = `${https}/shop/payment/delete/${ID}`;
+   
+    $.ajax({
+        url: http,
+        type: 'DELETE'
+    }).then(function (response) {
+        toastr.success("Item Deletado!", {
+            positionClass: "toast-top-right"
+        });
+        $("#excluirModal").modal("hide");
+        // location.reload();
+
+        getShop();
+
+        getOneShop(numCompra);
+
+    });
+    //console.log(http)
+};
+
 /**_______________________________________________________________________________________ */
 function init() {
     getProvider();
@@ -739,7 +793,7 @@ try {
 } catch (error) {
     console.log(error)
 }
-let index = 1;
+
 /**_______________________________________________________________________________________ */
 function AddTableRow(tabela) {
 

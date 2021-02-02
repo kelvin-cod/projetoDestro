@@ -101,7 +101,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-lg-2 col-md-2 col-sm-4" >
+                            <div class="col-lg-2 col-md-2 col-sm-4">
                                 <div class="form-group ">
                                     <label for="">Status</label>
                                     <input type="text" id="Status" class="form-control text-center" disabled
@@ -112,7 +112,8 @@
                             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6">
                                 <div class="form-group ">
                                     <label for="">Previsão Entrega</label>
-                                    <input type="date" id="DatPrevEntrega" class="form-control" ondblclick="removeLimite()" onclick="Limite('DatPrevEntrega')">
+                                    <input type="date" id="DatPrevEntrega" class="form-control"
+                                        ondblclick="removeLimite()" onclick="Limite('DatPrevEntrega')">
 
                                 </div>
                             </div>
@@ -131,7 +132,14 @@
                                 </div>
                             </div>
                             <div class="col-lg-12">
-                                <h4 class="text-white mt-3 text-center">Produtos/Serviço desta Compra </h4>
+                                <div class="text-center mt-3 mb-1">
+                                    <h4 class="text-white   d-inline">Produtos/Serviço desta Compra
+                                    </h4> <span class="tooltip1 right d-inline"
+                                        data-text="Para Excluir uma Linha Clique nela e depois no botão 'Excluir'.">
+                                        <i class="fa fa-question  icone text-center  "></i>
+                                    </span>
+                                </div>
+
                                 <table class="table table-hover bg-light text-center" id="products-table">
                                     <thead class="thead-dark">
                                         <tr class=" text-white">
@@ -176,7 +184,7 @@
 
                     <h3 class="text-white mt-3">Últimas compras cadastradas </h3>
                     <table class="table table-hover bg-light text-center" onmouseout="SelecionaProdutos()">
-                        <thead class="thead-dark" >
+                        <thead class="thead-dark">
 
                             <th scope="col">Data</th>
                             <th scope="col">Ordem Compra</th>
@@ -184,7 +192,8 @@
                             <tr scope="col" colspan="3" class="text-center">
                                 <input class="form-control buscaProduto " type="text" name="search" alt="tabelaProduto"
                                     placeholder="Digite para buscar uma Compra" id="buscaCompra">
-                                <label for="" id="resultSearch" class="resultSearch text-dark " oninput=" getShop()"></label>
+                                <label for="" id="resultSearch" class="resultSearch text-dark "
+                                    oninput=" getShop()"></label>
                             </tr>
 
                         </thead>
@@ -213,10 +222,10 @@
                             <th scope="col">Data Pagto</th>
                             <th scope="col">Excluir</th>
 
-                        </thead >
+                        </thead>
                         <tbody>
-                         
--->
+
+
                         </tbody>
 
                         <tfoot>
@@ -290,7 +299,10 @@
 
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-danger" id="modal-btn-nao" data-dismiss="modal">Não</button>
-                    <button type="button" class="btn btn-success" id="modal-btn-sim" onclick="excluir()">Sim</button>
+                    <div id="btnExcluirModal">
+                        <button type="button" class="btn btn-success" id="modal-btn-sim" onclick="excluir()">Sim</button>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -323,32 +335,6 @@
     <script src="../js/utils/jquery.mask.js"></script>
     <script src="../js/main.js"></script>
     <script src="../js/compras.js"></script>
-    <script type="text/javascript">
-        $("#alterarDados").on("click", () => {
-            toastr.options = {
-                "closeButton": false,
-                "debug": true,
-                "newestOnTop": false,
-                "progressBar": false,
-                "positionClass": "toast-top-right",
-                "preventDuplicates": false,
-                "onclick": null,
-                "showDuration": "300",
-                "hideDuration": "1000",
-                "timeOut": "5000",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
-            }
-            toastr["success"]("Compra Realizada!", "teste", {
-                positionClass: "toast-top-left"
-            })
-
-
-        })
-    </script>
 </body>
 
 </html>
