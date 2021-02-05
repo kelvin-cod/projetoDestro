@@ -56,134 +56,142 @@
         <div class="container-fluid">
             <div class="row pt-5">
 
-                <div class="col-lg-8 col-md-12">
-                    <div class="row mt-3 text-white">
-                        <div class="col-lg-9 col-md-8">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
+                    <div class="row mt-3 text-white mt-sm-5">
+                        <div class="col-lg-9 col-md-9 col-sm-8">
                             <h1>Compras</h1>
                         </div>
-                        <div class="col-lg-3 col-md-4 text-center col-sm-6">
+                        <div class="col-lg-3 col-md-3 text-center col-sm-4">
                             <label for="">Nº Ordem de Compra</label> <br>
 
                             <h5 class="form-control" id="OrdemCompra"></h5>
-                            <input type="text" class="form-control text-center font-weight-bold" disabled value="0001"
-                                hidden>
+                            <input type="text" class="form-control text-center font-weight-bold" disabled hidden>
                         </div>
                     </div>
 
                     <form action="" id="formCompras">
-                        <div class="row text-white">
-                            <div class="col-lg-2 col-md-2 col-sm-3">
-                                <div class="form-group ">
-                                    <label for="data">Data</label>
-                                    <input type="text" class="form-control" id="data" disabled>
+                        <div class=" ">
+                            <div class="row text-white">
+                                <div class="col-lg-2 col-md-2 col-sm-3">
+                                    <div class="form-group ">
+                                        <label for="data">Data</label>
+                                        <input type="text" class="form-control" id="data" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-9">
+                                    <div class="form-group ">
+                                        <label for="">Fornecedor</label>
+
+                                        <select name="fornecedor" id="fornecedor" class="form-control">
+
+
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3 col-md-3 col-sm-8">
+                                    <div class="form-group ">
+                                        <label for="tipo">Tipo</label>
+
+                                        <select name="" id="tipo" class="form-control" required>
+
+                                            <option value="1">Ordem de Compra</option>
+                                            <option value="2">Reposicao Automatica</option>
+                                            <option value="3">Compra Efetivada</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-4">
+                                    <div class="form-group ">
+                                        <label for="">Status</label>
+                                        <input type="text" id="Status" class="form-control text-center" disabled
+                                            value="Aberto">
+
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6">
+                                    <div class="form-group ">
+                                        <label for="">Previsão Entrega</label>
+                                        <input type="date" id="DatPrevEntrega" class="form-control"
+                                            ondblclick="removeLimite()" onclick="Limite('DatPrevEntrega')">
+
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6">
+                                    <div class="form-group ">
+                                        <label for="">Entrega</label>
+                                        <input type="date" id="DatEntrega" class="form-control">
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="form-group ">
+                                        <label for="">Obs</label>
+                                        <input type="text" id="Obs" class="form-control">
+
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-5 col-md-5 col-sm-9">
-                                <div class="form-group ">
-                                    <label for="">Fornecedor</label>
-
-                                    <select name="fornecedor" id="fornecedor" class="form-control">
-
-
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-3 col-md-3 col-sm-8">
-                                <div class="form-group ">
-                                    <label for="tipo">Tipo</label>
-
-                                    <select name="" id="tipo" class="form-control" required>
-
-                                        <option value="1">Ordem de Compra</option>
-                                        <option value="2">Reposicao Automatica</option>
-                                        <option value="3">Compra Efetivada</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-lg-2 col-md-2 col-sm-4">
-                                <div class="form-group ">
-                                    <label for="">Status</label>
-                                    <input type="text" id="Status" class="form-control text-center" disabled
-                                        value="Aberto">
-
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6">
-                                <div class="form-group ">
-                                    <label for="">Previsão Entrega</label>
-                                    <input type="date" id="DatPrevEntrega" class="form-control"
-                                        ondblclick="removeLimite()" onclick="Limite('DatPrevEntrega')">
-
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6">
-                                <div class="form-group ">
-                                    <label for="">Entrega</label>
-                                    <input type="date" id="DatEntrega" class="form-control">
-
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="form-group ">
-                                    <label for="">Obs</label>
-                                    <input type="text" id="Obs" class="form-control">
-
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="text-center mt-3 mb-1">
-                                    <h4 class="text-white   d-inline">Produtos/Serviço desta Compra
-                                    </h4> <span class="tooltip1 right d-inline"
+                            <div class="">
+                                <div class="text-center mt-3 ">
+                                    <h4 class="text-white  d-inline">Produtos/Serviço desta Compra </h4>
+                                    <span class="tooltip1 right d-inline"
                                         data-text="Para Excluir uma Linha Clique nela e depois no botão 'Excluir'.">
                                         <i class="fa fa-question  icone text-center  "></i>
                                     </span>
                                 </div>
+                                <div class="col-lg-12 col-md-12">
 
-                                <table class="table table-hover bg-light text-center" id="products-table">
-                                    <thead class="thead-dark">
-                                        <tr class=" text-white">
-                                            <!--<th scope="col">Item</th>-->
+
+                                    <table class="table table-hover sm-table-responsive bg-light text-center"
+                                        id="products-table">
+                                        <thead class="thead-dark">
+
                                             <th scope="col">Produto/Serviço</th>
-                                            <th scope="col" style="width: fit-content;">Quant</th>
+                                            <th scope="col">Quant</th>
                                             <th scope="col">Val Unit</th>
                                             <th scope="col">Sub Total</th>
 
-                                        </tr>
+                                        </thead>
 
-                                    </thead>
-
-                                    <tbody>
+                                        <tbody>
 
 
-                                    </tbody>
+                                        </tbody>
 
-                                    <tfoot>
-                                        <td class="bg-roxo">
-                                            <button class="btn btn-success " onclick="AddTableRow('products-table')"
-                                                type="button">
-                                                <i class="fa fa-plus"></i>
-                                                Adicionar
-                                                Produto
-                                            </button>
-                                        </td>
+                                        <tfoot>
+                                            <tr>
+                                                <td class="bg-roxo">
+                                                    <button class="btn btn-success "
+                                                        onclick="AddTableRow('products-table')" type="button">
+                                                        <i class="fa fa-plus"></i>
+                                                        Adicionar
+                                                        Produto
+                                                    </button>
+                                                </td>
 
-                                        <td scope="row" class="text-right bg-roxo text-white" colspan="2">
-                                            Valor total dos
-                                            Produtos/Serviços:</td>
-                                        <td id="ValorTotalSomado"> R$ 0,00</td>
-                                    </tfoot>
-                                </table>
+                                                <td scope="row" class="text-right bg-roxo text-white" colspan="2">
+                                                    Valor total dos
+                                                    Produtos/Serviços:</td>
+                                                <td id="ValorTotalSomado"> R$ 0,00</td>
+                                            </tr>
+
+                                        </tfoot>
+                                    </table>
+
+                                </div>
                             </div>
                         </div>
+                    </form>
                 </div>
 
-                </form>
 
-                <div class="col-lg-4 col-md-12 tblCompras">
+
+                <div class="col-lg-4 col-md-4 tblCompras col-sm-12">
 
                     <h3 class="text-white mt-3">Últimas compras cadastradas </h3>
-                    <table class="table table-hover bg-light text-center" onmouseout="SelecionaProdutos()">
+                    <table class="table table-hover sm-table-responsive bg-light text-center"
+                        onmouseout="SelecionaProdutos()">
                         <thead class="thead-dark">
 
                             <th scope="col">Data</th>
@@ -207,9 +215,9 @@
             </div>
 
             <div class="row text-center justify-content-center ">
-                <div class="col-lg-11 com-md-12 col-sm-12">
+                <div class="col-lg-12 com-md-12 col-sm-12 col-xs-12 ">
                     <h4 class="text-white mt-3 text-center">Faturamento (Pagamentos) desta Compra </h4>
-                    <table class="table table-hover bg-light text-center " id="tabelaFaturamento">
+                    <table class="table table-hover  sm-table-responsive bg-light text-center " id="tabelaFaturamento">
                         <thead class="thead-dark">
 
                             <!-- <th scope="col">Item</th>-->
@@ -300,7 +308,8 @@
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-danger" id="modal-btn-nao" data-dismiss="modal">Não</button>
                     <div id="btnExcluirModal">
-                        <button type="button" class="btn btn-success" id="modal-btn-sim" onclick="excluir()">Sim</button>
+                        <button type="button" class="btn btn-success" id="modal-btn-sim"
+                            onclick="excluir()">Sim</button>
                     </div>
 
                 </div>

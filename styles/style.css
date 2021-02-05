@@ -1,3 +1,8 @@
+.load {
+    width: 100px;
+    height: 80px;
+}
+
 .nav-item {
     font-weight: 600;
     color: rgb(119, 119, 187) !important;
@@ -147,7 +152,6 @@ label {
 footer {
     position: relative;
     bottom: 0;
-
 }
 
 .btn-custom {
@@ -163,6 +167,7 @@ footer {
     top: 0;
     z-index: 99999;
 }
+
 
 .page-loader__spin {
     width: 50px;

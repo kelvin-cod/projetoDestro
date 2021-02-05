@@ -31,7 +31,8 @@ setTimeout(function () {
 $("#logout").on("click", () => {
 
   sessionStorage.removeItem('user')
-  $(window.document.location).attr('href', "login.html")
+ // $(window.document.location).attr('href', "login.html")
+ window.location.href = "/login.html";
 });
 
 
