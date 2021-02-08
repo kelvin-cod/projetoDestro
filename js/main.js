@@ -17,7 +17,7 @@ async function isloggedIn() {
 
   if (user == null) {
 
-    $(window.document.location).attr('href', novaURL);
+  //  $(window.document.location).attr('href', novaURL);
     //$(window.document.location).attr('href', "../index.html");
     //window.location.href = "/index.html";
   } else {
