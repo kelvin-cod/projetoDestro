@@ -1,14 +1,15 @@
-var novaURL = "login.html";
-let user;
+var novaURL = "../pages/login.html";
+var user;
 async function isloggedIn() {
 
-
-
   try {
-    user = await sessionStorage.getItem("user") //JSON.parse(sessionStorage.getItem("user"));
+    user = await JSON.parse(sessionStorage.getItem("user")); //JSON.parse(sessionStorage.getItem("user"));
+    
+    console.log(user)
   } catch (error) {
     console.log(error)
   }
+
   if (user == null) {
 
     $(window.document.location).attr('href', novaURL);
@@ -31,8 +32,8 @@ setTimeout(function () {
 $("#logout").on("click", () => {
 
   sessionStorage.removeItem('user')
- // $(window.document.location).attr('href', "login.html")
- window.location.href = "login.html";
+  // $(window.document.location).attr('href', "login.html")
+  window.location.href = "../pages/login.html";
 });
 
 

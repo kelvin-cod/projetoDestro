@@ -1,0 +1,10 @@
+.container-fluid {
+    height: auto !important;
+}
+
+@media (min-width:1024px) {
+    .container-fluid {
+        height: 100vh !important;
+    }
+
+}

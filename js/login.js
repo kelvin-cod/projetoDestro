@@ -35,7 +35,7 @@ function Login() {
          $("#gif").hide();
          if (response) {
             sessionStorage.setItem("user", JSON.stringify(response));
-            window.location.href = "index.html";
+            window.location.href = "../index.html";
         }
 
     }).fail(err => {
