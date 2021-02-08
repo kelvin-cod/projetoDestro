@@ -130,16 +130,7 @@ label {
 
 }
 
-@media (max-width:575px) {
 
-    .container-fluid {
-
-        height: auto !important;
-
-    }
-
-
-}
 
 .form-control {
     border: 1px solid black !important
