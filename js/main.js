@@ -1,4 +1,4 @@
-var novaURL = "/pages/login.html";
+var novaURL = "/login.html";
 var user;
 async function isloggedIn() {
 
