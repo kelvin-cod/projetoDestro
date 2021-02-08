@@ -49,8 +49,21 @@
                     <li class="nav-item ">
                         <a class="nav-link" href="./gerenciar.html">Gerenciar </a>
                     </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" id="logout" href="../login.html">Sair </a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Sair
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div class="text-center">
+                                <i class="fa fa-user fa-2x"></i>
+                                <h4 id="user"></h4>
+                                <label for="" id="userTipo"></label>
+                            </div>
+
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" id="logout">Sair</a>
+                        </div>
                     </li>
                 </ul>
             </div>

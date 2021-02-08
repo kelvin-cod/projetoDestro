@@ -4,8 +4,13 @@ async function isloggedIn() {
 
   try {
     user = await JSON.parse(sessionStorage.getItem("user")); //JSON.parse(sessionStorage.getItem("user"));
-    
-    console.log(user)
+    if (user.tipo == 1) {
+      user.tipo = "Administrador"
+    } else {
+      user.tipo = "Básico"
+    }
+    $("#user").text(user.username);
+     $("#userTipo").text(user.tipo);
   } catch (error) {
     console.log(error)
   }

@@ -1,2 +1,2 @@
 
-window.onload = $("#user").text(user.username)
+window.onload = $("#user").text(user.username); $("#userTipo").text(user.tipo);
