@@ -10,6 +10,8 @@ user = {
     nome: "Destro"
 }
 
+let local = 'http://localhost:3000';
+
 $("#FornCep").keydown(function () {
     clearTimeout(typingTimer);
     if ($('#FornCep').val) {
@@ -81,46 +83,72 @@ function getOneProvider(_id) {
     </button>`);
     });
     tablesProviders(_id);
+    tablesProvidersShop(_id)
 }
 
 function tablesProviders(_id) {
-    let http = `https://destrobackend.herokuapp.com/provider/list/tables/${_id}`
-   // let http = `http://localhost:3000/provider/list/tables/${_id}`
-    let tbl = '';
+    // let http = `https://destrobackend.herokuapp.com/provider/list/tables/${_id}`
+    let http = `http://localhost:3000/provider/list/tables/${_id}`
+    let soma = 0
     let tbl2 = '';
     $.ajax({
         url: http,
         type: 'GET'
     }).then(function (response) {
-       // console.log(response)
+        console.log(response)
+        $.each(response, function (i, item) {
+            soma += item.Quant;
+            Data = new Date(item.Dat)
+
+            tbl2 += '<tr scope="row" >' +
+                '<td  >' + (Data.getDate()) + "/" + ((Data.getMonth() + 1)) + "/" + Data.getFullYear() + '</td>' +
+                '<td  >' + item.Descricao + '</td>' +
+                '<td  >' + item.PrecoCusto.toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL"
+                }) + '</td>' +
+                '<td  >' + (item.PrecoCusto * item.Quant).toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL"
+                }) + '</td>' +
+                '</tr>';
+        });
+
+
+        $("#ultimosComprados").html("");
+
+        $("#ultimosComprados").append(tbl2);
+
+        $("#quantUltimos").text(soma)
+    })
+};
+
+function tablesProvidersShop(_id) {
+    // let http = `https://destrobackend.herokuapp.com/provider/list/tables/${_id}`
+    let http = `http://localhost:3000/provider/list/tables/shop/${_id}`
+    let tbl = '';
+    $.ajax({
+        url: http,
+        type: 'GET'
+    }).then(function (response) {
+        console.log(response)
         $.each(response, function (i, item) {
 
             Data = new Date(item.Dat)
             tbl +=
                 '<tr scope="row" >' +
-                '<td  >' + (Data.getDate() + 1) + "/" + ((Data.getMonth() + 1)) + "/" + Data.getFullYear() + '</td>' +
+                '<td  >' + (Data.getDate()) + "/" + ((Data.getMonth() + 1)) + "/" + Data.getFullYear() + '</td>' +
                 '<td  >' + item.idCompra + '</td>' +
                 '<td  >' + item.Concluida + '</td>' +
                 '<td  >' + "Destro" + '</td>' + //item.idEmpresa
                 '</tr>';
 
-            tbl2 += '<tr scope="row" >' +
-                '<td  >' + (Data.getDate() + 1) + "/" + ((Data.getMonth() + 1)) + "/" + Data.getFullYear() + '</td>' +
-                '<td  >' + item.Descricao + '</td>' +
-                '<td  >' + item.PrecoVenda.toLocaleString("pt-BR", {
-                    style: "currency",
-                    currency: "BRL"
-                }) + '</td>' +
-                '<td  >' + +'</td>' +
-                '</tr>';
-        });
+            $("#comprasFornecedor").html("");
 
-        $("#comprasFornecedor").html("");
-        $("#ultimosComprados").html("");
-        $("#comprasFornecedor").append(tbl);
-        $("#ultimosComprados").append(tbl2);
-        $("#quantCompras").text(response.length);
-        $("#quantUltimos").text(response.length)
+            $("#comprasFornecedor").append(tbl);
+
+            $("#quantCompras").text(response.length);
+        })
     })
 };
 
@@ -251,7 +279,7 @@ function getProvider() {
         url: http,
         type: 'GET'
     }).then(function (response) { //
-
+        $('#tabelaFornecedor').html("");
         $.each(response, function (i, item) {
 
             tbl +=
@@ -286,7 +314,64 @@ $("#alterarDados").on("click", function () {
         $("select").prop("disabled", false);
     }
 })
+/**_______________________________________________________________________________________ */
 
+$("#buscaFornecedor").on("keydown", () => {
+
+    clearTimeout(typingTimer);
+
+    if ($('#buscaFornecedor').val()) {
+        typingTimer = setTimeout(doneTyping, doneTypingInterval);
+    }
+    if ($('#buscaFornecedor').val() === "") {
+        return getProvider()
+
+    }
+
+});
+
+function doneTyping() {
+    let http = `${local}/provider/search`;
+    let tbl = '';
+    let Obj = {
+        Filter: $('#buscaFornecedor').val()
+    };
+
+
+    if (Obj.Filter == "") {
+
+        getProvider();
+        return false;
+    };
+
+    $.ajax({
+        url: http,
+        type: 'POST',
+        data: Obj
+    }).then(function (response) { //
+        // console.log(response)
+        $('#tabelaFornecedor').html("");
+        if (response.length == 0) {
+            if ($("#resultSearch").text() == "") {
+                $("#resultSearch").text("Não foi Localizada nenhum Produto!");
+            }
+
+            $("#resultSearch").show();
+        } else {
+
+            $.each(response, function (i, item) {
+
+                tbl +=
+                    '<tr onclick="getOneProvider(' + item.IdFornecedor + ')">' +
+                    '<td scope="row" colspan="2">' + item.Nom + '</td>' +
+                    '</tr>';
+            });
+
+            $('#tabelaFornecedor').append(tbl);
+            //  $('#tblCompras ').append(tbl);
+        }
+    });
+}
 
 function aoIniciar() {
     getProvider();

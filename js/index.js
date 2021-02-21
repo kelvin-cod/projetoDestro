@@ -4,7 +4,8 @@ $("#cep").mask("00000-000");
 /*função cep correios*/
 var typingTimer; //timer identifier
 var doneTypingInterval = 1000; //time in ms, 1 second for example
-
+let https = 'https://destrobackend.herokuapp.com';
+let local = 'http://localhost:3000';
 $("#cep").keydown(function () {
     clearTimeout(typingTimer);
     if ($('#cep').val) {
@@ -51,7 +52,7 @@ function enviar() {
         codIbge: $("#ibge").val(),
         sexo: parseInt($("#sexo").val()),
         celular: $("#celular").val(),
-        nascimento:  $("#nascimento").val(),
+        nascimento: $("#nascimento").val(),
         email: $("#email").val(),
         usuarioPrincipal: $("#usuarioPrincipal").val(),
         senhaPrincipal: $("#senhaPrincipal").val(),
@@ -59,7 +60,6 @@ function enviar() {
         portaSmtp: $("#portaSmtp").val(),
         senhaSmtp: $("#senhaSmtp").val(),
         emailSmtp: $("#emailSmtp").val()
-
     };
 
 
@@ -72,7 +72,7 @@ function enviar() {
         data: obj
     }).then(function (response) { //
         //console.log(response)
-      //  alert("Atualizado com sucesso!")
+        //  alert("Atualizado com sucesso!")
         getdata();
 
     });
@@ -80,14 +80,14 @@ function enviar() {
 
 function getdata() {
     let http = 'https://destrobackend.herokuapp.com/data/get/1'
- 
+
     $.ajax({
         url: http,
         type: 'GET'
     }).then(function (response) { //
-        let data =  new Date(response[0].dataCadastro)
+        let data = new Date(response[0].dataCadastro)
         console.log(response)
-     
+
         $("#nomeRazao").val(response[0].Nom);
         $("#apelido").val(response[0].Apelido);
         $("#documento").val(response[0].Doc);
@@ -117,15 +117,22 @@ function getdata() {
 
 function enviarUsuario() {
     let obj = {};
+    if ($("#senhaUsuario").val() != $("#confirmaSenhaUsuario").val()) {
+        toastr.error("As senhas não são iguais", {
+            positionClass: "toast-top-right"
+        });
+        $("#confirmaSenhaUsuario").focus();
+        return;
+    }
 
     obj = {
-        nomeUsuario: $("#nomeApelido").val(),
-        tipoAcesso: parseInt($("#tipoAcesso").val()),
-        senha: $("#senhaUsuario").val(),
+        username: $("#nomeApelido").val(),
+        tipo: parseInt($("#tipoAcesso").val()),
+        password: $("#senhaUsuario").val(),
         idEmpresa: 1
     };
 
-    let http = 'https://destrobackend.herokuapp.com/data/usuario/1'
+    let http = `${https}/user/create`;
     // let http = 'http://localhost:3000/data/usuario/1'
 
     $.ajax({
@@ -134,28 +141,31 @@ function enviarUsuario() {
         data: obj
     }).then(function (response) { //
         //console.log(response)
+        toastr.success("Usuario Cadastrado", {
+            positionClass: "toast-top-right"
+        });
         $('#exampleModalCenter').modal('hide');
         getUsuario();
     });
 };
 
 function getUsuario() {
-    let http = 'https://destrobackend.herokuapp.com/data/list/usuario/1'
+    let http = `${https}/data/list/usuario/1/`;
     let tbl = '';
     let tipo = ''
     $.ajax({
         url: http,
         type: 'GET'
     }).then(function (response) { //
-
+        $('#tabelaUsuario').html("");
         $.each(response, function (i, item) {
-            if (item.tipoAcesso == 1) {
+            if (item.tipo == 1) {
                 tipo = 'Administrador'
             } else {
                 tipo = 'Básico'
             }
             tbl +=
-                '<tr onclick="abrirModal(' + item.idUsuarioSistema + ')"><td>' + item.nomeUsuario + '</td>' +
+                '<tr onclick="abrirModal(' + item.idUsuario + ')"><td>' + item.username + '</td>' +
                 '<td>' + tipo + '</td>'
             '</tr>';
         });
@@ -190,6 +200,7 @@ function abrirModal(_id) {
     $("input").prop("disabled", true)
 }
 let id
+
 function excluirModal(_id) {
     id = _id
     $('#excluirModal').modal('show', 'focus');

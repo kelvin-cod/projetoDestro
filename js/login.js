@@ -4,17 +4,17 @@ let local = 'http://localhost:3000';
 
 function Login() {
     $("#gif").show();
-    let http = `${https}/user/login`;
+    let http = `${local}/user/login`;
     let user = {
-        email: $("#email").val(),
+        username: $("#username").val(),
         password: $("#password").val()
     };
 
-    if ($("#email").val() == '') {
-        toastr.error("O Campo Email está vazio!", {
+    if ($("#username").val() == '') {
+        toastr.error("O Campo Nome de Usuario está vazio!", {
             positionClass: "toast-top-right"
         });
-        $("#email").focus();
+        $("#username").focus();
         $("#gif").hide();
         return;
     }
@@ -32,8 +32,8 @@ function Login() {
         type: 'POST',
         data: user
     }).done(function (response) { //
-         $("#gif").hide();
-         if (response) {
+        $("#gif").hide();
+        if (response) {
             sessionStorage.setItem("user", JSON.stringify(response));
             window.location.href = "../index.html";
         }

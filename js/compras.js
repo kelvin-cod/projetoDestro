@@ -194,7 +194,7 @@ function getProduct(_id, Iditem, parametro) {
         let resp = await $.each(response, function (i, item) {
 
             $('<option>').val(item.IdProduto).text(item.Descricao)
-                .attr("valor", item.PrecoVenda.toLocaleString("pt-BR", {
+                .attr("valor", item.PrecoCusto.toLocaleString("pt-BR", {
                     style: "currency",
                     currency: "BRL"
                 })).appendTo(selectbox5);
@@ -206,7 +206,7 @@ function getProduct(_id, Iditem, parametro) {
 
         } else {
             let val = await $(`#Prod${Iditem} option:selected`).attr("valor");
-            console.log(val)
+
             $(`#Val${Iditem}`).text(val)
         }
 
@@ -267,7 +267,7 @@ function getOneShop(_id) {
                 $(`#products-table > tbody`).append(cols);
 
                 $(`#Quant${numItem}`).val(item.Quant);
-                $(`#Val${numItem}`).text(item.PrecoVenda.toLocaleString("pt-BR", {
+                $(`#Val${numItem}`).text(item.PrecoCusto.toLocaleString("pt-BR", {
                     style: "currency",
                     currency: "BRL"
                 }));
@@ -641,7 +641,7 @@ function updateProduct(_id) {
         Compra.Faturamentos.push(obj); // preenche o array
     };
 
-    console.log(Compra)
+    // console.log(Compra)
 
 
     $.ajax({
@@ -651,13 +651,13 @@ function updateProduct(_id) {
     }).then(function (response) {
 
         //console.log(response)
+       
 
-
-        location.reload();
+     //  location.reload();
         toastr.success("Compra Atualizada!", "Sucesso", {
             positionClass: "toast-top-right"
         });
-
+        getOneShop(_id) ;
         getShop();
 
     });
@@ -675,7 +675,6 @@ $("#buscaCompra").on("keydown", () => {
     }
     if ($('#buscaCompra').val() === "") {
         return getShop()
-
     }
 
 });
@@ -703,7 +702,7 @@ function doneTyping() {
         type: 'POST',
         data: Obj
     }).then(function (response) { //
-        // console.log(response)
+      //  console.log(response)
         if (response.length == 0) {
             if ($("#resultSearch").text() == "") {
                 $("#resultSearch").text("Não foi Localizada nenhuma Compra!");
@@ -716,7 +715,7 @@ function doneTyping() {
                 Data = new Date(item.Dat)
                 tbl +=
                     '<tr scope="row" onclick="getOneShop(' + item.idCompra + ')">' +
-                    '<td  >' + (Data.getDate() + 1) + "/" + ((Data.getMonth() + 1)) + "/" + Data.getFullYear() + '</td>' +
+                    '<td  >' + item.Dat.substring(8, 10) + "/" + item.Dat.substring(5, 7) + "/" + item.Dat.substring(0, 4) + '</td>' +
                     '<td  >' + item.idCompra + '</td>' +
                     '<td  >' + item.Fornecedor + '</td>' +
                     '</tr>';
@@ -762,7 +761,7 @@ function DeletePayment(_id) {
     // let ID = $(this).attr("idpay");
 
     let http = `${https}/shop/payment/delete/${ID}`;
-   
+
     $.ajax({
         url: http,
         type: 'DELETE'

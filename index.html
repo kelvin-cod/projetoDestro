@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="./js/utils/animisition/animsition.min.css" media="all" />
 
     <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./js/utils/Toastr/build/toastr.css">
     <title>Meus Dados</title>
 </head>
 
@@ -175,7 +176,7 @@
                                     <input type="text" class="form-control" id="numero">
                                 </div>
                             </div>
-                            <div class="col-lg-2 col-md-2 col-sm-2">
+                            <div class="col-lg-2 col-md-2 col-sm-3">
                                 <div class="form-group ">
                                     <label for="ibge">Ibge</label>
                                     <input type="text" class="form-control" id="ibge" disabled>
@@ -184,7 +185,7 @@
                         </div>
 
                         <div class="row text-white">
-                            <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="col-lg-4 col-md-4 col-sm-5">
                                 <div class="form-group ">
                                     <label for="email">Email
                                         <span class="tooltip1 right" data-text="Todos os avisos importantes do sistema serão
@@ -195,7 +196,7 @@
                                     <input type="email" class="form-control" id="email" required>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-3 col-sm-3">
+                            <div class="col-lg-3 col-md-3 col-sm-4">
                                 <div class="form-group ">
                                     <label for="celular">Celular
                                         <span class="tooltip1 bottom" data-text="Avisos importantes serão enviados por mensagem,
@@ -207,7 +208,7 @@
                                     <input type="text" class="form-control" id="celular" required>
                                 </div>
                             </div>
-                            <div class="col-lg-2 col-md-2 col-sm-2">
+                            <div class="col-lg-2 col-md-2 col-sm-3">
                                 <div class="form-group ">
                                     <label for="sexo">Sexo</label>
 
@@ -218,7 +219,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-3 col-sm-3">
+                            <div class="col-lg-3 col-md-3 col-sm-4">
                                 <div class="form-group ">
                                     <label for="nascimento">Nascimento</label>
                                     <input type="date" class="form-control" id="nascimento" required>
@@ -270,7 +271,7 @@
                                     <input type="text" class="form-control" id="smtp" required>
                                 </div>
                             </div>
-                            <div class="col-lg-2 col-md-3 col-sm-4">
+                            <div class="col-lg-2 col-md-3 col-sm-3">
                                 <div class="form-group ">
                                     <label for="portaSmtp">Porta SMTP</label>
                                     <input type="text" class="form-control" id="portaSmtp">
@@ -290,11 +291,11 @@
                             </div>
                         </div>
 
-                        <div class="row mt-5 mb-5">
+                        <div class="row mt-5 mb-5 justify-content-center">
                             <div class="col-12  text-center text-danger">
                                 <h6 id="msgEdicao">Habilitado para Edição</h6>
                             </div>
-                            <div class="offset-lg-5 col-sm-12 col-md-8 offset-md-4">
+                            <div class="">
                                 <button class="btn btn-warning  font-weight-bold" type="button" id="alterarDados">
                                     <i class="fa fa-pencil"></i>
                                     Alterar
@@ -412,7 +413,7 @@
 
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label for="">Comfirmar Senha</label>
+                                        <label for="">Confirmar Senha</label>
                                         <input class="form-control" type="password" autocomplete="new-password"
                                             id="confirmaSenhaUsuario" required>
                                     </div>
@@ -482,7 +483,7 @@
         integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous">
     </script>
 
-
+    <script src="./js/utils/Toastr/toastr.js"></script>
     <script src="./js/utils/animisition/animsition.min.js"></script>
     <script src="./js/main.js"></script>
 

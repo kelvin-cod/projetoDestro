@@ -9,6 +9,23 @@
  $("#prodDataUltAlteracao").val(d.toLocaleDateString());
  $("#prodUltAlteracao").val(user.nome)
  // alert(d.toLocaleString());
+ function somarTotal() {
+
+     var valorCalculadoPago = 0;
+
+     $(".valor-calculado").each(function () {
+
+         if ($(this).val() == "") {
+             valorCalculadoPago += 0
+         } else {
+             valorCalculadoPago += parseFloat($(this).val());
+         }
+
+
+     });
+
+     $("#prodPrecoCusto").val(valorCalculadoPago.toFixed(2))
+ };
 
  function postProduct() {
      let obj = {};
@@ -21,7 +38,7 @@
          precoCompra: $("#prodPrecoCompra").val(),
          valorFrete: $("#prodValorFrete").val(),
          adicionais: $("#prodAdicionais").val(),
-         precoVenda: $("#prodPrecoVenda").val(),
+         precoCusto: $("#prodPrecoCusto").val(),
          ultAlteracao: $("#prodUltAlteracao").val(),
          unidades: $("#prodUnidades").val(),
          dataUltimaAlteracao: $("#prodDataUltAlteracao").val(),
@@ -43,7 +60,7 @@
          data: obj
      }).then(function (response) { //
          //console.log(response)
-         toastr.success("Produto/Serviço Salvado")
+         toastr.success("Produto/Serviço Criado")
          $('#tabelaProduto').html("");
          resetForm();
          getProduct();
@@ -61,7 +78,7 @@
          url: http,
          type: 'GET'
      }).then(function (response) { //
-
+        $('#tabelaProduto').html("");
          $.each(response, function (i, item) {
 
              tbl +=
@@ -107,16 +124,20 @@
          $("#prodPrecoCompra").val(response[0].Preco.toFixed(2));
          $("#prodValorFrete").val(response[0].ValorFrete.toFixed(2));
          $("#prodAdicionais").val(response[0].Adicionais.toFixed(2));
-         $("#prodPrecoVenda").val(response[0].PrecoVenda.toFixed(2));
+         $("#prodPrecoCusto").val(response[0].PrecoVenda.toFixed(2));
          $("#prodUltAlteracao").val(response[0].UltimaAlteracao);
          $("#prodDataUltAlteracao").val(response[0].DataUltimaAlteracao);
          $("#prodObs").val(response[0].Obs);
-         $("#prodUnidades").val(response[0].Unidades);
+         $("select[name=prodUnidades]").val(response[0].Unidades);
          $('select[name="tipo"]').val(response[0].Tipo);
          $("#cadastro").text(data.toLocaleDateString());
 
+     }).done(() => {
+         somarTotal()
      });
      GettablesProducts(_id);
+
+
  }
 
  function updateProduct(_id) {
@@ -129,7 +150,7 @@
          precoCompra: $("#prodPrecoCompra").val(),
          valorFrete: $("#prodValorFrete").val(),
          adicionais: $("#prodAdicionais").val(),
-         precoVenda: $("#prodPrecoVenda").val(),
+         precoCusto: $("#prodPrecoCusto").val(),
          ultAlteracao: $("#prodUltAlteracao").val(),
          unidades: $("#prodUnidades").val(),
          dataUltimaAlteracao: $("#prodDataUltAlteracao").val(),
@@ -146,7 +167,9 @@
          data: obj
      }).done(function (response) { //
          //console.log(response)
-         toastr.success("Atualizado com sucesso!")
+         toastr.success("Atualizado com sucesso!", {
+             positionClass: "toast-top-right"
+         })
 
          $('#tabelaProduto').html("");
          resetForm()
@@ -174,7 +197,7 @@
          url: http,
          type: 'GET'
      }).done(function (response) { //
-         console.log(response)
+         // console.log(response)
 
          $.each(response, function (i, item) {
              Data = new Date(item.Dat)
@@ -185,7 +208,7 @@
              }
              tbl +=
                  '<tr>' +
-                 '<td>' + (Data.getDate() + 1) + "/" + auxMes + "/" + Data.getFullYear() + '</td>' +
+                 '<td>' + (Data.getDate()) + "/" + auxMes + "/" + Data.getFullYear() + '</td>' +
                  '<td>' + item.TotalQuant + '</td>' +
                  '<td>' + item.TotalVenda.toLocaleString("pt-BR", {
                      style: "currency",
@@ -301,7 +324,7 @@
 
  })
 
-
+/*
  $('#buscaProduto').bind('keydown keypress keyup change', function () {
      var search = this.value;
      var $li = $("#tabelaProduto tr td").hide();
@@ -309,4 +332,65 @@
          return $(this).text().indexOf(search) >= 0;
      }).show();
  });
+ */
+ /**_______________________________________________________________________________________ */
+ var typingTimer; //timer identifier
+ var doneTypingInterval = 1500; //time in ms, 1 second for example
+ $("#buscaProduto").on("keydown", () => {
+
+     clearTimeout(typingTimer);
+
+     if ($('#buscaProduto').val()) {
+         typingTimer = setTimeout(doneTyping, doneTypingInterval);
+     }
+     if ($('#buscaProduto').val() === "") {
+         return getProduct()
+
+     }
+
+ });
+
+ function doneTyping() {
+     let http = `${https}/products/search`;
+     let tbl = '';
+     let Obj = {
+         Filter: $('#buscaProduto').val()
+     };
+
+
+     if (Obj.Filter == "") {
+    
+         getProduct();
+         return false;
+     };
+
+     $.ajax({
+         url: http,
+         type: 'POST',
+         data: Obj
+     }).then(function (response) { //
+     // console.log(response)
+      $('#tabelaProduto').html("");
+         if (response.length == 0) {
+             if ($("#resultSearch").text() == "") {
+                 $("#resultSearch").text("Não foi Localizada nenhum Produto!");
+             }
+
+             $("#resultSearch").show();
+         } else {
+             $.each(response, function (i, item) {
+
+                 tbl +=
+                     '<tr onclick="getOneProduct(' + item.IdProduto + ')">' +
+                     '<td  >' + item.Descricao + '</td>' +
+                     '</tr>';
+             });
+
+             $('#tabelaProduto').append(tbl);
+             $("#resultSearch").hide();
+             //  $('#tblCompras ').append(tbl);
+         }
+     });
+ }
+
  window.onload = aoIniciar()
