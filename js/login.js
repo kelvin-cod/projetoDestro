@@ -4,7 +4,7 @@ let local = 'http://localhost:3000';
 
 function Login() {
     $("#gif").show();
-    let http = `${local}/user/login`;
+    let http = `${https}/user/login`;
     let user = {
         username: $("#username").val(),
         password: $("#password").val()
