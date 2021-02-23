@@ -176,14 +176,17 @@ function getUsuario() {
 }
 
 function abrirModal(_id) {
-    let http = 'https://destrobackend.herokuapp.com/data/get/usuario/' + _id
+    // let http = 'https://destrobackend.herokuapp.com/data/get/usuario/' + _id
+    let http = `${https}/data/get/usuario/${_id}`
     $.ajax({
         url: http,
         type: 'GET'
     }).then(function (response) { //
+
+        console.log(response)
         $("#footerModal").html('');
-        $("#nomeApelido").val(response[0].nomeUsuario)
-        $('select[name="tipoAcesso"]').val(response[0].tipoAcesso);
+        $("#nomeApelido").val(response[0].username)
+        $('select[name="tipoAcesso"]').val(response[0].tipo);
         $("#senhaUsuario").val(response[0].senha)
         $("#confirmaSenhaUsuario").val(response[0].senha)
 
@@ -208,8 +211,8 @@ function excluirModal(_id) {
 
 $('#modal-btn-sim').on("click", () => {
 
-    //let http = 'https://destrobackend.herokuapp.com/data/delete/usuario/' + _id
-    let http = 'http://localhost:3000/data/delete/usuario/' + id
+    let http = 'https://destrobackend.herokuapp.com/data/delete/usuario/' + _id
+    //let http = 'http://localhost:3000/data/delete/usuario/' + id
     $.ajax({
         url: http,
         type: 'DELETE'
@@ -222,10 +225,16 @@ $('#modal-btn-sim').on("click", () => {
         getUsuario();
     });
 })
+$("#olho").on("mousedown",function () {
+    $("#senhaUsuario").attr("type", "text");
+});
+
+$("#olho").on("mouseup", function () {
+    $("#senhaUsuario").attr("type", "password");
+});
 
 function atualizaUsuario(_id) {
     let obj = {};
-    mySmallModalLabel
     obj = {
         nomeUsuario: $("#nomeApelido").val(),
         tipoAcesso: parseInt($("#tipoAcesso").val()),
@@ -241,6 +250,10 @@ function atualizaUsuario(_id) {
         data: obj
     }).then(function (response) { //
         //console.log(response)
+        toastr.success("Usuario Atualizado", {
+            positionClass: "toast-top-right"
+        });
+
         $('#exampleModalCenter').modal('hide');
         $("#tabelaUsuario").html('');
 

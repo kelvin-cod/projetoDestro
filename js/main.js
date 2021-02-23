@@ -6,7 +6,7 @@ async function isloggedIn() {
     user = await JSON.parse(sessionStorage.getItem("user")); //JSON.parse(sessionStorage.getItem("user"));
 
     if (user == null) {
-
+      window.location.href = "pages/login.html";
       //  $(window.document.location).attr('href', novaURL);
       //$(window.document.location).attr('href', "../index.html");
       //window.location.href = "/index.html";
