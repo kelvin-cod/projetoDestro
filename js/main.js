@@ -45,7 +45,7 @@ $("#logout2").on("click", () => {
 
   sessionStorage.removeItem('user')
   // $(window.document.location).attr('href', "login.html")
-  window.location.href = "../../pages/login.html";
+  window.location.href = "login.html";
 });
 
 (function ($) {

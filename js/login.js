@@ -62,21 +62,21 @@ $(function () {
     var remember = $.cookie('remember');
     if (remember == 'true') {
         $('#remember').prop('checked', true);
-        var email = $.cookie('email');
+        var username = $.cookie('username');
         var password = $.cookie('password');
         // autofill the fields
-        $('#email').val(email);
+        $('#username').val(username);
         $('#password').val(password);
     }
 
     $("#login").on("click", function () {
         if ($('#remember').is(':checked')) {
 
-            var email = $('#email').val();
+            var username = $('#username').val();
             var password = $('#password').val();
 
             // set cookies to expire in 14 days
-            $.cookie('email', email, {
+            $.cookie('username', username, {
                 expires: 14
             });
             $.cookie('password', password, {
@@ -87,7 +87,7 @@ $(function () {
             });
         } else {
             // reset cookies
-            $.cookie('email', null);
+            $.cookie('username', null);
             $.cookie('password', null);
             $.cookie('remember', null);
         }
