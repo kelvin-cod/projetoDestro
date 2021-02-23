@@ -4,25 +4,28 @@ async function isloggedIn() {
 
   try {
     user = await JSON.parse(sessionStorage.getItem("user")); //JSON.parse(sessionStorage.getItem("user"));
-    if (user.tipo == 1) {
-      user.tipo = "Administrador"
+
+    if (user == null) {
+
+      //  $(window.document.location).attr('href', novaURL);
+      //$(window.document.location).attr('href', "../index.html");
+      //window.location.href = "/index.html";
     } else {
-      user.tipo = "Básico"
+
+      if (user.tipo == 1) {
+        user.tipo = "Administrador"
+      } else {
+        user.tipo = "Básico"
+      }
+      $("#user").text(user.username);
+      $("#userTipo").text(user.tipo);
+
     }
-    $("#user").text(user.username);
-     $("#userTipo").text(user.tipo);
+
   } catch (error) {
     console.log(error)
   }
 
-  if (user == null) {
-
-  //  $(window.document.location).attr('href', novaURL);
-    //$(window.document.location).attr('href', "../index.html");
-    //window.location.href = "/index.html";
-  } else {
-
-  }
 
 
 };
@@ -45,7 +48,7 @@ $("#logout2").on("click", () => {
 
   sessionStorage.removeItem('user')
   // $(window.document.location).attr('href', "login.html")
-  window.location.href = "login.html";
+  window.location.href = "/login.html";
 });
 
 (function ($) {
