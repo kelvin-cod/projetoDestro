@@ -331,7 +331,7 @@ $("#buscaFornecedor").on("keydown", () => {
 });
 
 function doneTyping() {
-    let http = `${local}/provider/search`;
+    let http = `${https}/provider/search`;
     let tbl = '';
     let Obj = {
         Filter: $('#buscaFornecedor').val()
